@@ -37,18 +37,22 @@ Hi there 👋
      <a  title="I am on Facebook also"  href="//facebook.com/mrinalcs">
       <img src="https://img.icons8.com/color/48/null/facebook-new.png"/>
     </a>
+ <!-- 
     <a  title="Check me on Instagram"  href="//instagram.com/mrinalcs">
       <img src="https://img.icons8.com/color/48/null/instagram-new--v1.png"/>
     </a>
+-->
     <a  title="Chat on Telegram"  href="//t.me/mrinalcs" >
       <img src="https://img.icons8.com/color/48/null/telegram-app--v1.png"/>
       </a>
       <a  title="View my profile on LinkedIN"  href="./">
       <img src="https://img.icons8.com/color/48/null/linkedin.png"/>
     </a>
+ <!--
      <a title="Probably I am on printerest also" href="//pinterest.com/mrinalcs">
       <img src="https://img.icons8.com/color/48/null/pinterest--v1.png"/>
     </a>
+-->
       <a title="Mrinal on Github"  href="//github.com/mrinalcs">
       <img width="10%" src="https://github.githubassets.com/images/mona-loading-dark.gif"/>
     </a>
