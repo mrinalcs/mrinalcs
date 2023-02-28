@@ -60,4 +60,4 @@ Hi there 👋
   </p>
 
 
-new changes to amain
+new changes to blog
