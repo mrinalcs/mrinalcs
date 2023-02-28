@@ -59,6 +59,3 @@ Hi there 👋
  
   </p>
 
-
-new changes to blog
-this is new line
