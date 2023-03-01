@@ -30,7 +30,7 @@ Hi there 👋
  </h1>
  
  
- It's me Mrinal studying Statistics but have a little interest in web development. I was in first years when I made my first web page with HTML and CSS. While I was studying in the university I was introduced to programming and designing. Beside my studies I was an active member in Github and Codepen for tasks and projects including being a web master of vbstat. That and my previous interest in web development create a spark to me.</p>
+ It's me Mrinal studying Statistics, have interest in Programming. I am familiar with R, Python, C, & have skill in HTML, JS, PHP. Typed few LaTeX and Markdown pages in R Studio. Played with Angular, Jekyll, WordPress HTMLY . In first year of my graduation learn HTML and JS and CSS little bit. I introduced to R programming in 2nd year as a paper of my degree. Beside my little study I do everything except outdoor gaming. Huhh! Thats all.</p>
 </p>
 
   <p align="center">
