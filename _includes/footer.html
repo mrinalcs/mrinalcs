@@ -1,0 +1,67 @@
+<!-- begin footer -->
+<footer class="footer">
+
+  <div class="footer__inner">
+    <div class="container">
+      <div class="row">
+
+        <div class="col col-5 col-d-12">
+          <div class="footer__author">
+            <div class="footer__author-avatar">
+              <img class="lazy" data-src="{{site.author.author__avatar}}" alt="{{site.author.author__name}}">
+            </div>
+            <h3 class="footer__author-name">{{site.author.author__name}}</h3>
+            <p class="footer__author-bio">{{site.author.author__bio}}</p>
+            {% if site.social %}
+            <div class="social">
+              <ul class="social__list list-reset">
+                {% for social in site.social %}
+                <li class="social__item">
+                  <a class="social__link" href="{{social.link}}" target="_blank" rel="noopener"
+                    aria-label="{{social.label}} link"><i class="ion {{social.icon}}"></i></a>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+
+        {% if site.gallery %}
+        <div class="col col-6 push-1 col-d-12 push-d-0">
+          <div class="footer__gallery">
+            <h3 class="footer__gallery-title">{{ site.gallery.gallery__title }}</h3>
+            {% if site.gallery %}
+            <div class="gallery-footer">
+              <div class="gallery" style="grid-template-columns: repeat({{site.gallery.gallery__columns}}, auto);">
+                {% for image in site.gallery.gallery__images %}
+                <div class="gallery__image">
+                  <img src="{{site.baseurl}}{{image.url}}" alt="{{image.alt}}" loading="lazy">
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+
+  <div class="footer__info">
+    <div class="container">
+      <div class="row">
+        <div class="col col-12">
+          <div class="footer__info-box">
+            <div class="copyright">{{site.time | date: '%Y'}} &copy; <a href="/">{{site.title}}</a>. Crafted & Designed by <a href="https://jekyllthemes.io/developers/artem-sheludko">Artem Sheludko</a>.</div>
+            <div class="top" title="Top"><i class="ion ion-ios-arrow-up"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</footer>
+<!-- end footer -->

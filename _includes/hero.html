@@ -1,0 +1,35 @@
+<!-- begin hero -->
+<section class="hero">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="hero__inner">
+
+          <div class="hero__left">
+            <h1 class="hero__title">{{ site.hero.hero__title }}</h1>
+            <p class="hero__description">{{ site.hero.hero__description }}</p>
+            {% if site.mailchimp == "enable" %}
+            <div class="hero__subscribe">
+              <form class="subscribe-form validate"
+                action="{% if site.mailchimp__identifier %}//{{site.mailchimp__identifier}}{% else %}#{% endif %}" method="POST" id="membedded-subscribe-form" name="membedded-subscribe-form" target="_blank" novalidate>
+                <label class="screen-reader-text" for="mce-EMAIL">Email address</label>
+                <input class="subscribe-email required email" id="mce-EMAIL" type="text" name="EMAIL"
+                  placeholder="{% if site.mailchimp__input__text %}{{ site.mailchimp__input__text }}{% else %}Email address{% endif %}">
+                <button class="button button--primary subscribe-button" id="membedded-subscribe" type="submit" name="subscribe">{{ site.mailchimp__button__text }}</button>
+              </form>
+            </div>
+            {% endif %}
+          </div>
+
+          <div class="hero__right">
+            <div class="hero__image">
+              <img class="lazy" data-src="{{ site.hero.hero__image }}" alt="{{site.author.name}}'s Picture">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end hero -->

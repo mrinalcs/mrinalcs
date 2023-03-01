@@ -1,0 +1,16 @@
+---
+layout: null
+---
+[
+  {% for post in site.posts %}
+    {
+      "title"    : "{{ post.title | escape }}",
+      "category" : "{{ post.category }}",
+      "tags"     : "{{ post.tags | array_to_sentence_string }}",
+      "url"      : "{{ site.baseurl }}{{ post.url }}",
+      "date"     : "{{ post.date | date: '%b %-d, %Y' }}",
+      "content"  : "{{ post.content | strip_html | strip_newlines | escape }}",
+      "article"  : "<div class='article col col-4 col-d-6 col-t-12 animate'> <div class='article__inner'> <div class='article__head'> <time class='article__date' datetime='{{post.date | date_to_xmlschema}}'>{{post.date | date_to_string}}</time>{% if post.video_embed %}<div class='video-icon'> <div class='circle pulse'></div><div class='circle'> <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'> <polygon points='40,30 65,50 40,70'></polygon> </svg> </div></div>{% endif %}{% if post.image %}<a class='article__image' href='{{post.url | prepend: site.baseurl}}'> <img src='{{site.baseurl}}{{post.image}}' alt='{{post.title | escape}}'> </a>{% endif %}</div><div class='article__content'> <h2 class='article__title'> <a href='{{post.url | prepend: site.baseurl}}'>{{post.title | escape}}</a> </h2>{% if post.description %}<p class='article__excerpt'>{{post.description | escape}}</p>{% endif %}</div></div></div>"
+    } {% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]

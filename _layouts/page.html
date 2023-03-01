@@ -1,0 +1,78 @@
+---
+layout: default
+---
+
+<div class="page-head">
+  <div class="container">
+    <div class="row">
+
+      {% if page.video_embed %}
+      <div class="col col-12">
+        <div class="page-video">
+          <div class="page-video__wrap">
+            <iframe src="{{ page.video_embed }}" loading="lazy" width="640" height="360" frameborder="0"
+              webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+
+      {% else page.id or page.path contains '_pages' or page.url contains '404' %}
+
+      {%if page.image %}
+      <div class="col col-12">
+        <div class="page-image">
+          <img class="lazy" data-src="{{site.baseurl}}{{page.image}}" alt="{{page.title}}">
+        </div>
+      </div>
+      {% endif %}
+
+      {% endif %}
+
+      <div class="col col-12">
+        <div class="page__info">
+          <h1 class="page__title">{{ page.title | escape }}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- begin page -->
+<div class="container animate">
+
+  <article class="page">
+    <div class="page__content">
+      {{ content }}
+    </div>
+  </article>
+
+</div>
+<!-- end page -->
+
+{% if page.name == '404.html' %}
+<!-- begin recent posts -->
+<div class="recent-posts animate">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="container__inner">
+          <div class="section__info">
+            <div class="section__head">
+              <h2 class="section__title">Recent Posts</h2>
+              <a class="section__link" href="{{site.baseurl}}/">Back to homepage</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      {% for post in site.posts limit:3 %}
+        {% include article.html %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- end recent posts -->
+{% endif %}

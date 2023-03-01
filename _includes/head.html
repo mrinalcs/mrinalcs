@@ -1,0 +1,62 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta name='description' content='{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}'>
+
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ "/feed.xml" | relative_url }}">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{% if page.url == "/" %}{{ site.title }}{% else %}{{ page.title }} – {{ site.title }}{% endif %}">
+  <meta name="twitter:description" content="{% if page.url == "/" %}{{ site.description | strip_html | xml_escape }}{% elsif page.description %}{{ page.description | strip_html | xml_escape }}{% else %}{{ page.excerpt | strip_html | xml_escape }}{% endif %}">
+  <meta name="twitter:image:src" content="{{ page.image | absolute_url }}">
+
+  <!-- Facebook OpenGraph -->
+  <meta property="og:title" content="{% if page.url == "/" %}{{ site.title }}{% else %}{{ page.title }} – {{ site.title }}{% endif %}">
+  <meta property="og:description" content="{% if page.url == "/" %}{{ site.description | strip_html | xml_escape }}{% elsif page.description %}{{ page.description | strip_html | xml_escape }}{% else %}{{ page.excerpt | strip_html | xml_escape }}{% endif %}">
+  <meta property="og:image" content="{{ page.image | absolute_url }}">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700;900&display=swap" as="style">
+
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+
+  <!-- Ionicons -->
+  <link rel="preload" href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" as="style">
+
+  <link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet">
+
+  <script>
+    {% if site.color_scheme == "auto" %}
+    if (localStorage.getItem("theme") === "dark") {
+      document.documentElement.setAttribute("dark", "");
+      document.documentElement.classList.add('dark-mode');
+    }
+    {% elsif site.color_scheme == "light" %}
+      document.documentElement.setAttribute("light", "");
+      document.documentElement.classList.add('light-mode');
+    {% elsif site.color_scheme == "dark" %}
+      document.documentElement.setAttribute("dark", "");
+      document.documentElement.classList.add('dark-mode');
+    {% else %}
+    if (localStorage.getItem("theme") === "dark") {
+      document.documentElement.setAttribute("dark", "");
+      document.documentElement.classList.add('dark-mode');
+    }
+    {% endif %}
+  </script>
+
+  <style>
+  {% capture include_to_scssify %}
+    {% include main.scss %}
+  {% endcapture %}
+  {{ include_to_scssify | scssify }}
+  </style>
+</head>
