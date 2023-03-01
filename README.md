@@ -52,11 +52,11 @@ Hi there 👋
      <a title="Probably I am on printerest also" href="//pinterest.com/mrinalcs">
       <img src="https://img.icons8.com/color/48/null/pinterest--v1.png"/>
     </a>
--->
+
       <a title="Mrinal on Github"  href="//github.com/mrinalcs">
       <img width="10%" src="https://github.githubassets.com/images/mona-loading-dark.gif"/>
     </a>
- 
+ -->
   </p>
 
 
