@@ -1,0 +1,67 @@
+<!-- begin header -->
+<header class="header" id="top">
+  <div class="container">
+    <div class="row">
+      <div class="header__inner col col-12">
+
+        <div class="logo">
+          <a class="logo__link" href="{{ site.baseurl }}/">
+          {% if site.logo %}
+            <img class="logo__image" src="{{ site.baseurl }}{{ site.logo }}" alt="{{ site.title }}">
+          {% else %}
+            {{ site.title }}
+          {% endif %}
+          </a>
+        </div>
+
+        <nav class="main-nav">
+          <div class="main-nav__box">
+            <div class="nav__icon-close">
+              <i class="ion ion-md-close"></i>
+            </div>
+            <div class="nav__title">Menu</div>
+            <ul class="nav__list list-reset">
+              <li class="nav__item">
+                <a href="{{ site.baseurl }}/" class="nav__link">Home</a>
+              </li>
+              {% for page in site.pages %}
+                {% unless page.name == 'tags.html' or page.name == '404.html' %}
+                  {% if page.title %}
+                  <li class="nav__item">
+                    <a href="{{ page.url | prepend: site.baseurl }}" class="nav__link">{{ page.title }}</a>
+                  </li>
+                  {% endif %}
+                {% endunless %}
+              {% endfor %}
+              {% if site.color_scheme == "auto" %}
+              <li class="nav__item nav__item-icon">
+                <div class="toggle-theme">
+                  <div class="toggle-moon" title="Enable dark mode"><i class="ion ion-ios-moon"></i></div>
+                  <div class="toggle-sun" title="Enable light mode"><i class="ion ion-ios-sunny"></i></div>
+                </div>
+              </li>
+              {% elsif site.color_scheme == "light" or site.color_scheme == "dark" %}
+              {% else %}
+              <li class="nav__item nav__item-icon">
+                <div class="toggle-theme">
+                  <div class="toggle-moon" title="Enable dark mode"><i class="ion ion-ios-moon"></i></div>
+                  <div class="toggle-sun" title="Enable light mode"><i class="ion ion-ios-sunny"></i></div>
+                </div>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </nav>
+
+        <div class="nav-button">
+          <i class="nav__icon icon__menu ion ion-md-menu"></i>
+          <i class="nav__icon icon__search ion ion-md-search"></i>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</header>
+<!-- end header -->
+
+{% include search.html %}
