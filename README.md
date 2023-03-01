@@ -45,7 +45,7 @@ Hi there 👋
     <a  title="Chat on Telegram"  href="//t.me/mrinalcs" >
       <img src="https://img.icons8.com/color/48/null/telegram-app--v1.png"/>
       </a>
-      <a  title="View my profile on LinkedIN"  href="./">
+      <a  title="View my profile on LinkedIN"  href="https://www.linkedin.com/in/mrinalcs/">
       <img src="https://img.icons8.com/color/48/null/linkedin.png"/>
     </a>
  <!--
