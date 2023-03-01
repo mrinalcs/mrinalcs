@@ -59,4 +59,12 @@ Hi there 👋
  
   </p>
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/f52984c9-fc97-4263-b5d8-d41fdbf7c642/deploy-status)](https://app.netlify.com/sites/mrinalcs/deploys)
+
+
+
+
+
+
+
+ [![Netlify Status](https://api.netlify.com/api/v1/badges/f52984c9-fc97-4263-b5d8-d41fdbf7c642/deploy-status)](https://mrinal.tk)
+
