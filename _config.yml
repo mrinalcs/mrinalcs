@@ -32,7 +32,7 @@ url: 'https://mrinal.ga'
 github:
   username: mrinalcs             # change to your github username
 
-twitter:
+facebook:
   username: mrinalcs            # change to your twitter username
 
 social:
@@ -42,8 +42,8 @@ social:
   email: hello@mrinal.ga             # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/username      # change to your twitter homepage
-    - https://github.com/username       # change to your github homepage
+    # - https://twitter.com/username      # change to your twitter homepage
+    - https://github.com/mrinalcs       # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
     # - https://www.linkedin.com/in/username

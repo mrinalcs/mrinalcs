@@ -6,7 +6,7 @@
       <div class="footer-left">
         <p class="mb-0">
           © {{ 'now' | date: "%Y" }}
-          <a href="{{ site.social.links[0] }}">{{ site.social.name }}</a>.
+          <a href="{{ site.social.links[0] }}" target="_blank" >{{ site.social.name }}</a>.
           {% if site.data.locales[site.lang].copyright.brief %}
           <span data-toggle="tooltip" data-placement="top"
             title="{{ site.data.locales[site.lang].copyright.verbose }}">{{ site.data.locales[site.lang].copyright.brief }}</span>
@@ -22,7 +22,7 @@
           {%- endcapture -%}
 
           {%- capture _theme -%}
-          <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a>
+            Chirpy
           {%- endcapture -%}
 
           {{ site.data.locales[site.lang].meta
