@@ -27,7 +27,7 @@ description: >-                        # used by seo meta and the atom feed
   Thoughts Talks, and writes about experience, ethics, privacy, and dev. I share open resources and inspiration.
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
-url: ''
+url: 'https://mrinal.ga'
 
 github:
   username: mrinalcs             # change to your github username
@@ -78,7 +78,7 @@ theme_mode:   # [light|dark]
 # will be added to all image (site avatar & posts' images) paths starting with '/'
 #
 # e.g. 'https://cdn.com'
-img_cdn: ''
+img_cdn: 'https://mrinal.ga'
 
 # the avatar on sidebar, support local or CORS resources
 avatar: '/assets/img/avatar.png'
