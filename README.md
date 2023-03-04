@@ -14,11 +14,11 @@ Here are some ideas to get you started:
 -->
 
 <p align="right">
- <a title="Click to view more on www.mrinal.tk" href="//mrinal.tk" ><img align="center" style="border-radius: 100rem;" width="100px" src="assets/gif/cat-right.gif" align="center" alt="Mrinals github page avatar" /></a>
+ <a title="Click to view more on https://mrinal.ga" href="//mrinal.ga" ><img align="center" style="border-radius: 100rem;" width="100px" src="assets/gif/cat-right.gif" align="center" alt="Mrinals github page avatar" /></a>
 </p>
 
 <p align="center">
-  <a title="Click to view more on www.mrinal.tk"  href="//mrinal.tk" target="_blank"><img style="border-radius: 100rem;" width="100px" src="https://i.pinimg.com/originals/0b/30/b5/0b30b558d728099473fb7dd00605a25b.gif" align="center" alt="Mrinals github page avatar" /></a>
+  <a title="Click to view more mrinal.ga"  href="//mrinal.ga" target="_blank"><img style="border-radius: 100rem;" width="100px" src="https://i.pinimg.com/originals/0b/30/b5/0b30b558d728099473fb7dd00605a25b.gif" align="center" alt="Mrinals github page avatar" /></a>
  <h2 align="center">Mrinal Chandra Sarkar</h2>
 
  <p align="center">
