@@ -48,23 +48,35 @@ Hi there 👋
       <a  title="View my profile on LinkedIN"  href="https://www.linkedin.com/in/mrinalcs/">
       <img src="https://img.icons8.com/color/48/null/linkedin.png"/>
     </a>
+  
  <!--
+
      <a title="Probably I am on printerest also" href="//pinterest.com/mrinalcs">
       <img src="https://img.icons8.com/color/48/null/pinterest--v1.png"/>
     </a>
 
+
       <a title="Mrinal on Github"  href="//github.com/mrinalcs">
       <img width="10%" src="https://github.githubassets.com/images/mona-loading-dark.gif"/>
     </a>
+
  -->
+  
   </p>
 
 
 
 
+```bash
+git add --all
+git commit -m “add message example: Initial Push”
+git push
+```
 
 
 
-
- [![Netlify Status](https://api.netlify.com/api/v1/badges/f52984c9-fc97-4263-b5d8-d41fdbf7c642/deploy-status)](https://mrinal.tk)
-
+```bash
+bundle lock --add-platform x86_64-linux
+bundle
+bundle exec jekyll serve
+```
