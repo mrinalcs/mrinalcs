@@ -25,7 +25,7 @@ Here are some ideas to get you started:
  
   <h1 align="center">
 
-Hi there 👋
+Hi! There 👋
 
  </h1>
  
@@ -41,15 +41,15 @@ I don't like click noise of my mouse the all day which leads me to buy noiseless
 
 <hr>
 
-<p>
-May I help you being online ?
-  Statics Portfullio design (CSS)
-  Wordpress Blogging Customisation (WP Theme)
-  Dynamic Documentation (Jkyll,React Frameworks)
-</p>
+
+### May I help you being online ? <br>
+-  Portfullio Design<br>
+-  Wordpress Blogging<br>
+-  Dynamic Documentation<br>
 
 
 
+## Find me
 
   <p align="center">
      <a  title="I am on Facebook also"  href="//facebook.com/mrinalcs">
@@ -85,16 +85,3 @@ May I help you being online ?
 
 
 
-```bash
-git add --all
-git commit -m “add message example: Initial Push”
-git push
-```
-
-
-
-```bash
-bundle lock --add-platform x86_64-linux
-bundle
-bundle exec jekyll serve
-```
