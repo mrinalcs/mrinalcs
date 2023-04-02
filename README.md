@@ -30,9 +30,9 @@ Hi! There 👋
  </h1>
  
  
- It's me Mrinal studying Statistics, have interest in Programming. I am familiar with R, Python, C, & have skill in HTML, JS, PHP. Typed few LaTeX and Markdown pages in R Studio. Played with Angular, Jekyll, WordPress. In first year of my graduation learn HTML and CSS little bit. I introduced to R programming in 2nd year as a paper of my degree. Beside my little study I do everything except outdoor gaming. 
+ It's me Mrinal studying Statistics, have interest in programming. I am familiar with R, Python, C, & have skill in HTML, JS, PHP. Typed few LaTeX and Markdown pages in R Studio. Played with Angular, Jekyll, WordPress. In first year of my graduation learn HTML and CSS little bit. I introduced to R programming as a paper of my degree. Beside my little study I do everything except outdoor gaming. 
  
-I don't like click noise of my mouse the all day which leads me to buy noiseless E160X.
+I don't like click noise of my mouse the all day which leads me to buy E160X.
  
  Huhh! Thats all.</p>
 </p>
