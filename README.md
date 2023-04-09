@@ -60,7 +60,7 @@ I don't like click noise of my mouse the all day which leads me to buy E160X.
       <img src="https://img.icons8.com/color/48/null/instagram-new--v1.png"/>
     </a>
 -->
-    <a  title="Chat on Telegram"  href="//t.me/mrinalcs" >
+    <a  title="Chat on Telegram"  href="//telegram.me/mrinalcs" >
       <img src="https://img.icons8.com/color/48/null/telegram-app--v1.png"/>
       </a>
       <a  title="View my profile on LinkedIN"  href="https://www.linkedin.com/in/mrinalcs/">
