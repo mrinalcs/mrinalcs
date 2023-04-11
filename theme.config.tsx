@@ -4,10 +4,10 @@ import { DocsThemeConfig } from 'nextra-theme-docs'
 const config: DocsThemeConfig = {
   logo: <span>My Project</span>,
   project: {
-    link: 'https://github.com/mrinalcs/mrinalcs',
+    link: 'https://github.com/mrinalcs',
   },
   
-  docsRepositoryBase: 'https://github.com/shuding/nextra-docs-template',
+  docsRepositoryBase: 'https://github.com/mrinalcs/mrinalcs',
   footer: {
     text: 'Nextra Docs Template',
   },
