@@ -85,3 +85,4 @@ I don't like click noise of my mouse the all day which leads me to buy E160X.
 
 
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7ae2c0a3-b8fe-4dd4-9b18-8d65e5c8213e/deploy-status)](https://app.netlify.com/sites/mrinalcs/deploys)
