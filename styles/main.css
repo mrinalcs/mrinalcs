@@ -63,3 +63,11 @@ img.next-image {
 .nav-line .nav-link {
   color: #69778c;
 }
+
+a {
+  text-decoration: none!important;
+}
+a.nav-link {
+  text-decoration: underline!important;
+  text-underline-offset: 1.5px;
+}
