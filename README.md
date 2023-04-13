@@ -18,14 +18,14 @@ Here are some ideas to get you started:
 </p>
 
 <p align="center">
-  <a title="Click to view more mrinal.ga"  href="//mrinal.ga" target="_blank"><img style="border-radius: 100rem;" width="100px" src="https://i.pinimg.com/originals/0b/30/b5/0b30b558d728099473fb7dd00605a25b.gif" align="center" alt="Mrinals github page avatar" /></a>
+  <a title="Click to view more mrinal.ga"  href="//mrinal.ga" target="_blank"><img style="border-radius: 100rem;" width="100px" src="https://2.gravatar.com/avatar/1db19beb6476976d05cbcf0418613428" align="center" alt="Mrinals github page avatar" /></a>
  <h2 align="center">Mrinal</h2>
 
  <p align="center">
  
   <h1 align="center">
 
-Hi! There 👋
+Hi! 👋
 
  </h1>
  
@@ -84,5 +84,4 @@ I don't like click noise of my mouse the all day which leads me to buy E160X.
 
 
 
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/7ae2c0a3-b8fe-4dd4-9b18-8d65e5c8213e/deploy-status)](https://app.netlify.com/sites/mrinalcs/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7ae2c0a3-b8fe-4dd4-9b18-8d65e5c8213e/deploy-status)](https://mrinal.tk)
