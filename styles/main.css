@@ -69,3 +69,6 @@ a {
 ul li a[href] {
   text-decoration: none!important;
 }
+a[href="/feed.xml"] {
+  text-decoration: none!important;
+}
