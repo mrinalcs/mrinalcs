@@ -21,14 +21,6 @@ export default function Document() {
         <meta name="twitter:title" content={meta.title} />
         <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:image" content={meta.image} />
-            <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700;900&display=swap" as="style">
-
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700;900&display=swap" rel="stylesheet">
-
-
       </Head>
       <body>
         <Main />
