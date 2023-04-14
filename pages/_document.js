@@ -2,9 +2,9 @@ import { Html, Head, Main, NextScript } from 'next/document'
 
 export default function Document() {
   const meta = {
-    title: "Mrinal' Blog",
-    description: "Mrinal' Portfullio.",
-    image: 'https://assets.vercel.com/image/upload/q_auto/front/vercel/dps.png'
+    title: "Mrinal' Portfullio",
+    description: "Hello! I am Mrinal and currently pursuing my Bachelor's degree in Statistics, a fascinating field. I'm passionate about exploring patterns in data, applying statistical methods, and gaining insights that can have a meaningful impact.",
+    image: '/images/photo.jpg'
   }
 
   return (
