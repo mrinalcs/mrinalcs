@@ -75,3 +75,6 @@ a[href="/feed.xml"] {
 a[href="https://mrinal.ga"] {
       float: unset!important;
 }
+a[href="https://mrinal.ga"] {
+      text-decoration:none!important;
+}
