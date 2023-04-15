@@ -3,7 +3,7 @@ const YEAR = new Date().getFullYear()
 export default {
   footer: (
     <small style={{ display: 'block', marginTop: '8rem' }}>
-      © <time>{YEAR}</time> <a href="//mrinal.ga">Mrinal</a>
+      © <time>{YEAR}</time> <a href="https://mrinal.ga">Mrinal</a>
       <a href="/feed.xml">RSS</a>
       <style jsx>{`
         a {
