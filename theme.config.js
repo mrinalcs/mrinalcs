@@ -7,7 +7,7 @@ export default {
       <a class="footer" href="/feed.xml">RSS</a>
       <style jsx>{`
         a.footer {
-          float: right;
+          float: right!important;
         }
         @media screen and (max-width: 480px) {
           article {
