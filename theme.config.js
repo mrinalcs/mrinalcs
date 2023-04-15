@@ -6,7 +6,7 @@ export default {
       © <time>{YEAR}</time> <a href="https://mrinal.ga">Mrinal</a>
       <a class="footer" href="/feed.xml">RSS</a>
       <style jsx>{`
-        .footer {
+        a.footer {
           float: right;
         }
         @media screen and (max-width: 480px) {
