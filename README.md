@@ -86,5 +86,5 @@ I don't like click noise of my mouse the all day which leads me to buy E160X.
 
 
 <p align="center">
- <img width="30%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=mrinalcs&hide_progress=true&theme=transparent" align="center" alt="GitHub Readme Stats" />
+ <img width="40%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=mrinalcs&hide_progress=true&theme=transparent" align="center" alt="GitHub Readme Stats" />
 </p>
