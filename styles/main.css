@@ -72,3 +72,6 @@ ul li a[href] {
 a[href="/feed.xml"] {
   text-decoration: none!important;
 }
+a[href="https://mrinal.ga"] {
+      float: unset!important;
+}
