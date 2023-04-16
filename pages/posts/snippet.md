@@ -17,7 +17,7 @@ git code .
 git add --all
 git commit -m “int”
 git push
-git push origin feature-branch
+git push origin main:new
 ```
 
 
