@@ -42,11 +42,6 @@ I don't like click noise of my mouse the all day which leads me to buy E160X.
 <hr>
 
 
-### May I help you being online ? <br>
--  Portfullio Design<br>
--  Wordpress Blogging<br>
--  Dynamic Documentation<br>
-
 
 
 ## Find me
@@ -83,8 +78,7 @@ I don't like click noise of my mouse the all day which leads me to buy E160X.
   </p>
 
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/7ae2c0a3-b8fe-4dd4-9b18-8d65e5c8213e/deploy-status)](https://mrinal.tk)
 
 <p align="center">
- <img width="40%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=mrinalcs&hide_progress=true&theme=transparent" align="center" alt="GitHub Readme Stats" />
+ <img width="60%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=mrinalcs&hide_progress=true&theme=transparent" align="center" alt="GitHub Readme Stats" />
 </p>
