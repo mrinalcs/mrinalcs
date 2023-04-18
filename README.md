@@ -18,7 +18,7 @@ Here are some ideas to get you started:
 </p>
 
 <p align="center">
-  <a title="Click to view more mrinal.ga"  href="//mrinal.ga" target="_blank"><img style="border-radius: 100rem;" width="100px" src="https://i.gifer.com/origin/49/49f42bc5e918c4ac9a1eab662d7a5fde_w200.gif" align="center" alt="Mrinals github page avatar" /></a>
+  <a title="Click to view more mrinal.ga"  href="//mrinal.ga" target="_blank"><img style="border-radius: 100rem;" width="100px" src="https://i.pinimg.com/originals/57/3c/da/573cdaf5205bebaac51ca29273dd5514.gif" align="center" alt="Mrinals github page avatar" /></a>
  <h2 align="center">Mrinal</h2>
 
  <p align="center">
