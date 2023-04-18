@@ -24,14 +24,18 @@ Here are some ideas to get you started:
  
  
  
- It's me Mrinal studying Statistics, have interest in programming. I am familiar with R, Python, C, & have skill in HTML, JS, PHP. Typed few LaTeX and Markdown pages in R Studio. Played with Angular, Jekyll, WordPress. In first year of my graduation learn HTML and CSS little bit. I introduced to R programming as a paper of my degree. Beside my little study I do everything except outdoor gaming. 
+ Hello It's me Mrinal studying Statistics, have interest in programming. I am familiar with `R Programming` , `Python`, `C`, & have skill in **HTML**, **JS**, `PHP`. Typed few `LaTeX` and Markdown pages in R Studio. Played with **Angular**, **Jekyll**, **WordPress**. In first year of my graduation learn HTML and CSS little bit. I introduced to R programming as a paper of my degree. Beside my little study I do everything except outdoor gaming. 
  
 I don't like click noise of my mouse the all day which leads me to buy E160X.
+
+
  
  Huhh! Thats all.
 </p>
 
 
+- Email:[ hello@mrinal.ga](mailto:hello@mrinal.ga)
+- Page:[ mrinal.ga](https://mrinal.ga)
 
 <br>
 
@@ -54,12 +58,13 @@ I don't like click noise of my mouse the all day which leads me to buy E160X.
       <img src="https://img.icons8.com/color/48/null/linkedin.png"/>
     </a>
   
- <!--
 
-     <a title="Probably I am on printerest also" href="//pinterest.com/mrinalcs">
-      <img src="https://img.icons8.com/color/48/null/pinterest--v1.png"/>
+
+<a title="Contact Email" href="mailto:hello@mrinal.ga">
+      <img src="https://img.icons8.com/color/48/null/gmail--v1.png"/>
     </a>
 
+  <!--
 
       <a title="Mrinal on Github"  href="//github.com/mrinalcs">
       <img width="10%" src="https://github.githubassets.com/images/mona-loading-dark.gif"/>
