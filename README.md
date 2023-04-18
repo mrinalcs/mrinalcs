@@ -19,22 +19,16 @@ Here are some ideas to get you started:
 
 <p align="center">
   <a title="Click to view more mrinal.ga"  href="//mrinal.ga" target="_blank"><img style="border-radius: 100rem;" width="100px" src="https://i.pinimg.com/originals/57/3c/da/573cdaf5205bebaac51ca29273dd5514.gif" align="center" alt="Mrinals github page avatar" /></a>
- <h2 align="center">Mrinal</h2>
+ <h2 align="center">About me</h2>
 
- <p align="center">
  
-  <h1 align="center">
-
-Hi! 👋
-
- </h1>
  
  
  It's me Mrinal studying Statistics, have interest in programming. I am familiar with R, Python, C, & have skill in HTML, JS, PHP. Typed few LaTeX and Markdown pages in R Studio. Played with Angular, Jekyll, WordPress. In first year of my graduation learn HTML and CSS little bit. I introduced to R programming as a paper of my degree. Beside my little study I do everything except outdoor gaming. 
  
 I don't like click noise of my mouse the all day which leads me to buy E160X.
  
- Huhh! Thats all.</p>
+ Huhh! Thats all.
 </p>
 
 
@@ -79,6 +73,5 @@ I don't like click noise of my mouse the all day which leads me to buy E160X.
 
 
 
-<p align="center">
- <img width="60%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=mrinalcs&hide_progress=true&theme=transparent" align="center" alt="GitHub Readme Stats" />
-</p>
+
+
