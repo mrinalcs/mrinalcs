@@ -33,12 +33,10 @@ I don't like click noise of my mouse the all day which leads me to buy E160X.
 
 
 
-<hr>
+<br>
 
 
 
-
-## Find me
 
   <p align="center">
      <a  title="I am on Facebook also"  href="//facebook.com/mrinalcs">
