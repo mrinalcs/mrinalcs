@@ -74,7 +74,7 @@ export default function Nextra({ Component, pageProps }) {
 ```
 ## Images
 
-![Alt text](https://mrinal.tk/images/photo.jpg)
+![Sample Image](/images/photo.jpg)
 
 ## Tables
 
