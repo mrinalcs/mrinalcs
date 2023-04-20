@@ -81,4 +81,5 @@ a[href="https://mrinal.ga"] {
 img[src="https://en.gravatar.com/userimage/231893283/ca554497244c4536b801aefbf8b05a45.png"] {
   border-radius: 50%; /* Applies a rounded shape */
   display: initial;
+  margin-block: auto;
 }
