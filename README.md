@@ -13,9 +13,12 @@ Here are some ideas to get you started:
 - ⚡ Fun fact: ...
 -->
 
+ <!--
 <p align="right">
  <a title="Click to view more on https://mrinal.ga" href="//mrinal.ga" ><img align="center" style="border-radius: 100rem;" width="100px" src="https://media1.giphy.com/media/eLv7gJpxqiQtbNNQUe/giphy.gif?cid=6c09b952ljq10tcs3zdfz4ouqbo49dsrjm3fuhtvynjncq4u&rid=giphy.gif&ct=s" align="center" alt="Mrinals github page avatar" /></a>
 </p>
+
+-->
 
 <p align="center">
   <a title="Click to view more mrinal.ga"  href="//mrinal.ga" target="_blank"><img style="border-radius: 100rem;" width="100px" src="https://i.pinimg.com/originals/57/3c/da/573cdaf5205bebaac51ca29273dd5514.gif" align="center" alt="Mrinals github page avatar" /></a>
