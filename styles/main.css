@@ -79,8 +79,6 @@ a[href="https://mrinal.ga"] {
       text-decoration:none!important;
 }
 img[src="https://en.gravatar.com/userimage/231893283/ca554497244c4536b801aefbf8b05a45.png"] {
-  display: block; /* Ensures the image is a block element and can be aligned */
-  float: left; /* Aligns the image to the left */
   border-radius: 50%; /* Applies a rounded shape */
-  padding:1.5rem;
+  display: initial;
 }
