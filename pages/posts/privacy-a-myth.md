@@ -1,7 +1,7 @@
 ---
 title: Privacy
 date: 2023/4/15
-description: Is Privacy a Myth.
+description: Is Privacy a Myth. This is my random thought which may not always be true. You may find angel to thought of . Basically why privacy is a matter of reference and misunderstand.
 tag: privacy,ethics
 author: You
 ---
@@ -19,3 +19,7 @@ Digital Footprint, Data Collection, Data Breaches, Surveillance, Lack of Control
 **Surveillance**: Surveillance technologies, such as CCTV cameras, facial recognition, and government surveillance programs, can monitor individuals' activities, potentially infringing on their privacy rights.
 
 **Lack of Control**: Individuals may feel they have limited control over their personal information, as data is often collected and processed by third parties without their explicit consent or knowledge.
+
+### Trust
+### Freedom
+### Abuse

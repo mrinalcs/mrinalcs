@@ -1,19 +1,19 @@
 ---
 title: Build a Simple PHP Website
 date: 2023/4/15
-description: Heres how you can build a website using PHP.
-tag: web
+description: Heres how you can build a basic dynamic website using PHP. This allows for greater flexibility and easier maintenance of the website. Basically you can build Blog portfullio gallery or small documentation.
+tag: web,PHP
 author: You
 ---
 
 # What You'll Need to Build a PHP Website
-## Knowledge
-Basic knowledge in HTML and PHP. CSS for styling the page. JS is not necessary to build simple website.
+## Idea
+Basic idea about HTML and PHP. CSS for styling the page. JS is not necessary to build simple website.
 ## Server
 There are plenty of free hosting providers that offers free PHP hosting with a free subdomain or custom domain. Choose one of them and continue building php website. 
  
  ## Why PHP not static HTML
- In html you can't change every page at once. You have to manually change every page one by one. Thats why PHP you just make a common header and footer file which will be included in every page. Moreover you can make function to do similar task again and again. PHP generate html on each request in server. You can implement API in PHP. You can build everything you imagine but thats is not our objective.
+ Threre are many CMS that can basic publishing or specefic application but that takes a huge resources as that includes many unused functionality. To do the similar task using less resources which mostly free you have to write your own code. In html you can't change every page at once. You have to manually change every page one by one. Thats why PHP you just make a common header and footer file which will be included in every page. Moreover you can make function to do similar task again and again. PHP generate html on each request in server. You can implement API in PHP. You can build everything you imagine but thats is not our objective. This approach allows for greater flexibility and easier maintenance of the website. Additionally, PHP is a server-side scripting language that can be used to dynamically generate web content based on various inputs, further enhancing the dynamic nature of the website.
  
  ## Write Codes
 You can put files inside folder as you like. But Heres we put each file in root drectory.

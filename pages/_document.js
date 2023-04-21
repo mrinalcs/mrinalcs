@@ -4,7 +4,7 @@ export default function Document() {
   const meta = {
     title: "Mrinal' Portfullio",
     description: "Hello! I am Mrinal and currently pursuing my Bachelor's degree in Statistics, a fascinating field. I'm passionate about exploring patterns in data, applying statistical methods, and gaining insights that can have a meaningful impact.",
-    image: '/images/photo.jpg'
+    image: '/profile.png'
   }
 
   return (
