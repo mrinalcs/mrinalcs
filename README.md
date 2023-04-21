@@ -45,6 +45,67 @@ I don't like click noise of my mouse the all day which leads me to buy E160X.
 
 
 
+
+
+
+
+
+
+
+<p align="center"> 
+    <a href="https://www.cprogramming.com/" target="_blank"> 
+        <code><img src="https://github.com/devicons/devicon/blob/master/icons/c/c-original.svg" alt="c" width="35" height="35"/></code>
+    </a> 
+    <a href="https://www.w3schools.com/cpp/" target="_blank"> 
+        <code><img src="https://github.com/devicons/devicon/blob/master/icons/cplusplus/cplusplus-original.svg" alt="cplusplus" width="35" height="35"/></code> 
+    </a> 
+    <a href="https://www.python.org" target="_blank"> 
+        <code><img src="https://github.com/devicons/devicon/blob/master/icons/python/python-original.svg" alt="python" width="35" height="35"/></code> 
+    </a> 
+ <a href="https://getbootstrap.com" rel="nofollow"> 
+        <code><img src="https://github.com/devicons/devicon/raw/master/icons/bootstrap/bootstrap-plain.svg" alt="bootstrap" width="35" height="35" style="max-width: 100%;"></code> 
+    </a>
+ <a href="https://reactnative.dev/" rel="nofollow"> 
+        <code><img src="https://camo.githubusercontent.com/5c92eeb467fd5d2b1ef1c560e3c3c2f758a8d4e03a8136bda7b41a2d3d4a1b59/68747470733a2f2f72656163746e61746976652e6465762f696d672f6865616465725f6c6f676f2e737667" alt="reactnative" width="35" height="35" data-canonical-src="https://reactnative.dev/img/header_logo.svg" style="max-width: 100%;"></code> 
+    </a>
+ <a href="https://www.php.net" rel="nofollow"> 
+        <code><img src="https://github.com/devicons/devicon/raw/master/icons/php/php-original.svg" alt="php" width="35" height="35" style="max-width: 100%;"></code> 
+    </a>
+ <a href="https://www.mysql.com/" rel="nofollow"> 
+        <code><img src="https://github.com/devicons/devicon/raw/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="35" height="35" style="max-width: 100%;"></code> 
+    </a>
+ <a href="https://code.visualstudio.com" rel="nofollow">
+        <code><img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/visual-studio-code/visual-studio-code.png" alt="vscode" width="35" height="35" style="max-width: 100%;"></code>
+    </a>
+ <a href="https://git-scm.com/" rel="nofollow"> 
+        <code><img src="https://camo.githubusercontent.com/fbfcb9e3dc648adc93bef37c718db16c52f617ad055a26de6dc3c21865c3321d/68747470733a2f2f7777772e766563746f726c6f676f2e7a6f6e652f6c6f676f732f6769742d73636d2f6769742d73636d2d69636f6e2e737667" alt="git" width="35" height="35" data-canonical-src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" style="max-width: 100%;"></code> 
+    </a>
+ <a href="https://cran.r-project.org/" rel="nofollow"> 
+        <code><img src="https://raw.githubusercontent.com/mitchelloharawild/icons/6e4dc378ac86c1d4f4ea167f408bed07b3df14fb/man/figures/icon-syntax-1.svg" alt="git" width="35" height="35" data-canonical-src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" style="max-width: 100%;"></code> 
+    </a>
+ 
+</p>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <p align="center">
      <a  title="I am on Facebook also"  href="//facebook.com/mrinalcs">
       <img src="https://img.icons8.com/color/48/null/facebook-new.png"/>
@@ -78,6 +139,9 @@ I don't like click noise of my mouse the all day which leads me to buy E160X.
   </p>
 
 
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=80&section=footer"/>
+</p>
 
 
 
