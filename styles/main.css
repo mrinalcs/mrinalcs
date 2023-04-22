@@ -72,12 +72,6 @@ ul li a[href] {
 a[href="/feed.xml"] {
   text-decoration: none!important;
 }
-a[href="https://mrinal.ga"] {
-      float: unset!important;
-}
-a[href="https://mrinal.ga"] {
-      text-decoration:none!important;
-}
 img[src="https://en.gravatar.com/userimage/231893283/001496fa079bdbf0ea747e2247333164"] {
   border-radius: 50%; /* Applies a rounded shape */
   display: initial;
