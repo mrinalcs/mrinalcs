@@ -13,7 +13,7 @@ author: You
 ```
 git pull
 git clone
-git code .
+code .
 git add --all
 git commit -m “int”
 git push
@@ -52,5 +52,12 @@ bundle
 bundle exec jekyll serve
 ```
 
+**Nextra**: Run nextra locally .
 
+```
+npm install nextra
+npm run dev
+npm build
+```
 
+[http://localhost:3000](http://localhost:3000)
