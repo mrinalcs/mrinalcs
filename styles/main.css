@@ -77,3 +77,28 @@ img[src="https://en.gravatar.com/userimage/231893283/a4ab1084b5b1492311087d2a22b
   display: initial;
   margin-block: auto;
 }
+.profile {
+  fill: var(--text-color);
+  background: var(--bgc);
+  border-radius: 50%; /* Applies a rounded shape */
+  display: initial;
+  margin-block: auto;
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Set text color for dark theme */
+    --text-color: rgba(0, 0, 0, 0.706); /* white */
+    --bgc: rgb(255, 255, 255);
+  }
+}
+
+/* Light theme */
+@media (prefers-color-scheme: light) {
+  :root {
+    /* Set text color for light theme */
+    --text-color: #000000; /* gray */
+    --bgc:rgb(255, 255, 255);
+  }
+}
