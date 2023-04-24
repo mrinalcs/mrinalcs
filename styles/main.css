@@ -78,4 +78,5 @@ svg.profile {
   margin-block: auto;
   fill: black;
   background: white;
+  border: solid 1px;
 }
