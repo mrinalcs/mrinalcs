@@ -52,12 +52,12 @@ bundle
 bundle exec jekyll serve
 ```
 
-**Nextra**: Run nextra locally .
+**Nextra**: Run locally .
 
 ```
 npm install nextra
 npm run dev
 npm build
 ```
-
+Local server :
 [http://localhost:3000](http://localhost:3000)
