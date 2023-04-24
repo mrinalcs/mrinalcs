@@ -76,4 +76,6 @@ svg.profile {
   border-radius: 50%; /* Applies a rounded shape */
   display: initial;
   margin-block: auto;
+  fill: black;
+  background: white;
 }
