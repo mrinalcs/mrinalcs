@@ -43,7 +43,8 @@ RewriteCond %{HTTP_HOST} ^www.vbstat.ml
 RewriteRule (.*) http://vbstat.ml/$1 [R=301,L]
 ```
 
-Folder indexing blocked
+Block Directory Listing:
+This code prevents the server from displaying the contents of directories when no index file is present.
 ```
 Options -Indexes
 ```
@@ -53,6 +54,8 @@ Error pages
 ```
 ErrorDocument 403 /error
 ErrorDocument 404 /error
+ErrorDocument 404 /error-404.html
+ErrorDocument 500 /error-500.html
 ```
 
 Redirect rules
@@ -60,3 +63,20 @@ Redirect rules
 Redirect /about-us /about
 Redirect /contact-us /contact
 ```
+
+Set Default Page:
+This code sets a specific file as the default page (e.g., index.html).
+```
+DirectoryIndex index.html
+```
+
+
+Prevent Hotlinking (Image Theft):
+This code prevents other websites from directly linking to your images.
+```
+RewriteEngine On
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?yourwebsite.com [NC]
+RewriteRule \.(jpg|jpeg|png|gif)$ - [NC,F,L]
+```
+
