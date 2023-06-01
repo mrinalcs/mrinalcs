@@ -2,7 +2,7 @@
 title: Privacy
 date: 2023/4/15
 description: Is Privacy a Myth. This is my random thought which may not always be true. You may find angel to thought of . Basically why privacy is a matter of reference and misunderstand.
-tag: privacy,ethics
+tag: thought
 author: You
 ---
 
