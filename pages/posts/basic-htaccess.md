@@ -2,7 +2,7 @@
 title: Configure htaccess
 date: 2023/4/15
 description: Some basic htaccess codes. Like https redirect www redirect Error handel folder indexing block
-tag: privacy,ethics
+tag: code
 author: You
 ---
 
