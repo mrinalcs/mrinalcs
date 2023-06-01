@@ -28,15 +28,11 @@ I am Mrinal, studying Statistics. Exploring patterns in data applying statistica
 
 ## Using
 
-Lenevo Slim 3 Ryzen3 1TB HDD 256SSD
-
-Samsung34Samsung M31 Exynose 9611 64MP
-
-CASIO fx-100MS
-
-Trüke Bud S21
-
-I don't like click noise of my mouse the all day which leads me to buy E160X.
+- Lenevo Slim 3 Ryzen 3
+- Samsung34Samsung M31
+- CASIO fx-100MS
+- Trüke Bud S21
+- E160X Wireless Optical Mouse
 
 </p>
 
