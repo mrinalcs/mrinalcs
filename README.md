@@ -23,8 +23,8 @@ Here are some ideas to get you started:
 <p align="center">
   <a title="Click to view more mrinal.ga"  href="//mrinal.ga" target="_blank"><img style="border-radius: 100rem;" width="100px" src="https://i.pinimg.com/originals/57/3c/da/573cdaf5205bebaac51ca29273dd5514.gif" align="center" alt="Mrinals github page avatar" /></a>
  <h2 align="center">About me</h2>
-
-Hello It's me Mrinal studying Statistics, have interest in programming. I have learnt basic R Programming, Python, C, & familiar with HTML, JavaScript, PHP. Typed few LaTeX and Markdown pages in Overleaf and R Studio. Played with Angular, Jekyll, WordPress. In first year of my graduation learn HTML and CSS little bit. I introduced to R programming as a paper of my degree. Beside my little study I do everything except outdoor gaming.
+<h2>Hello!</h2>
+I am Mrinal, studying Statistics. Exploring patterns in data applying statistical methods, and gaining insights that can have a meaningful impact using R, Python, C. I can write LaTeX and Markdown. Beside my study I like to learn Web Development in PHP & SSG.
 
 ## Using
 
