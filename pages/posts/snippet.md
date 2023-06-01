@@ -1,5 +1,5 @@
 ---
-title: Code Snippet
+title: Some Basic Code Snippet
 date: 2023/4/14
 description: Basic Snippet used by me that I have to remember. This includes Github commands Jupyternotebook command Python pacage installation command and Jekyll ..
 tag: code
@@ -7,6 +7,9 @@ author: You
 ---
 
 # Code Snippet
+
+#### Welcome to Shortcut Snippet, as a student of Statistics I use this cmds sometimes. To make workflow uninterepted and help in saving valuable time.
+
 
 **Git**: Just not to forget.
 
