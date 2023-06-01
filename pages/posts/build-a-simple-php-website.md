@@ -2,7 +2,7 @@
 title: Build a Simple PHP Website
 date: 2023/4/15
 description: Heres how you can build a basic dynamic website using PHP. This allows for greater flexibility and easier maintenance of the website. Basically you can build Blog portfullio gallery or small documentation.
-tag: web,PHP
+tag: code,idea
 author: You
 ---
 
