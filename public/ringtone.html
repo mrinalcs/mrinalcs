@@ -33,6 +33,10 @@
             background-color: #222;
         }
 
+        li.playing {
+            transform: scale(1.1);
+        }
+
         audio {
             display: block;
             margin: 40px auto;
@@ -60,8 +64,10 @@
     <script>
         const playlist = document.getElementById("playlist");
         const audioPlayer = document.getElementById("audioPlayer");
+        let currentlyPlaying = null;
 
         playlist.addEventListener("click", playSong);
+        audioPlayer.addEventListener("ended", playNextSong);
 
         function playSong(event) {
             if (event.target.tagName === "LI") {
@@ -69,8 +75,38 @@
                 const songUrl = `https://mrinal.ga/audio/${songFilename}`;
                 audioPlayer.src = songUrl;
                 audioPlayer.play();
+
+                // Remove playing class from the previously selected song
+                if (currentlyPlaying) {
+                    currentlyPlaying.classList.remove("playing");
+                }
+
+                // Add playing class to the newly selected song
+                event.target.classList.add("playing");
+                currentlyPlaying = event.target;
             }
         }
+
+        function playNextSong() {
+            if (currentlyPlaying) {
+                const nextSong = currentlyPlaying.nextElementSibling;
+                if (nextSong) {
+                    playSong({ target: nextSong });
+                }
+            }
+        }
+
+        audioPlayer.addEventListener("play", () => {
+            if (currentlyPlaying) {
+                currentlyPlaying.classList.add("playing");
+            }
+        });
+
+        audioPlayer.addEventListener("pause", () => {
+            if (currentlyPlaying) {
+                currentlyPlaying.classList.remove("playing");
+            }
+        });
     </script>
 </body>
 </html>
