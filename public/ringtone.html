@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Music Player</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+        }
+
+        h1 {
+            color: #ffcc00;
+            margin-top: 30px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 40px;
+        }
+
+        li {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #666;
+            transition: background-color 0.3s;
+        }
+
+        li:hover {
+            background-color: #222;
+        }
+
+        audio {
+            display: block;
+            margin: 40px auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Music Player</h1>
+
+    <ul id="playlist">
+        <li>ami-khola-janala.mp3</li>
+        <li>apki-nazrroon.mp3</li>
+        <li>bondhu-dekha-hobe.mp3</li>
+        <li>bose-bose-bhabi-ami.mp3</li>
+        <li>falak-tak-chal.mp3</li>
+        <li>humne-tumko-dekha.mp3</li>
+        <li>moner-dorja-khule-dilam.mp3</li>
+        <li>o-amar-desher-mati.mp3</li>
+        <li>rahon-me-unse.mp3</li>
+        <li>raja-ko-rani-se.mp3</li>
+    </ul>
+
+    <audio id="audioPlayer" controls></audio>
+
+    <script>
+        const playlist = document.getElementById("playlist");
+        const audioPlayer = document.getElementById("audioPlayer");
+
+        playlist.addEventListener("click", playSong);
+
+        function playSong(event) {
+            if (event.target.tagName === "LI") {
+                const songFilename = event.target.textContent.trim();
+                const songUrl = `https://mrinal.ga/audio/${songFilename}`;
+                audioPlayer.src = songUrl;
+                audioPlayer.play();
+            }
+        }
+    </script>
+</body>
+</html>
