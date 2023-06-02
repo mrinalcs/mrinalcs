@@ -1,21 +1,21 @@
 ---
 title: Build a Simple PHP Website
 date: 2023/4/15
-description: Heres how you can build a basic dynamic website using PHP. This allows for greater flexibility and easier maintenance of the website. Basically you can build Blog portfullio gallery or small documentation.
+description: Heres how you can build a basic dynamic PHP website.
 tag: code,idea
 author: You
 ---
 
-# What You'll Need to Build a PHP Website
+# Build a simple Website
 ## Idea
-Basic idea about HTML and PHP. CSS for styling the page. JS is not necessary to build simple website.
-## Server
+Make header and footer for each pages and based on files pages content changes. To get clean url you may route different url using `.htaccess` through `index.php`
+## Where to host ?
 There are plenty of free hosting providers that offers free PHP hosting with a free subdomain or custom domain. Choose one of them and continue building php website. 
  
- ## Why PHP not static HTML
+ ## Why use PHP ?
  Threre are many CMS that can basic publishing or specefic application but that takes a huge resources as that includes many unused functionality. To do the similar task using less resources which mostly free you have to write your own code. In html you can't change every page at once. You have to manually change every page one by one. Thats why PHP you just make a common header and footer file which will be included in every page. Moreover you can make function to do similar task again and again. PHP generate html on each request in server. You can implement API in PHP. You can build everything you imagine but thats is not our objective. This approach allows for greater flexibility and easier maintenance of the website. Additionally, PHP is a server-side scripting language that can be used to dynamically generate web content based on various inputs, further enhancing the dynamic nature of the website.
  
- ## Write Codes
+ ## Codes
 You can put files inside folder as you like. But Heres we put each file in root drectory.
 
 **File name** : `header.php`
@@ -73,6 +73,41 @@ include_once './header.php';?>
 Your about page content goes here
 
 <?php include './footer.php';?>
+```
+
+
+
+## Get clean url
+Create an .htaccess file (if using Apache) in the root directory of your PHP application. Add the following content to enable URL rewriting:
+
+**file name** `.htaccess`
+```
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php?url=$1[QSA,L]
+```
+
+**file name** `index.php`
+```
+<?php
+$url = isset($_GET['url']) ? $_GET['url'] : '';
+
+switch ($url) {
+    case '':
+    case '/':
+        // Home route
+        include('home.php');
+        break;
+    case '/about':
+        // About route
+        include('about.php');
+        break;
+    default:
+        header("HTTP/1.0 404 Not Found");
+        echo '404 Not Found';
+        break;
+}
+
 ```
 
  
