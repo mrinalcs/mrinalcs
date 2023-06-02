@@ -1,5 +1,5 @@
 ---
-title: Some Basic Code Snippet
+title: Some Basic Snippets
 date: 2023/4/14
 description: Basic Snippet used by me that I have to remember. This includes Github commands Jupyternotebook command Python pacage installation command and Jekyll ..
 tag: code
@@ -8,7 +8,7 @@ author: You
 
 # Code Snippet
 
-#### Welcome to Shortcut Snippet, as a student of Statistics I use this cmds sometimes. To make workflow uninterepted and help in saving valuable time.
+Here's some basic commands.
 
 
 **Git**: Just not to forget.
@@ -62,5 +62,14 @@ npm install nextra
 npm run dev
 npm build
 ```
-Local server :
-[http://localhost:3000](http://localhost:3000)
+
+**R Studio**: install libraries `install.packages()` and load them into your RStudio session using the library() function .
+
+```
+install.packages("forecast")
+install.packages("tseries")
+install.packages("zoo")
+library(forecast)
+library(tseries)
+library(zoo)
+```
