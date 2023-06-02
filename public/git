@@ -1,1 +1,93 @@
-hello mrinal
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator with History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .calculator {
+            width: 250px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+        }
+        .calculator input[type="text"] {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 5px;
+            font-size: 16px;
+        }
+        .calculator input[type="button"] {
+            width: 48%;
+            margin: 3px;
+            padding: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .calculator .history {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="input" readonly>
+        <input type="button" value="1" onclick="addToInput('1')">
+        <input type="button" value="2" onclick="addToInput('2')">
+        <input type="button" value="3" onclick="addToInput('3')">
+        <input type="button" value="+" onclick="addToInput('+')">
+        <input type="button" value="4" onclick="addToInput('4')">
+        <input type="button" value="5" onclick="addToInput('5')">
+        <input type="button" value="6" onclick="addToInput('6')">
+        <input type="button" value="-" onclick="addToInput('-')">
+        <input type="button" value="7" onclick="addToInput('7')">
+        <input type="button" value="8" onclick="addToInput('8')">
+        <input type="button" value="9" onclick="addToInput('9')">
+        <input type="button" value="*" onclick="addToInput('*')">
+        <input type="button" value="0" onclick="addToInput('0')">
+        <input type="button" value="." onclick="addToInput('.')">
+        <input type="button" value="/" onclick="addToInput('/')">
+        <input type="button" value="=" onclick="calculate()">
+        <input type="button" value="C" onclick="clearInput()">
+        <div class="history">
+            <h3>History:</h3>
+            <ul id="historyList"></ul>
+        </div>
+    </div>
+
+    <script>
+        const input = document.getElementById('input');
+        const historyList = document.getElementById('historyList');
+        let history = [];
+
+        function addToInput(value) {
+            input.value += value;
+        }
+
+        function calculate() {
+            const result = eval(input.value);
+            input.value = result;
+            history.push(`${input.value} = ${result}`);
+            renderHistory();
+        }
+
+        function clearInput() {
+            input.value = '';
+        }
+
+        function renderHistory() {
+            historyList.innerHTML = '';
+            history.forEach((item) => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                historyList.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>
+
