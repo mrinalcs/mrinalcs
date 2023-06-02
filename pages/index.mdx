@@ -64,6 +64,41 @@ date: 2023-04-16
 I am Mrinal, studying Statistics. Exploring patterns in data applying statistical methods, and gaining insights that can have a meaningful impact using R, Python, C. I can write LaTeX and Markdown. Beside my study I like to learn Web Development in PHP & SSG.
 
 ---
+<details>
+  <summary>Fav Ringtones</summary>
+  
+     <ul id="playlist">
+        <li>ami-khola-janala.mp3</li>
+        <li>apki-nazrroon.mp3</li>
+        <li>bondhu-dekha-hobe.mp3</li>
+        <li>bose-bose-bhabi-ami.mp3</li>
+        <li>falak-tak-chal.mp3</li>
+        <li>humne-tumko-dekha.mp3</li>
+        <li>moner-dorja-khule-dilam.mp3</li>
+        <li>o-amar-desher-mati.mp3</li>
+        <li>rahon-me-unse.mp3</li>
+        <li>raja-ko-rani-se.mp3</li>
+    </ul>
+
+    <audio id="audioPlayer" controls></audio>
+
+    <script>
+        const playlist = document.getElementById("playlist");
+        const audioPlayer = document.getElementById("audioPlayer");
+
+        playlist.addEventListener("click", playSong);
+
+        function playSong(event) {
+            if (event.target.tagName === "LI") {
+                const songFilename = event.target.textContent.trim();
+                const songUrl = `https://mrinal.ga/audio/${songFilename}`;
+                audioPlayer.src = songUrl;
+                audioPlayer.play();
+            }
+        }
+    </script>
+</details>
+---
 
 - GitHub <a href="https://github.com/mrinalcs" target="_blank">@mrinalcs</a>
 - Facebook <a href="https://facebook.com/mrinalcs" target="_blank">@mrinal.cs</a>
