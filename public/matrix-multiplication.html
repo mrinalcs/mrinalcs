@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matrix Multiplication</title>
     <style>
         table {
@@ -26,6 +25,7 @@
                     const input = document.createElement("input");
                     input.type = "number";
                     input.step = "any";
+                    input.addEventListener("change", storeMatrixValues);
                     cell.appendChild(input);
                     row.appendChild(cell);
                 }
@@ -178,6 +178,25 @@
             displayResult(resultMatrix);
         }
 
+        function clearMatrices() {
+            localStorage.removeItem("rowsA");
+            localStorage.removeItem("colsA");
+            localStorage.removeItem("rowsB");
+            localStorage.removeItem("colsB");
+            localStorage.removeItem("matrixA");
+            localStorage.removeItem("matrixB");
+
+            document.getElementById("rowsA").value = "";
+            document.getElementById("colsA").value = "";
+            document.getElementById("rowsB").value = "";
+            document.getElementById("colsB").value = "";
+
+            document.getElementById("matrixA").innerHTML = "";
+            document.getElementById("matrixB").innerHTML = "";
+
+            document.getElementById("result").innerHTML = "";
+        }
+
         window.addEventListener("load", initializeMatrices);
     </script>
 </head>
@@ -186,21 +205,22 @@
 
     <h2>Matrix A</h2>
     <label for="rowsA">Number of Rows:</label>
-    <input type="number" id="rowsA" min="1" value="1">
+    <input type="number" id="rowsA" min="1" value="">
     <label for="colsA">Number of Columns:</label>
-    <input type="number" id="colsA" min="1" value="1">
+    <input type="number" id="colsA" min="1" value="">
     <button onclick="createMatrix('matrixA', parseInt(rowsA.value), parseInt(colsA.value))">Create Matrix A</button>
     <table id="matrixA"></table>
 
     <h2>Matrix B</h2>
     <label for="rowsB">Number of Rows:</label>
-    <input type="number" id="rowsB" min="1" value="1">
+    <input type="number" id="rowsB" min="1" value="">
     <label for="colsB">Number of Columns:</label>
-    <input type="number" id="colsB" min="1" value="1">
+    <input type="number" id="colsB" min="1" value="">
     <button onclick="createMatrix('matrixB', parseInt(rowsB.value), parseInt(colsB.value))">Create Matrix B</button>
     <table id="matrixB"></table>
 
     <button onclick="multiplyMatrices()">Multiply Matrices</button>
+    <button onclick="clearMatrices()">Clear</button>
 
     <div id="result"></div>
 </body>
