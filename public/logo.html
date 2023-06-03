@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GitHub Repository Logos</title>
+</head>
+<body>
+    <h1>GitHub Repository Logos</h1>
+    <div id="imageGallery"></div>
+
+    <script>
+        // GitHub repository details
+        var owner = 'mrinalcs';
+        var repo = 'mrinalcs';
+        var path = 'public/icon';
+
+        // Fetch the file list from GitHub API
+        fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`)
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                // Filter the response to include only image files
+                var imageFiles = data.filter(function(file) {
+                    return file.type === 'file' && file.name.match(/\.(jpeg|jpg|gif|png)$/);
+                });
+
+                // Display the image gallery on the page
+                var imageGalleryContainer = document.getElementById('imageGallery');
+                imageFiles.forEach(function(file) {
+                    var imageElement = document.createElement('img');
+                    imageElement.src = file.download_url;
+                    imageElement.alt = file.name;
+                    imageGalleryContainer.appendChild(imageElement);
+                });
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+    </script>
+</body>
+</html>
