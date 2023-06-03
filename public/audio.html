@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Music Player</title>
+</head>
+<body>
+    <h1>Music Player</h1>
+    <div id="musicList"></div>
+    <audio id="audioPlayer" controls></audio>
+
+    <script>
+        // Get the audio element and music list container
+        var audioPlayer = document.getElementById('audioPlayer');
+        var musicListContainer = document.getElementById('musicList');
+
+        // GitHub repository details
+        var owner = 'mrinalcs';
+        var repo = 'mrinalcs';
+        var path = 'public/audio/';
+
+        // Fetch the file URLs from the GitHub API
+        fetch('https://api.github.com/repos/' + owner + '/' + repo + '/contents/' + path)
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                // Filter the response to include only audio files
+                var audioFiles = data.filter(function(file) {
+                    return file.type === 'file' && file.name.endsWith('.mp3');
+                });
+
+                // Loop through the audio files array and create music list items
+                audioFiles.forEach(function(file, index) {
+                    var musicListItem = document.createElement('div');
+                    musicListItem.innerHTML = `
+                        <button onclick="playAudio('${file.download_url}', ${index})">Play</button>
+                        <span id="track${index}">${file.name.replace('.mp3', '')}</span>
+                    `;
+                    musicListContainer.appendChild(musicListItem);
+                });
+
+                // Autoplay the first track
+                if (audioFiles.length > 0) {
+                    playAudio(audioFiles[0].download_url, 0);
+                    document.getElementById('track0').style.fontWeight = 'bold';
+                    document.title = audioFiles[0].name.replace('.mp3', '');
+                }
+            });
+
+        // Function to load and play audio
+        function playAudio(url, index) {
+            audioPlayer.src = url;
+            audioPlayer.play();
+
+            // Highlight the currently playing track in bold
+            var tracks = document.querySelectorAll('span[id^="track"]');
+            tracks.forEach(function(track) {
+                track.style.fontWeight = 'normal';
+            });
+            document.getElementById('track' + index).style.fontWeight = 'bold';
+
+            // Update the document title with the track name
+            var audioFiles = Array.from(document.querySelectorAll('span[id^="track"]'));
+            var trackName = audioFiles[index].textContent;
+            document.title = trackName;
+
+            // Autoplay the next track or repeat if at the end of the list
+            audioPlayer.addEventListener('ended', function() {
+                var nextIndex = (index + 1) % audioFiles.length;
+                playAudio(audioFiles[nextIndex].parentNode.querySelector('button').getAttribute('onclick').match(/'(.*?)'/)[1], nextIndex);
+            });
+        }
+    </script>
+</body>
+</html>
