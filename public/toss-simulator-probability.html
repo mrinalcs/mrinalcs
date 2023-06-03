@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Coin Toss Simulation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        canvas {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+    <script>
+        function tossCoin(numTosses) {
+            let headsCount = 0;
+            let tailsCount = 0;
+            const outcomes = [];
+            
+            for (let i = 0; i < numTosses; i++) {
+                const outcome = Math.random() < 0.5 ? "H" : "T";
+                outcomes.push(outcome);
+                
+                if (outcome === "H") {
+                    headsCount++;
+                } else {
+                    tailsCount++;
+                }
+            }
+            
+            const headsProbability = headsCount / numTosses;
+            const tailsProbability = tailsCount / numTosses;
+            
+            return { outcomes, headsCount, tailsCount, headsProbability, tailsProbability };
+        }
+
+        function handleToss() {
+            const numTosses = parseInt(document.getElementById("numTosses").value);
+            if (isNaN(numTosses) || numTosses <= 0) {
+                alert("Please enter a valid number of tosses.");
+                return;
+            }
+
+            const tossResults = tossCoin(numTosses);
+
+            const resultElement = document.getElementById("tossResults");
+            resultElement.innerHTML = "";
+            
+            const canvas = document.createElement("canvas");
+            canvas.id = "chart";
+            resultElement.appendChild(canvas);
+
+            const ctx = canvas.getContext("2d");
+            new Chart(ctx, {
+                type: "line",
+                data: {
+                    labels: ["Heads", "Tails"],
+                    datasets: [
+                        {
+                            label: "Probability",
+                            data: [tossResults.headsProbability, tossResults.tailsProbability],
+                            backgroundColor: "rgba(75, 192, 192, 0.2)",
+                            borderColor: "rgba(75, 192, 192, 1)",
+                            borderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 1
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Coin Toss Simulation</h1>
+    <label for="numTosses">Number of Tosses:</label>
+    <input type="number" id="numTosses" min="1" value="1">
+    <button onclick="handleToss()">Toss</button>
+    <div id="tossResults"></div>
+</body>
+</html>
