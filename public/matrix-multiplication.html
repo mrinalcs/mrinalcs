@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix Multiplication</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+    </style>
+    <script>
+        function createMatrix(tableId, rows, cols) {
+            const table = document.getElementById(tableId);
+            table.innerHTML = "";
+
+            for (let i = 0; i < rows; i++) {
+                const row = document.createElement("tr");
+                for (let j = 0; j < cols; j++) {
+                    const cell = document.createElement("td");
+                    const input = document.createElement("input");
+                    input.type = "number";
+                    input.step = "any";
+                    cell.appendChild(input);
+                    row.appendChild(cell);
+                }
+                table.appendChild(row);
+            }
+        }
+
+        function getMatrixValues(tableId, rows, cols) {
+            const table = document.getElementById(tableId);
+            const matrix = [];
+
+            for (let i = 0; i < rows; i++) {
+                const row = table.rows[i];
+                const rowValues = [];
+                for (let j = 0; j < cols; j++) {
+                    const cell = row.cells[j];
+                    const inputValue = parseFloat(cell.querySelector("input").value);
+                    rowValues.push(inputValue);
+                }
+                matrix.push(rowValues);
+            }
+
+            return matrix;
+        }
+
+        function checkMultiplicable(matrixA, matrixB) {
+            const colsA = matrixA[0].length;
+            const rowsB = matrixB.length;
+
+            return colsA === rowsB;
+        }
+
+        function performMatrixMultiplication(matrixA, matrixB) {
+            const rowsA = matrixA.length;
+            const colsA = matrixA[0].length;
+            const colsB = matrixB[0].length;
+
+            const resultMatrix = [];
+
+            for (let i = 0; i < rowsA; i++) {
+                const row = [];
+                for (let j = 0; j < colsB; j++) {
+                    let sum = 0;
+                    for (let k = 0; k < colsA; k++) {
+                        sum += matrixA[i][k] * matrixB[k][j];
+                    }
+                    row.push(sum);
+                }
+                resultMatrix.push(row);
+            }
+
+            return resultMatrix;
+        }
+
+        function displayResult(resultMatrix) {
+            const resultElement = document.getElementById("result");
+
+            resultElement.innerHTML = "";
+
+            const table = document.createElement("table");
+            for (let i = 0; i < resultMatrix.length; i++) {
+                const row = document.createElement("tr");
+                for (let j = 0; j < resultMatrix[i].length; j++) {
+                    const cell = document.createElement("td");
+                    cell.textContent = resultMatrix[i][j];
+                    row.appendChild(cell);
+                }
+                table.appendChild(row);
+            }
+
+            resultElement.appendChild(table);
+        }
+
+        function initializeMatrices() {
+            const rowsA = parseInt(localStorage.getItem("rowsA"));
+            const colsA = parseInt(localStorage.getItem("colsA"));
+            const rowsB = parseInt(localStorage.getItem("rowsB"));
+            const colsB = parseInt(localStorage.getItem("colsB"));
+
+            if (!isNaN(rowsA) && !isNaN(colsA) && !isNaN(rowsB) && !isNaN(colsB)) {
+                document.getElementById("rowsA").value = rowsA;
+                document.getElementById("colsA").value = colsA;
+                document.getElementById("rowsB").value = rowsB;
+                document.getElementById("colsB").value = colsB;
+
+                createMatrix("matrixA", rowsA, colsA);
+                createMatrix("matrixB", rowsB, colsB);
+
+                const matrixA = JSON.parse(localStorage.getItem("matrixA"));
+                const matrixB = JSON.parse(localStorage.getItem("matrixB"));
+
+                for (let i = 0; i < rowsA; i++) {
+                    const rowA = matrixA[i];
+                    const rowInputsA = document.getElementById("matrixA").rows[i].querySelectorAll("input");
+                    for (let j = 0; j < colsA; j++) {
+                        rowInputsA[j].value = rowA[j];
+                    }
+                }
+
+                for (let i = 0; i < rowsB; i++) {
+                    const rowB = matrixB[i];
+                    const rowInputsB = document.getElementById("matrixB").rows[i].querySelectorAll("input");
+                    for (let j = 0; j < colsB; j++) {
+                        rowInputsB[j].value = rowB[j];
+                    }
+                }
+            }
+        }
+
+        function storeMatrixValues() {
+            const rowsA = parseInt(document.getElementById("rowsA").value);
+            const colsA = parseInt(document.getElementById("colsA").value);
+            const rowsB = parseInt(document.getElementById("rowsB").value);
+            const colsB = parseInt(document.getElementById("colsB").value);
+
+            localStorage.setItem("rowsA", rowsA);
+            localStorage.setItem("colsA", colsA);
+            localStorage.setItem("rowsB", rowsB);
+            localStorage.setItem("colsB", colsB);
+
+            const matrixA = getMatrixValues("matrixA", rowsA, colsA);
+            const matrixB = getMatrixValues("matrixB", rowsB, colsB);
+
+            localStorage.setItem("matrixA", JSON.stringify(matrixA));
+            localStorage.setItem("matrixB", JSON.stringify(matrixB));
+        }
+
+        function multiplyMatrices() {
+            storeMatrixValues();
+
+            const rowsA = parseInt(document.getElementById("rowsA").value);
+            const colsA = parseInt(document.getElementById("colsA").value);
+            const rowsB = parseInt(document.getElementById("rowsB").value);
+            const colsB = parseInt(document.getElementById("colsB").value);
+
+            if (isNaN(rowsA) || isNaN(colsA) || isNaN(rowsB) || isNaN(colsB)) {
+                alert("Please enter valid dimensions for the matrices.");
+                return;
+            }
+
+            const matrixA = getMatrixValues("matrixA", rowsA, colsA);
+            const matrixB = getMatrixValues("matrixB", rowsB, colsB);
+
+            if (!checkMultiplicable(matrixA, matrixB)) {
+                alert("The matrices are not multiplicatable. Please check the dimensions.");
+                return;
+            }
+
+            const resultMatrix = performMatrixMultiplication(matrixA, matrixB);
+            displayResult(resultMatrix);
+        }
+
+        window.addEventListener("load", initializeMatrices);
+    </script>
+</head>
+<body>
+    <h1>Matrix Multiplication</h1>
+
+    <h2>Matrix A</h2>
+    <label for="rowsA">Number of Rows:</label>
+    <input type="number" id="rowsA" min="1" value="1">
+    <label for="colsA">Number of Columns:</label>
+    <input type="number" id="colsA" min="1" value="1">
+    <button onclick="createMatrix('matrixA', parseInt(rowsA.value), parseInt(colsA.value))">Create Matrix A</button>
+    <table id="matrixA"></table>
+
+    <h2>Matrix B</h2>
+    <label for="rowsB">Number of Rows:</label>
+    <input type="number" id="rowsB" min="1" value="1">
+    <label for="colsB">Number of Columns:</label>
+    <input type="number" id="colsB" min="1" value="1">
+    <button onclick="createMatrix('matrixB', parseInt(rowsB.value), parseInt(colsB.value))">Create Matrix B</button>
+    <table id="matrixB"></table>
+
+    <button onclick="multiplyMatrices()">Multiply Matrices</button>
+
+    <div id="result"></div>
+</body>
+</html>
