@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>List HTML Files from GitHub Repository</title>
+    <title>GitHu Pages</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>const username="mrinalcs",repository="mrinalcs",folder="public",apiEndpoint=`https://api.github.com/repos/${username}/${repository}/contents/${folder}`;function getHTMLFiles(){fetch(apiEndpoint).then(e=>e.json()).then(e=>{const n=e.filter(e=>e.name.endsWith(".html")),r=document.getElementById("fileList");r.innerHTML="",n.forEach(e=>{const n=document.createElement("li"),t=document.createElement("a");t.href=`https://mrinal.ga/${e.path.replace(`${folder}/`,"")}`,t.textContent=e.name,n.appendChild(t),r.appendChild(n)})}).catch(e=>{console.error("Error:",e)})}</script>
 </head>
 <body>
-    <h1>List HTML Files from GitHub Repository</h1>
+    <h1>GitHub Pages</h1>
     <script>getHTMLFiles();</script>
     <ul id="fileList"></ul>
     <hr>
