@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>List HTML Files from GitHub Repository</title>
+
+    <script>
+
+        const username = "mrinalcs";
+
+        const repository = "mrinalcs";
+
+        const folder = "public";
+
+        const apiEndpoint = `https://api.github.com/repos/${username}/${repository}/contents/${folder}`;
+
+        function getHTMLFiles() {
+
+            fetch(apiEndpoint)
+
+                .then(response => response.json())
+
+                .then(data => {
+
+                    const htmlFiles = data.filter(file => file.name.endsWith(".html"));
+
+                    const fileList = document.getElementById("fileList");
+
+                    fileList.innerHTML = "";
+
+                    htmlFiles.forEach(file => {
+
+                        const listItem = document.createElement("li");
+
+                        const link = document.createElement("a");
+
+                        link.href = `https://mrinal.ga/${file.path}`;
+
+                        link.textContent = file.name;
+
+                        listItem.appendChild(link);
+
+                        fileList.appendChild(listItem);
+
+                    });
+
+                })
+
+                .catch(error => {
+
+                    console.error("Error:", error);
+
+                });
+
+        }
+
+    </script>
+
+</head>
+
+<body>
+
+    <h1>List HTML Files from GitHub Repository</h1>
+
+    <script>getHTMLFiles();</script>
+
+    <ul id="fileList"></ul>
+
+</body>
+
+</html>
+
