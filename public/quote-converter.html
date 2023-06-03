@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Quote Converter</title>
+
+    <style>
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            margin: 20px;
+
+        }
+
+        h1 {
+
+            text-align: center;
+
+        }
+
+        .converter {
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            max-width: 600px;
+
+            margin: 0 auto;
+
+        }
+
+        textarea {
+
+            width: 100%;
+
+            height: 120px;
+
+            margin-bottom: 10px;
+
+            padding: 5px;
+
+            resize: vertical;
+
+        }
+
+        button {
+
+            padding: 10px 20px;
+
+            font-size: 16px;
+
+            background-color: #4CAF50;
+
+            color: white;
+
+            border: none;
+
+            cursor: pointer;
+
+            margin-bottom: 10px;
+
+        }
+
+        button:hover {
+
+            background-color: #45a049;
+
+        }
+
+        .copy-button {
+
+            background-color: #008CBA;
+
+        }
+
+        .copy-button:hover {
+
+            background-color: #007aa6;
+
+        }
+
+    </style>
+
+    <script>
+
+        function convertAllToSingle() {
+
+            var inputText = document.getElementById("input").value;
+
+            var convertedText = inputText.replace(/"/g, "'");
+
+            document.getElementById("output").textContent = convertedText;
+
+        }
+
+        function convertAllToDouble() {
+
+            var inputText = document.getElementById("input").value;
+
+            var convertedText = inputText.replace(/'/g, '"');
+
+            document.getElementById("output").textContent = convertedText;
+
+        }
+
+        function convertReverse() {
+
+            var inputText = document.getElementById("input").value;
+
+            var convertedText = inputText.replace(/['"]/g, function(match) {
+
+                if (match === "'") {
+
+                    return '"';
+
+                } else if (match === '"') {
+
+                    return "'";
+
+                }
+
+            });
+
+            document.getElementById("output").textContent = convertedText;
+
+        }
+
+        function copyText() {
+
+            var outputText = document.getElementById("output");
+
+            outputText.select();
+
+            document.execCommand("copy");
+
+            alert("Copied to clipboard!");
+
+        }
+
+    </script>
+
+</head>
+
+<body>
+
+    <h1>Quote Converter</h1>
+
+    <div class="converter">
+
+        <textarea id="input" rows="5" placeholder="Enter text here"></textarea>
+
+        <button onclick="convertAllToSingle()">Convert " to '</button>
+
+        <button onclick="convertAllToDouble()">Convert ' to "</button>
+
+        <button onclick="convertReverse()">Reverse</button>
+
+        <textarea id="output" rows="5" placeholder="Converted text will appear here" readonly></textarea>
+
+        <button class="copy-button" onclick="copyText()">Copy</button>
+
+    </div>
+
+</body>
+
+</html>
+
