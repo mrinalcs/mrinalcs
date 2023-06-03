@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <link id="favicon" rel="icon" type="image/png" href="default-favicon.png">
+
+  <script>
+
+    function changeFavicon(url) {
+
+      var favicon = document.getElementById('favicon');
+
+      favicon.href = url;
+
+    }
+
+    function getRandomFavicon() {
+
+      var timestamp = new Date().getTime();
+
+      var imageUrl = 'https://raw.githubusercontent.com/mrinalcs/mrinalcs/main/public/icon/favicon.png?timestamp=' + timestamp;
+
+      changeFavicon(imageUrl);
+
+    }
+
+    // Change the favicon every second
+
+    setInterval(getRandomFavicon, 1000);
+
+  </script>
+
+</head>
+
+<body>
+
+  <!-- Rest of your HTML content -->
+
+</body>
+
+</html>
+
