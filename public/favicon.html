@@ -4,7 +4,6 @@
   <link id="favicon" rel="icon" type="image/png" href="default-favicon.png">
   <script>
     function fetchFavicon() {
-      // Replace 'mrinalcs' with the GitHub username and 'mrinalcs' with the repository name
       var username = 'mrinalcs';
       var repo = 'mrinalcs';
       var path = 'public/icon';
@@ -14,8 +13,10 @@
       fetch(url)
         .then(response => response.json())
         .then(data => {
-          // Get the first file in the 'public/icon' folder
-          var file = data[0];
+          // Get a random file from the 'public/icon' folder
+          var files = data.filter(file => file.type === 'file');
+          var randomIndex = Math.floor(Math.random() * files.length);
+          var file = files[randomIndex];
 
           // Update the favicon href with the image URL
           var favicon = document.getElementById('favicon');
