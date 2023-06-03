@@ -1,44 +1,39 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-
   <link id="favicon" rel="icon" type="image/png" href="default-favicon.png">
-
   <script>
+    function fetchFavicon() {
+      // Replace 'mrinalcs' with the GitHub username and 'mrinalcs' with the repository name
+      var username = 'mrinalcs';
+      var repo = 'mrinalcs';
+      var path = 'public/icon';
 
-    function changeFavicon(url) {
+      var url = 'https://api.github.com/repos/' + username + '/' + repo + '/contents/' + path;
 
-      var favicon = document.getElementById('favicon');
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          // Get the first file in the 'public/icon' folder
+          var file = data[0];
 
-      favicon.href = url;
-
+          // Update the favicon href with the image URL
+          var favicon = document.getElementById('favicon');
+          favicon.href = file.download_url;
+        })
+        .catch(error => {
+          console.error('Error fetching favicon:', error);
+        });
     }
 
-    function getRandomFavicon() {
+    // Fetch the favicon initially
+    fetchFavicon();
 
-      var timestamp = new Date().getTime();
-
-      var imageUrl = 'https://raw.githubusercontent.com/mrinalcs/mrinalcs/main/public/icon/favicon.png?timestamp=' + timestamp;
-
-      changeFavicon(imageUrl);
-
-    }
-
-    // Change the favicon every second
-
-    setInterval(getRandomFavicon, 1000);
-
+    // Fetch the favicon every second
+    setInterval(fetchFavicon, 1000);
   </script>
-
 </head>
-
 <body>
-
   <!-- Rest of your HTML content -->
-
 </body>
-
 </html>
-
