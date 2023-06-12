@@ -1,7 +1,7 @@
 ---
 title: Some Basic Snippets
 date: 2023/4/14
-description: Basic Snippet used by me that I have to remember. This includes Github commands Jupyternotebook command Python pacage installation command and Jekyll ..
+description: Basic Snippet to remember. This includes Github commands Jupyternotebook command Python pacage installation command and Jekyll ..
 tag: code
 author: You
 ---
