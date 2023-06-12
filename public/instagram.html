@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IG Photo Gallery</title>
+  <style>
+    .gallery {
+      display: grid;
+      grid-gap: 10px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+    }
+
+    @media screen and (min-width: 480px) {
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media screen and (min-width: 768px) {
+      .gallery {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media screen and (min-width: 1024px) {
+      .gallery {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media screen and (min-width: 1200px) {
+      .gallery {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>IG Photo Gallery</h1>
+  <div class="gallery" id="photo-gallery"></div>
+
+  <script>
+    // JavaScript code to fetch and display the photo gallery
+    const username = "mrinalcs";
+    const repo = "mrinalcs";
+    const folderPath = "public/ig-photos";
+
+    const photoGallery = document.getElementById("photo-gallery");
+
+    fetch(`https://api.github.com/repos/${username}/${repo}/contents/${folderPath}`)
+      .then(response => response.json())
+      .then(data => {
+        // Filter the response to only include files
+        const photos = data.filter(item => item.type === "file");
+
+        // Create gallery items for each photo
+        photos.forEach(photo => {
+          const galleryItem = document.createElement("div");
+          const img = document.createElement("img");
+          img.src = photo.download_url;
+          galleryItem.appendChild(img);
+          photoGallery.appendChild(galleryItem);
+        });
+      })
+      .catch(error => console.error(error));
+  </script>
+</body>
+</html>
