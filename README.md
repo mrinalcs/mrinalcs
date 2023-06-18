@@ -1,122 +1,27 @@
-<!--
-**mrinalcs/mrinalcs** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+# Hi there! I'm Mrinal 👋
 
-Here are some ideas to get you started:
+Welcome to my GitHub profile! I'm a Statistics student passionate about exploring patterns in data, applying statistical methods, and gaining meaningful insights. I have experience working with R, Python, and C for data analysis. I'm also proficient in writing LaTeX and Markdown. Besides my studies, I'm currently learning web development using PHP and static site generators.
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## 📚 Education
+- Currently studying Statistics
 
- <!--
-<p align="right">
- <a title="Click to view more on https://mrinal.ga" href="//mrinal.ga" ><img align="center" style="border-radius: 100rem;" width="100px" src="https://media1.giphy.com/media/eLv7gJpxqiQtbNNQUe/giphy.gif?cid=6c09b952ljq10tcs3zdfz4ouqbo49dsrjm3fuhtvynjncq4u&rid=giphy.gif&ct=s" align="center" alt="Mrinals github page avatar" /></a>
-</p>
+## 🔭 Current Projects
+- Working on applying statistical models to analyze customer behavior in an e-commerce dataset.
+- Exploring data visualization techniques for financial time series analysis.
 
--->
+## 🌱 Skills
+- Programming Languages: R, Python, C
+- Data Analysis and Visualization
+- Statistical Modeling
+- LaTeX and Markdown
+- Web Development (PHP, Static Site Generators)
 
-<p align="center">
-  <a title="Click to view more mrinal.ga"  href="//mrinal.ga" target="_blank"><img style="border-radius: 100rem;" width="100px" src="https://i.pinimg.com/originals/57/3c/da/573cdaf5205bebaac51ca29273dd5514.gif" align="center" alt="Mrinals github page avatar" /></a>
- <h2 align="center">About me</h2>
-<h2>Hello!</h2>
-I am Mrinal, studying Statistics. Exploring patterns in data applying statistical methods, and gaining insights that can have a meaningful impact using R, Python, C. I can write LaTeX and Markdown. Beside my study I like to learn Web Development in PHP & SSG.
+## 💬 Get in Touch
+- LinkedIn: [mrinalcs](https://www.linkedin.com/in/mrinalcs/)
+- Email: [hello@mrinal.ga](mailto:hello@mrinal.ga)
 
-## Using
+Feel free to reach out to me if you have any questions, ideas, or just want to connect!
 
-- Lenevo Slim 3 Ryzen 3
-- Samsung34Samsung M31
-- CASIO fx-100MS
-- Trüke Bud S21
-- E160X Wireless Optical Mouse
+## ⚡ Fun Fact
+I enjoy solving puzzles and riddles in my free time!
 
-</p>
-
-## Lang & Tools
-
-<p align="center">
-
- <a href="" rel="nofollow"> 
-        <code><img src="public/icon/r.png" alt="r" width="35" height="35" style="max-width: 100%;"></code> 
-    </a>
- <a href="" rel="nofollow"> 
-        <code><img src="public/icon/py.png" alt="c" width="35" height="35" style="max-width: 100%;"></code> 
-    </a>
- <a href="" rel="nofollow"> 
-        <code><img src="public/icon/c.png" alt="r" width="35" height="35" style="max-width: 100%;"></code> 
-    </a>
- <a href="" rel="nofollow"> 
-        <code><img src="public/icon/cpp.png" alt="c" width="35" height="35" style="max-width: 100%;"></code> 
-    </a>
- <a href="" rel="nofollow"> 
-        <code><img src="public/icon/html.png" alt="c" width="35" height="35" style="max-width: 100%;"></code> 
-    </a>
-    <br>
- <a href="" rel="nofollow"> 
-        <code><img src="public/icon/aconda.png" alt="r" width="35" height="35" style="max-width: 100%;"></code> 
-    </a>
- <a href="" rel="nofollow"> 
-        <code><img src="public/icon/jupyter.png" alt="vs" width="35" height="35" style="max-width: 100%;"></code> 
-    </a>
-     <a href="" rel="nofollow"> 
-        <code><img src="public/icon/latex.png" alt="vs" width="35" height="35" style="max-width: 100%;"></code> 
-    </a>
-     <a href="" rel="nofollow"> 
-        <code><img src="public/icon/rstudio.png" alt="vs" width="35" height="35" style="max-width: 100%;"></code> 
-    </a>
-     <a href="" rel="nofollow"> 
-        <code><img src="public/icon/wp.png" alt="vs" width="35" height="35" style="max-width: 100%;"></code> 
-    </a>
-         <a href="" rel="nofollow"> 
-        <code><img src="public/icon/spyder-ide.png" alt="vs" width="35" height="35" style="max-width: 100%;"></code> 
-    </a>
-         <a href="" rel="nofollow"> 
-        <code><img src="public/icon/vs.png" alt="vs" width="35" height="35" style="max-width: 100%;"></code> 
-    </a>
-
-</p>
-
-
-
-## Social
-
-<br>
-
-  <p align="center">
-     <a  title="I am on Facebook also"  href="//facebook.com/mrinalcs">
-      <img src="public/icon/fb.png"/>
-    </a>
- <!-- 
-    <a  title="Check me on Instagram"  href="//instagram.com/mrinalcs">
-      <img src="https://img.icons8.com/color/48/null/instagram-new--v1.png"/>
-    </a>
--->
-    <a  title="Chat on Telegram"  href="//telegram.me/mrinalcs" >
-      <img src="public/icon/telegram.png"/>
-      </a>
-      <a  title="View my profile on LinkedIN"  href="https://www.linkedin.com/in/mrinalcs/">
-      <img src="public/icon/linkedin.png"/>
-    </a>
-    <a title="Contact Email" href="mailto:hello@mrinal.ga">
-      <img src="public/icon/gmail.png"/>
-    </a>
-
-
-
-  <!--
-
-      <a title="Mrinal on Github"  href="//github.com/mrinalcs">
-      <img width="10%" src="https://github.githubassets.com/images/mona-loading-dark.gif"/>
-    </a>
-
- -->
-
-  </p>
-
-<p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=80&section=footer"/>
-</p>
