@@ -11,23 +11,34 @@
     }
 
     .photo {
-      display: inline-block;
-      margin: 10px;
-      width: calc(20% - 20px); /* Adjust the width as needed */
-      max-width: 200px; /* Limit the maximum width */
-    }
+  display: block;
+  margin: 10px;
+  width: 100%;
+  height: auto;
+}
 
-    @media screen and (max-width: 768px) {
-      .photo {
-        width: calc(33.33% - 20px); /* Adjust the width as needed */
-      }
-    }
+@media screen and (min-width: 480px) {
+  .photo {
+    width: calc(33.33% - 20px);
+  }
+}
 
-    @media screen and (max-width: 480px) {
-      .photo {
-        width: calc(50% - 20px); /* Adjust the width as needed */
-      }
-    }
+@media screen and (min-width: 768px) {
+  .photo {
+    width: calc(16.66% - 20px);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .photo {
+    width: calc(16.66% - 20px);
+    max-width: none;
+  }
+}
+
+
+
+
   </style>
 </head>
 <body>
