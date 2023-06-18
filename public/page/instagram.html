@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>List Photos from GitHub Repo</title>
+  <style>
+    .photo-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .photo {
+      display: inline-block;
+      margin: 10px;
+      width: calc(20% - 20px); /* Adjust the width as needed */
+      max-width: 200px; /* Limit the maximum width */
+    }
+
+    @media screen and (max-width: 768px) {
+      .photo {
+        width: calc(33.33% - 20px); /* Adjust the width as needed */
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .photo {
+        width: calc(50% - 20px); /* Adjust the width as needed */
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Photos</h1>
+
+  <div id="photo-list" class="photo-container">
+    <!-- This empty div will be populated dynamically using JavaScript -->
+  </div>
+
+  <script>
+    // Function to fetch the list of photos from the GitHub repository
+    async function fetchPhotoList() {
+      const repoOwner = "mrinalcs";
+      const repoName = "mrinalcs";
+      const folderPath = "public/instagram";
+      const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${folderPath}`;
+
+      try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+
+        if (Array.isArray(data)) {
+          // Filter photos based on file extension
+          const photoList = data.filter(item => {
+            return item.type === "file" && /\.(jpg|jpeg|png|gif)$/i.test(item.name);
+          });
+
+          // Iterate over photos and create image elements
+          photoList.forEach(photo => {
+            const photoElement = document.createElement("img");
+            photoElement.src = photo.download_url;
+            photoElement.classList.add("photo");
+            document.getElementById("photo-list").appendChild(photoElement);
+          });
+        } else {
+          console.error("Error: Invalid response from the GitHub API.");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+
+    // Call the function to fetch and display the photo list
+    fetchPhotoList();
+  </script>
+</body>
+</html>

@@ -1,11 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <title>List Items from GitHub Repo</title>
 </head>
 <body>
-    <h1>Hello</h1>
+  <h1>List of Items</h1>
+
+  <ul id="item-list">
+    <!-- This empty list will be populated dynamically using JavaScript -->
+  </ul>
+
+  <script>
+    // Function to fetch the list of items from GitHub using the GitHub API
+    async function fetchItemList() {
+      const repoOwner = "mrinalcs";
+      const repoName = "mrinalcs";
+      const folderPath = "public/page";
+      const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${folderPath}`;
+
+      try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+
+        if (Array.isArray(data)) {
+          data.forEach(item => {
+            if (item.type === "file") {
+              const itemName = item.name;
+              const itemUrl = `/page/${itemName}`;
+
+              const listItem = document.createElement("li");
+              const link = document.createElement("a");
+              link.href = itemUrl;
+              link.textContent = itemName;
+              listItem.appendChild(link);
+              document.getElementById("item-list").appendChild(listItem);
+            }
+          });
+        } else {
+          console.error("Error: Invalid response from the GitHub API.");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+
+    // Call the function to fetch and populate the item list
+    fetchItemList();
+  </script>
 </body>
 </html>

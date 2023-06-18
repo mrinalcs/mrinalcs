@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Music Player</title>
+    <style>
+        
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+            animation: gradientAnimation 10s linear infinite;
+            background: linear-gradient(45deg, #ff00cc, #3333ff, #00ccff, #ff3399);
+            background-size: 400% 400%;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 36px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        #musicList {
+            margin-bottom: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        audio {
+            display: block;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        #playerControls {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        button:disabled:hover {
+            background-color: #000;
+        }
+
+        #musicList div {
+            margin-bottom: 10px;
+        }
+
+        #musicList span {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        #musicList span:first-child {
+            width: 40px;
+        }
+
+        #musicList span:last-child {
+            flex-grow: 1;
+            margin-left: 10px;
+        }
+
+        
+
+       
+    </style>
+</head>
+<body>
+    <h1>Music Player</h1>
+    <div id="musicList"></div>
+    <audio id="audioPlayer" controls></audio>
+    <button onclick="previousTrack()">Previous</button>
+    <button onclick="playPause()">Play</button>
+    <button onclick="nextTrack()">Next</button>
+    <button onclick="likeTrack()">Like</button>
+
+    <script>
+        // Get the audio element, music list container, and buttons
+        var audioPlayer = document.getElementById('audioPlayer');
+        var musicListContainer = document.getElementById('musicList');
+        var previousButton = document.querySelector('button[onclick="previousTrack()"]');
+        var playPauseButton = document.querySelector('button[onclick="playPause()"]');
+        var nextButton = document.querySelector('button[onclick="nextTrack()"]');
+        var likeButton = document.querySelector('button[onclick="likeTrack()"]');
+
+        // GitHub repository details
+        var owner = 'mrinalcs';
+        var repo = 'mrinalcs';
+        var path = 'public/audio/';
+
+        // Fetch the file URLs from the GitHub API
+        fetch('https://api.github.com/repos/' + owner + '/' + repo + '/contents/' + path)
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                // Filter the response to include only audio files
+                var audioFiles = data.filter(function(file) {
+                    return file.type === 'file' && file.name.endsWith('.mp3');
+                });
+
+                // Loop through the audio files array and create music list items
+                audioFiles.forEach(function(file, index) {
+                    var musicListItem = document.createElement('div');
+                    musicListItem.innerHTML = `
+                        <button onclick="playAudio('${file.download_url}', ${index})">Play</button>
+                        <span id="track${index}">${file.name.replace('.mp3', '')}</span>
+                        <span id="like${index}" style="margin-left: 10px;"></span>
+                    `;
+                    musicListContainer.appendChild(musicListItem);
+                });
+
+                // Autoplay the first track
+                if (audioFiles.length > 0) {
+                    playAudio(audioFiles[0].download_url, 0);
+                    document.getElementById('track0').style.fontWeight = 'bold';
+                    document.title = audioFiles[0].name.replace('.mp3', '');
+                }
+
+                // Load liked status for each track and update like buttons
+                audioFiles.forEach(function(file, index) {
+                    var trackName = file.name.replace('.mp3', '');
+                    var likedStatus = getLikedStatus(trackName);
+                    updateLikeButton(likedStatus, index);
+                });
+            });
+
+        // Function to load and play audio
+        function playAudio(url, index) {
+            audioPlayer.src = url;
+            audioPlayer.play();
+
+            // Highlight the currently playing track in bold
+            var tracks = document.querySelectorAll('span[id^="track"]');
+            tracks.forEach(function(track) {
+                track.style.fontWeight = 'normal';
+            });
+            document.getElementById('track' + index).style.fontWeight = 'bold';
+
+            // Update the document title with the track name
+            var audioFiles = Array.from(document.querySelectorAll('span[id^="track"]'));
+            var trackName = audioFiles[index].textContent;
+            document.title = trackName;
+
+            // Autoplay the next track or repeat if at the end of the list
+            audioPlayer.addEventListener('ended', function() {
+                var nextIndex = (index + 1) % audioFiles.length;
+                playAudio(audioFiles[nextIndex].parentNode.querySelector('button').getAttribute('onclick').match(/'(.*?)'/)[1], nextIndex);
+            });
+
+            // Enable or disable previous/next buttons based on the track index
+            if (index === 0) {
+                previousButton.disabled = true;
+            } else {
+                previousButton.disabled = false;
+            }
+
+            if (index === audioFiles.length - 1) {
+                nextButton.disabled = true;
+            } else {
+                nextButton.disabled = false;
+            }
+
+            // Load liked status from cookie and update like button
+            var likedStatus = getLikedStatus(trackName);
+            updateLikeButton(likedStatus, index);
+        }
+
+        // Function to play or pause the audio
+        function playPause() {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+                playPauseButton.textContent = 'Pause';
+            } else {
+                audioPlayer.pause();
+                playPauseButton.textContent = 'Play';
+            }
+        }
+
+        // Function to play the previous track
+        function previousTrack() {
+            var audioFiles = Array.from(document.querySelectorAll('span[id^="track"]'));
+            var currentIndex = getCurrentTrackIndex(audioFiles);
+            var previousIndex = (currentIndex - 1 + audioFiles.length) % audioFiles.length;
+            playAudio(audioFiles[previousIndex].parentNode.querySelector('button').getAttribute('onclick').match(/'(.*?)'/)[1], previousIndex);
+        }
+
+        // Function to play the next track
+        function nextTrack() {
+            var audioFiles = Array.from(document.querySelectorAll('span[id^="track"]'));
+            var currentIndex = getCurrentTrackIndex(audioFiles);
+            var nextIndex = (currentIndex + 1) % audioFiles.length;
+            playAudio(audioFiles[nextIndex].parentNode.querySelector('button').getAttribute('onclick').match(/'(.*?)'/)[1], nextIndex);
+        }
+
+        // Function to get the index of the current track
+        function getCurrentTrackIndex(audioFiles) {
+            var currentIndex = -1;
+            audioFiles.forEach(function(file, index) {
+                if (file.style.fontWeight === 'bold') {
+                    currentIndex = index;
+                    return;
+                }
+            });
+            return currentIndex;
+        }
+
+        // Function to handle liking a track
+        function likeTrack() {
+            var audioFiles = Array.from(document.querySelectorAll('span[id^="track"]'));
+            var currentTrackIndex = getCurrentTrackIndex(audioFiles);
+            var trackName = audioFiles[currentTrackIndex].textContent;
+            var likedStatus = getLikedStatus(trackName);
+
+            // Toggle the liked status
+            if (likedStatus) {
+                removeLikedStatus(trackName);
+                likedStatus = false;
+            } else {
+                setLikedStatus(trackName);
+                likedStatus = true;
+            }
+
+            // Update the like button
+            updateLikeButton(likedStatus, currentTrackIndex);
+        }
+
+        // Function to set liked status as a cookie
+        function setLikedStatus(trackName) {
+            var expirationDate = new Date();
+            expirationDate.setFullYear(expirationDate.getFullYear() + 1); // Set expiration to 1 year from now
+            document.cookie = trackName + '=liked; expires=' + expirationDate.toUTCString() + '; path=/';
+        }
+
+        // Function to remove liked status from a cookie
+        function removeLikedStatus(trackName) {
+            document.cookie = trackName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        }
+
+        // Function to get liked status from a cookie
+        function getLikedStatus(trackName) {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                if (cookie.startsWith(trackName + '=')) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Function to update the like button based on the liked status
+        function updateLikeButton(likedStatus, index) {
+            var likeSpan = document.getElementById('like' + index);
+
+            if (likedStatus) {
+                likeSpan.textContent = '❤️';
+                likeButton.textContent = 'Liked';
+                likeButton.disabled = false;
+            } else {
+                likeSpan.textContent = '';
+                likeButton.textContent = 'Like';
+                likeButton.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
