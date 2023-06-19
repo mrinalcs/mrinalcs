@@ -5,6 +5,7 @@
     "dev": "next",
     "build": "node ./scripts/gen-rss.js && next build",
     "start": "next start"
+    "node": ">=12.18.0"
   },
   "dependencies": {
     "gray-matter": "^4.0.2",
