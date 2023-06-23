@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>My Website</title>
   <style>
     @font-face {
       font-family: 'CustomFont';
-      src: url('font/BorunaDemoVersionRegular-vmDA7.otf') format('opentype');
+      src: url('BorunaDemoVersionRegular-vmDA7.otf') format('opentype');
     }
 
     body {
@@ -118,6 +118,9 @@
       if (jsonFile) {
         fetch(jsonFile)
           .then(function(response) {
+            if (!response.ok) {
+              throw new Error("Failed to load the content.");
+            }
             return response.json();
           })
           .then(function(data) {
@@ -131,7 +134,7 @@
             }
           })
           .catch(function(error) {
-            contentDiv.innerHTML = "<h1>Error</h1><p>Failed to load the content.</p>";
+            contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
             document.title = "Error | My Website";
           });
       }
