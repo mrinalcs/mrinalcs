@@ -2,9 +2,89 @@
 <html>
 <head>
   <title>My Website</title>
-  <style id="dynamic-styles"></style>
+  <style>
+    @font-face {
+      font-family: 'CustomFont';
+      src: url('font/BorunaDemoVersionRegular-vmDA7.otf') format('opentype');
+    }
 
+    body {
+      font-family: 'CustomFont', sans-serif;
+    }
+
+    /* CSS for the navigation bar */
+    .navbar {
+      background-color: #333;
+      overflow: hidden;
+    }
+
+    .navbar a {
+      float: left;
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 20px;
+      text-decoration: none;
+    }
+
+    /* CSS for the hamburger menu */
+    .navbar .icon {
+      display: none;
+    }
+
+    .navbar .icon.closed::after {
+      content: "\2630"; /* Hamburger icon */
+    }
+
+    .navbar .icon.opened::after {
+      content: "\2715"; /* Close icon */
+    }
+
+    @media screen and (max-width: 600px) {
+      .navbar a:not(:first-child) {
+        display: none;
+      }
+
+      .navbar a.icon {
+        float: right;
+        display: block;
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      .navbar.responsive {
+        position: relative;
+      }
+
+      .navbar.responsive .icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      .navbar.responsive a {
+        float: none;
+        display: block;
+        text-align: left;
+      }
+    }
+  </style>
   <script>
+    function toggleNavbar() {
+      var navbar = document.getElementById("myNavbar");
+      var icon = navbar.getElementsByClassName("icon")[0];
+
+      if (navbar.className === "navbar") {
+        navbar.className += " responsive";
+        icon.classList.remove("closed");
+        icon.classList.add("opened");
+      } else {
+        navbar.className = "navbar";
+        icon.classList.remove("opened");
+        icon.classList.add("closed");
+      }
+    }
+
     function loadContent(page) {
       var contentDiv = document.getElementById("content");
       var pageTitle = "My Website"; // Default page title
@@ -43,17 +123,15 @@
             document.title = pageTitle; // Update the document title
 
             if (data.css) {
-              var styleElement = document.getElementById("dynamic-styles");
+              var styleElement = document.createElement("style");
               styleElement.textContent = data.css; // Apply CSS code
+              document.head.appendChild(styleElement);
             }
           })
           .catch(function(error) {
             contentDiv.innerHTML = "<h1>Error</h1><p>Failed to load the content.</p>";
             document.title = "Error | My Website";
           });
-      } else {
-        contentDiv.innerHTML = "<h1>Page Not Found</h1><p>The requested page was not found.</p>";
-        document.title = pageTitle; // Update the document title
       }
     }
 
@@ -70,7 +148,7 @@
     });
 
     window.addEventListener("DOMContentLoaded", function(event) {
-      var links = document.querySelectorAll("a");
+      var links = document.querySelectorAll(".navbar a");
       links.forEach(function(link) {
         link.addEventListener("click", handleNavigation);
       });
@@ -81,16 +159,15 @@
   </script>
 </head>
 <body>
-  <nav>
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/about">About</a></li>
-      <li><a href="/contact">Contact</a></li>
-    </ul>
-  </nav>
+  <div class="navbar" id="myNavbar">
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
+    <a class="icon closed" onclick="toggleNavbar()"></a>
+  </div>
+  
   <div id="content">
     <!-- Content will be loaded dynamically here -->
   </div>
 </body>
 </html>
-
