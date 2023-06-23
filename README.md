@@ -3,7 +3,7 @@
 Statistics student adapt in R, Python, and C for data analysis. Skilled in LaTeX, Markdown, and currently learning PHP for web development.
 
 ## 📚 Education
-- Currently studying Statistics
+- Currently studying BSc Statistics
 
 ## 🌱 Skills
 - Programming Languages: R, Python, C
