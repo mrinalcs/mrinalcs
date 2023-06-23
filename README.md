@@ -1,6 +1,6 @@
 # Hi there! I'm Mrinal 👋
 
-Welcome to my GitHub profile! I'm a Statistics student passionate about exploring patterns in data, applying statistical methods, and gaining meaningful insights. I have experience working with R, Python, and C for data analysis. I'm also proficient in writing LaTeX and Markdown. Besides my studies, I'm currently learning web development using PHP and Jekyll.
+Statistics student adapt in R, Python, and C for data analysis. Skilled in LaTeX, Markdown, and currently learning PHP for web development.
 
 ## 📚 Education
 - Currently studying Statistics
@@ -13,10 +13,10 @@ Welcome to my GitHub profile! I'm a Statistics student passionate about explorin
 - Programming Languages: R, Python, C
 - Data Analysis and Visualization
 - LaTeX and Markdown
-- Web Development (PHP, Jekyll, Next.js)
+- Web Development
 
 ## 💬 Get in Touch
-- LinkedIn: [mrinalcs](https://www.linkedin.com/in/mrinalcs/)
+- LinkedIn: [MrinalChandraSarkar](https://www.linkedin.com/in/mrinalcs/)
 - Email: [mrinalvbu@gmail.com](mailto:mrinalvbu@gmail.com)
 
 Feel free to reach out to me if you have any questions, ideas, or just want to connect!
