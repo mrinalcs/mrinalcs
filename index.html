@@ -1,1 +1,96 @@
-Hi
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Website</title>
+  <style id="dynamic-styles"></style>
+
+  <script>
+    function loadContent(page) {
+      var contentDiv = document.getElementById("content");
+      var pageTitle = "My Website"; // Default page title
+      var jsonFile = "";
+      switch (page) {
+        case "":
+        case "/":
+          jsonFile = "home.json";
+          pageTitle = "Home | My Website";
+          break;
+        case "/about":
+          jsonFile = "about.json";
+          pageTitle = "About | My Website";
+          break;
+        case "/contact":
+          jsonFile = "contact.json";
+          pageTitle = "Contact | My Website";
+          break;
+        default:
+          contentDiv.innerHTML = "<h1>Page Not Found</h1><p>The requested page was not found.</p>";
+          pageTitle = "Page Not Found | My Website";
+          break;
+      }
+
+      document.title = pageTitle; // Set the page title
+
+      contentDiv.innerHTML = "<div class='loading'>Loading...</div>"; // Display the loading state
+
+      if (jsonFile) {
+        fetch(jsonFile)
+          .then(function(response) {
+            return response.json();
+          })
+          .then(function(data) {
+            contentDiv.innerHTML = data.content;
+            document.title = pageTitle; // Update the document title
+
+            if (data.css) {
+              var styleElement = document.getElementById("dynamic-styles");
+              styleElement.textContent = data.css; // Apply CSS code
+            }
+          })
+          .catch(function(error) {
+            contentDiv.innerHTML = "<h1>Error</h1><p>Failed to load the content.</p>";
+            document.title = "Error | My Website";
+          });
+      } else {
+        contentDiv.innerHTML = "<h1>Page Not Found</h1><p>The requested page was not found.</p>";
+        document.title = pageTitle; // Update the document title
+      }
+    }
+
+    function handleNavigation(event) {
+      event.preventDefault();
+      var page = event.target.getAttribute("href");
+      loadContent(page);
+      history.pushState(null, null, page); // Update the browser URL
+    }
+
+    window.addEventListener("popstate", function(event) {
+      var page = location.pathname;
+      loadContent(page);
+    });
+
+    window.addEventListener("DOMContentLoaded", function(event) {
+      var links = document.querySelectorAll("a");
+      links.forEach(function(link) {
+        link.addEventListener("click", handleNavigation);
+      });
+
+      var initialPage = location.pathname;
+      loadContent(initialPage);
+    });
+  </script>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+  </nav>
+  <div id="content">
+    <!-- Content will be loaded dynamically here -->
+  </div>
+</body>
+</html>
+
