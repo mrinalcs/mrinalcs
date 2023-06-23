@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>My Website</title>
   <style>
@@ -142,6 +142,7 @@
       var page = event.target.getAttribute("href");
       loadContent(page);
       history.pushState(null, null, page); // Update the browser URL
+      toggleNavbar(); // Close the navigation menu on click
     }
 
     window.addEventListener("popstate", function(event) {
