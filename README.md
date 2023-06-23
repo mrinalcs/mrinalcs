@@ -5,10 +5,6 @@ Statistics student adapt in R, Python, and C for data analysis. Skilled in LaTeX
 ## 📚 Education
 - Currently studying Statistics
 
-## 🔭 Current Projects
-- Working on applying statistical models to analyze customer behavior in an e-commerce dataset.
-- Exploring data visualization techniques for financial time series analysis.
-
 ## 🌱 Skills
 - Programming Languages: R, Python, C
 - Data Analysis and Visualization
@@ -19,8 +15,5 @@ Statistics student adapt in R, Python, and C for data analysis. Skilled in LaTeX
 - LinkedIn: [MrinalChandraSarkar](https://www.linkedin.com/in/mrinalcs/)
 - Email: [mrinalvbu@gmail.com](mailto:mrinalvbu@gmail.com)
 
-Feel free to reach out to me if you have any questions, ideas, or just want to connect!
-
 ## ⚡ Fun Fact
 I enjoy modifying Android apps in my free time!.
-
