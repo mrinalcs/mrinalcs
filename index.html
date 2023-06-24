@@ -71,9 +71,39 @@
         text-align: left;
       }
     }
-    img {
-      width:100%;
-    }
+    
+
+
+
+
+
+
+
+.photo-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.photo {
+  flex-basis: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .photo {
+    flex-basis: 33.33%; /* Three images per row on medium screens */
+  }
+}
+
+@media (min-width: 1024px) {
+  .photo {
+    flex-basis: 16.66%; /* Six images per row on large screens */
+  }
+}
+
+
+    
   </style>
   <script>
     function toggleNavbar() {
