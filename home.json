@@ -1,5 +1,5 @@
 {
-  "content": "<style>\n.section {\n  margin-top: 20px;\n}\n.hero {\n  background-image: url('https://raw.githubusercontent.com/mrinalcs/mrinalcs/main/public/WhatsApp%20Image%202023-06-24%20at%2008.47.17.jpg');\n  background-size: cover;\n  background-position: center;\n  color: #fff;\n  padding: 50px;\n  text-align: center;\n  backdrop-filter: blur(10px);\n}\n.hero h2 ,p {\n  margin-bottom: 20px;\n  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Text shadow for contrast */\n}\n</style>\n\n<div id=\"home\" class=\"section\">\n  <div class=\"hero\">\n    <h2>Welcome to our Website</h2>\n    <p>Discover the best solutions for your needs.</p>\n  </div>\n</div>",
+  "content": "<style>\n.section {\n  margin-top: 20px;\n}\n.hero {\n  background-image: url('https://raw.githubusercontent.com/mrinalcs/mrinalcs/main/public/WhatsApp%20Image%202023-06-24%20at%2008.47.17.jpg');\n  background-size: cover;\n  background-position: center;\n  color: #fff;\n  padding: 50px;\n  text-align: center;\n  backdrop-filter: blur(10px);\n}\n.hero h2 ,p {\n  margin-bottom: 20px;\n  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Text shadow for contrast */\n}\n</style>\n\n<div id=\"home\" class=\"section\">\n  <div class=\"hero\">\n    <h2>Welcome to my Page</h2>\n    <p>Discover something you don't need.</p>\n  </div>\n</div>",
   "css": ""
 }
 
