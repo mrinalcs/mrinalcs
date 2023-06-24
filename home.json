@@ -1,4 +1,5 @@
 {
-  "title": "Home | My Website",
-  "content": "<h1>Welcome to My Website</h1><p>This is the home page content.</p>"
+  "content": "<style>\n.section {\n  margin-top: 20px;\n}\n.hero {\n  background-image: url('https://source.unsplash.com/1200x400/?girl');\n  background-size: cover;\n  background-position: center;\n  color: #fff;\n  padding: 50px;\n  text-align: center;\n  backdrop-filter: blur(10px);\n}\n.hero h2 ,p {\n  margin-bottom: 20px;\n  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Text shadow for contrast */\n}\n</style>\n\n<div id=\"home\" class=\"section\">\n  <div class=\"hero\">\n    <h2>Welcome to our Website</h2>\n    <p>Discover the best solutions for your needs.</p>\n  </div>\n</div>",
+  "css": ""
 }
+
