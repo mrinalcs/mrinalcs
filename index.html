@@ -107,10 +107,12 @@ function loadContent(page) {
     default:
       contentDiv.innerHTML = "<h1>Page Not Found</h1><p>The requested page was not found.</p>";
       pageTitle = "Page Not Found | My Website";
-      break;
+      return; // Exit the function to prevent further execution
   }
 
   document.title = pageTitle; // Set the page title
+
+  contentDiv.innerHTML = "<div class='loading'>Loading...</div>"; // Display the loading state
 
   if (jsonFile) {
     fetch(jsonFile)
@@ -158,10 +160,8 @@ window.addEventListener("DOMContentLoaded", function(event) {
 
   var menuIcon = document.querySelector(".navbar .icon");
   menuIcon.addEventListener("click", toggleNavbar);
-
-  var initialPage = location.pathname;
-  loadContent(initialPage);
 });
+
 
   </script>
 </head>
