@@ -107,12 +107,10 @@ function loadContent(page) {
     default:
       contentDiv.innerHTML = "<h1>Page Not Found</h1><p>The requested page was not found.</p>";
       pageTitle = "Page Not Found | My Website";
-      return; // Exit the function to prevent further execution
+      break;
   }
 
   document.title = pageTitle; // Set the page title
-
-  contentDiv.innerHTML = "<div class='loading'>Loading...</div>"; // Display the loading state
 
   if (jsonFile) {
     fetch(jsonFile)
@@ -142,9 +140,14 @@ function loadContent(page) {
 function handleNavigation(event) {
   event.preventDefault();
   var page = event.target.getAttribute("href");
+
+  var navbar = document.getElementById("myNavbar");
+  if (navbar.classList.contains("responsive")) {
+    toggleNavbar(); // Close the navigation menu if it's responsive
+  }
+
   loadContent(page);
   history.pushState(null, null, page); // Update the browser URL
-  toggleNavbar(); // Close the navigation menu on click
 }
 
 window.addEventListener("popstate", function(event) {
@@ -160,8 +163,10 @@ window.addEventListener("DOMContentLoaded", function(event) {
 
   var menuIcon = document.querySelector(".navbar .icon");
   menuIcon.addEventListener("click", toggleNavbar);
-});
 
+  var initialPage = location.pathname;
+  loadContent(initialPage);
+});
 
   </script>
 </head>
