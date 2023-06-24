@@ -89,6 +89,12 @@
         icon.classList.remove("closed");
         icon.classList.add("opened");
       }
+
+      // Clear the "Page Not Found" message if it's displayed
+      var contentDiv = document.getElementById("content");
+      if (contentDiv.innerHTML.includes("Page Not Found")) {
+        contentDiv.innerHTML = "";
+      }
     }
 
     function loadContent(page) {
@@ -105,7 +111,7 @@
           jsonFile = "about.json";
           pageTitle = "About";
           break;
-                  case "/insta":
+        case "/insta":
           jsonFile = "insta.json";
           pageTitle = "Insta";
           break;
@@ -115,8 +121,8 @@
           break;
         default:
           contentDiv.innerHTML = "<h1>Page Not Found</h1><p>The requested page was not found.</p>";
-          pageTitle = "Page Not Found";
-          break;
+          document.title = "Page Not Found";
+          return; // Exit the function
       }
 
       document.title = pageTitle; // Set the page title
@@ -140,6 +146,12 @@
               styleElement.textContent = data.css; // Apply CSS code
               document.head.appendChild(styleElement);
             }
+
+            // Add event listeners to links in the loaded content
+            var links = contentDiv.querySelectorAll("a");
+            links.forEach(function(link) {
+              link.addEventListener("click", handleLinkClick);
+            });
           })
           .catch(function(error) {
             contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
@@ -148,7 +160,7 @@
       }
     }
 
-    function handleNavigation(event) {
+    function handleLinkClick(event) {
       event.preventDefault();
       var page = event.target.getAttribute("href");
 
@@ -169,7 +181,7 @@
     window.addEventListener("DOMContentLoaded", function(event) {
       var links = document.querySelectorAll(".navbar a");
       links.forEach(function(link) {
-        link.addEventListener("click", handleNavigation);
+        link.addEventListener("click", handleLinkClick);
       });
 
       var menuIcon = document.querySelector(".navbar .icon");
@@ -185,11 +197,12 @@
     <a href="/">Home</a>
     <a href="/about">About</a>
     <a href="/contact">Contact</a>
+    <a href="/insta">Insta</a>
     <a class="icon closed" onclick="toggleNavbar()"></a>
   </div>
   
   <div id="content">
-    <!-- Lol -->
+    <!-- Content will be loaded dynamically -->
   </div>
     
 </body>
