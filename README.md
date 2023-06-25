@@ -7,9 +7,8 @@ Statistics student adapt in R, Python, and C for data analysis. Skilled in LaTeX
 
 ## 🌱 Skills
 - Programming Languages: R, Python, C
-- Data Analysis and Visualization
 - LaTeX and Markdown
-- Web Development
+- Web Development PHP
 
 ## 💬 Get in Touch
 - LinkedIn: [MrinalChandraSarkar](https://www.linkedin.com/in/mrinalcs/)
