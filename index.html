@@ -124,31 +124,44 @@
           jsonFile = "about.json";
           pageTitle = "About";
           break;
+       
         case "/insta":
-          fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/instagram")
-            .then(function(response) {
-              if (!response.ok) {
-                throw new Error("Failed to load the content.");
-              }
-              return response.json();
-            })
-            .then(function(data) {
-              var imageHTML = data.map(function(image) {
-                return "<div><img src='" + image.download_url + "' class='photo' loading='lazy'></div>";
-              });
+  fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/instagram")
+    .then(function(response) {
+      if (!response.ok) {
+        throw new Error("Failed to load the content.");
+      }
+      return response.json();
+    })
+    .then(function(data) {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            var image = entry.target;
+            image.src = image.dataset.src;
+            observer.unobserve(image);
+          }
+        });
+      });
 
-              contentDiv.innerHTML = "<div  class='grid-container'>" + imageHTML.join("") + "</div>";
-              document.title = "Insta"; // Update the document title
+      var imageHTML = data.map(function(image) {
+        return "<div><img src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 viewBox%3D%220%200%201%201%22%2F%3E' data-src='" + image.download_url + "' class='photo' loading='lazy'></div>";
+      });
 
-              var styleElement = document.createElement("style");
-              styleElement.textContent = "";
-              document.head.appendChild(styleElement);
-            })
-            .catch(function(error) {
-              contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
-              document.title = "Error";
-            });
-          break;
+      contentDiv.innerHTML = "<div  class='grid-container'>" + imageHTML.join("") + "</div>";
+      document.title = "Instagram - Mrinal"; // Update the document title
+
+      var images = contentDiv.querySelectorAll(".photo");
+      images.forEach(function(image) {
+        observer.observe(image);
+      });
+    })
+    .catch(function(error) {
+      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+      document.title = "Error";
+    });
+  break;
+
         case "/contact":
           jsonFile = "contact.json";
           pageTitle = "Contact";
