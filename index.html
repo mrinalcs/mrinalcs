@@ -3,7 +3,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preload" href="/public/hero-bg-1.jpg" as="image">
-<link rel="icon" type="image/x-icon" href="/public/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="/public/favicon.ico">
   <title>Mrinal</title>
   <style>
     @font-face {
@@ -71,56 +71,8 @@
         text-align: left;
       }
     }
-    
-
-
-
-
-
-
- 
-
-
-    
   </style>
 
-    <style>
-    .photo-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .photo {
-  display: block;
-  margin: 10px;
-  width: 100%;
-  height: auto;
-}
-
-@media screen and (min-width: 480px) {
-  .photo {
-    width: calc(33.33% - 20px);
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .photo {
-    width: calc(16.66% - 20px);
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .photo {
-    width: calc(16.66% - 20px);
-    max-width: none;
-  }
-}
-
-
-
-
-  </style>
   <script>
     function toggleNavbar() {
       var navbar = document.getElementById("myNavbar");
@@ -158,8 +110,29 @@
           pageTitle = "About";
           break;
         case "/insta":
-          jsonFile = "insta.json";
-          pageTitle = "Instagram";
+          fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/instagram")
+            .then(function(response) {
+              if (!response.ok) {
+                throw new Error("Failed to load the content.");
+              }
+              return response.json();
+            })
+            .then(function(data) {
+              var imageHTML = data.map(function(image) {
+                return "<img src='" + image.download_url + "' class='photo' loading='lazy'>";
+              });
+
+              contentDiv.innerHTML = "<div class='photo-container'>" + imageHTML.join("") + "</div>";
+              document.title = "Insta"; // Update the document title
+
+              var styleElement = document.createElement("style");
+              styleElement.textContent = ".photo-container { display: flex; flex-wrap: wrap; justify-content: center; } .photo { display: block; margin: 10px; width: 100%; height: auto; }";
+              document.head.appendChild(styleElement);
+            })
+            .catch(function(error) {
+              contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+              document.title = "Error";
+            });
           break;
         case "/contact":
           jsonFile = "contact.json";
@@ -242,6 +215,7 @@
   <div class="navbar" id="myNavbar">
     <a href="/">Home</a>
     <a href="/about">About</a>
+    <a href="/insta">Instagram</a>
     <a href="/contact">Contact</a>
     <a class="icon closed" onclick="toggleNavbar()"></a>
   </div>
@@ -249,6 +223,5 @@
   <div id="content">
     <!-- Content will be loaded dynamically -->
   </div>
-    
 </body>
 </html>
