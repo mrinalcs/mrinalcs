@@ -3,6 +3,8 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preload" href="/public/hero-bg-1.jpg" as="image">
+    <link rel="preload" href="loading.gif" as="image">
+
   <link rel="icon" type="image/x-icon" href="/public/favicon.ico">
   <title>Mrinal</title>
   <style>
@@ -147,7 +149,7 @@
       });
 
       var imageHTML = data.map(function(image) {
-        return "<div><img src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 viewBox%3D%220%200%201%201%22%2F%3E' data-src='" + image.download_url + "' class='photo' loading='lazy'></div>";
+        return "<div><img src='loading.gif' data-src='" + image.download_url + "' class='photo' loading='lazy'></div>";
       });
 
       contentDiv.innerHTML = "<div  class='grid-container'>" + imageHTML.join("") + "</div>";
@@ -314,7 +316,7 @@ case "/photos":
       function createPhotoGallery() {
         var galleryHTML = imageList
           .map(function(image) {
-            return "<div><img src='https://mrinal.pages.dev/loading.gif' data-src='" + image.source + "' alt='" + image.alt + "' class='lazy'></div>";
+            return "<div><img src='loading.gif' data-src='" + image.source + "' alt='" + image.alt + "' class='lazy'></div>";
           })
           .join("");
 
