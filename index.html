@@ -172,6 +172,7 @@
 
 
           case "/ringtone":
+          pageTitle = "Ringtone";
   fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/audio")
     .then(function(response) {
       if (!response.ok) {
@@ -254,7 +255,7 @@
         "</div>" +
         createMusicList() +
         "</div>";
-      document.title = "Ringtone Player - Mrinal"; // Update the document title
+     
 
       var player = contentDiv.querySelector(".music-player");
       var playButton = player.querySelector(".play-pause-btn");
@@ -297,6 +298,7 @@
 
 
 case "/photos":
+          pageTitle = "Photos";
   fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/images")
     .then(function(response) {
       if (!response.ok) {
@@ -324,7 +326,7 @@ case "/photos":
       }
 
       contentDiv.innerHTML = createPhotoGallery();
-      document.title = "Photos - Mrinal"; // Update the document title
+    
 
       // Lazy load images when they come into the viewport
       var lazyImages = contentDiv.querySelectorAll(".lazy");
