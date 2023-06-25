@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HTML to JSON Converter</title>
+  <style>
+    .container {
+      margin: 20px auto;
+      width: 600px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 200px;
+      resize: vertical;
+    }
+
+    .output {
+      margin-top: 20px;
+    }
+
+    .copy-button {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>HTML to JSON Converter</h2>
+    <form id="converterForm">
+      <label for="htmlInput">HTML Input:</label>
+      <textarea id="htmlInput" required></textarea>
+      <button type="submit">Convert</button>
+    </form>
+    <div class="output">
+      <label for="jsonOutput">JSON Output:</label>
+      <textarea id="jsonOutput" readonly></textarea>
+      <button class="copy-button">Copy</button>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('converterForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      var htmlInput = document.getElementById('htmlInput').value;
+      var content = convertToJSON(htmlInput);
+      document.getElementById('jsonOutput').value = JSON.stringify(content);
+    });
+
+    document.querySelector('.copy-button').addEventListener('click', function() {
+      var jsonOutput = document.getElementById('jsonOutput');
+      var content = JSON.parse(jsonOutput.value);
+      var contentString = JSON.stringify(content.content);
+      contentString = contentString.slice(1, -1); // Remove the double quotes
+      navigator.clipboard.writeText(contentString)
+        .then(function() {
+          var copyButton = document.querySelector('.copy-button');
+          copyButton.textContent = 'Copied';
+          copyButton.disabled = true;
+        });
+    });
+
+    function convertToJSON(html) {
+      var container = document.createElement('div');
+      container.innerHTML = html;
+
+      var elements = container.querySelectorAll('*');
+
+      var content = container.innerHTML;
+
+      return { content: content };
+    }
+  </script>
+</body>
+</html>
