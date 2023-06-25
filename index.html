@@ -164,6 +164,133 @@
     });
   break;
 
+
+
+
+
+
+          case "/ringtone":
+  fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/audio")
+    .then(function(response) {
+      if (!response.ok) {
+        throw new Error("Failed to load the content.");
+      }
+      return response.json();
+    })
+    .then(function(data) {
+      var audioList = data.map(function(audio, index) {
+        return {
+          title: audio.name,
+          source: audio.download_url,
+          index: index
+        };
+      });
+
+      var currentSongIndex = 0;
+      var audioElement = new Audio(audioList[currentSongIndex].source);
+      var isPlaying = false;
+
+      function playSong(index) {
+        audioElement.pause();
+        audioElement.src = audioList[index].source;
+        audioElement.load();
+        audioElement.play();
+        currentSongIndex = index;
+        highlightCurrentSong();
+        isPlaying = true;
+        playButton.textContent = "Pause";
+      }
+
+      function pauseSong() {
+        audioElement.pause();
+        isPlaying = false;
+        playButton.textContent = "Play";
+      }
+
+      function togglePlayPause() {
+        if (isPlaying) {
+          pauseSong();
+        } else {
+          playSong(currentSongIndex);
+        }
+      }
+
+      function playNextSong() {
+        var nextSongIndex = (currentSongIndex + 1) % audioList.length;
+        playSong(nextSongIndex);
+      }
+
+      function playPreviousSong() {
+        var previousSongIndex = (currentSongIndex - 1 + audioList.length) % audioList.length;
+        playSong(previousSongIndex);
+      }
+
+      function createMusicList() {
+        var listHTML = audioList
+          .map(function(audio, index) {
+            return "<li data-index='" + index + "'>" + audio.title + "</li>";
+          })
+          .join("");
+
+        return "<ul class='music-list'>" + listHTML + "</ul>";
+      }
+
+      function highlightCurrentSong() {
+        var musicListItems = player.querySelectorAll(".music-list li");
+        musicListItems.forEach(function(item) {
+          item.classList.remove("current-song");
+        });
+        musicListItems[currentSongIndex].classList.add("current-song");
+      }
+
+      contentDiv.innerHTML = "<div class='music-player'>" +
+        "<h1>Ringtone Player</h1>" +
+        "<div class='controls'>" +
+        "<button class='previous-btn'>Previous</button>" +
+        "<button class='play-pause-btn'>Play</button>" +
+        "<button class='next-btn'>Next</button>" +
+        "</div>" +
+        createMusicList() +
+        "</div>";
+      document.title = "Ringtone Player - Mrinal"; // Update the document title
+
+      var player = contentDiv.querySelector(".music-player");
+      var playButton = player.querySelector(".play-pause-btn");
+      var previousButton = player.querySelector(".previous-btn");
+      var nextButton = player.querySelector(".next-btn");
+      var musicListItems = player.querySelectorAll(".music-list li");
+
+      playButton.addEventListener("click", function() {
+        togglePlayPause();
+      });
+
+      previousButton.addEventListener("click", function() {
+        playPreviousSong();
+      });
+
+      nextButton.addEventListener("click", function() {
+        playNextSong();
+      });
+
+      musicListItems.forEach(function(item) {
+        item.addEventListener("click", function() {
+          var index = parseInt(item.getAttribute("data-index"));
+          playSong(index);
+        });
+      });
+
+      audioElement.addEventListener("ended", playNextSong);
+
+      highlightCurrentSong();
+    })
+    .catch(function(error) {
+      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+      document.title = "Error";
+    });
+  break;
+
+
+          
         case "/contact":
           jsonFile = "contact.json";
           pageTitle = "Contact";
