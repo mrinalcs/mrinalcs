@@ -1,4 +1,4 @@
 {
-  "content": "<div class=\"centered\">\n  <a href=\"mailto:mrinalvbu@gmail.com\" class=\"email\" target=\"_blank\">mrinalvbu@gmail.com</a>\n</div>\n",
+  "content": "<div class=\"centered\">\n  <p>Write me :<b> mrinalvbu@gmail.com </b></p>\n</div>\n",
   "css": ".centered {\n  position: fixed;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n\n.email {\n  animation-name: scaleAnimation;\n  animation-duration: 5s;\n  animation-fill-mode: both;\n}\n\n@keyframes scaleAnimation {\n  0% {\n    transform: scale(2);\n  }\n  100% {\n    transform: scale(1);\n  }\n}\n"
 }
