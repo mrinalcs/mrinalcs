@@ -290,6 +290,48 @@
   break;
 
 
+
+
+case "/photos":
+  fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/images")
+    .then(function(response) {
+      if (!response.ok) {
+        throw new Error("Failed to load the content.");
+      }
+      return response.json();
+    })
+    .then(function(data) {
+      var imageList = data.map(function(image) {
+        return {
+          title: image.name,
+          source: image.download_url
+        };
+      });
+
+      function createPhotoGallery() {
+        var galleryHTML = imageList
+          .map(function(image) {
+            return "<div><img src='" + image.source + "' alt='" + image.title + "'></div>";
+          })
+          .join("");
+
+        return "<div  class='grid-container'>" + galleryHTML + "</div>";
+      }
+
+      contentDiv.innerHTML = createPhotoGallery();
+      document.title = "Photos - Mrinal"; // Update the document title
+    })
+    .catch(function(error) {
+      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+      document.title = "Error";
+    });
+  break;
+
+
+
+
+
+          
           
         case "/contact":
           jsonFile = "contact.json";
