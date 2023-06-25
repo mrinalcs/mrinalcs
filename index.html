@@ -126,6 +126,8 @@
           break;
        
         case "/insta":
+                    pageTitle = "Insta";
+
   fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/instagram")
     .then(function(response) {
       if (!response.ok) {
@@ -149,7 +151,7 @@
       });
 
       contentDiv.innerHTML = "<div  class='grid-container'>" + imageHTML.join("") + "</div>";
-      document.title = "Instagram - Mrinal"; // Update the document title
+     
 
       var images = contentDiv.querySelectorAll(".photo");
       images.forEach(function(image) {
@@ -243,7 +245,6 @@
   <div class="navbar" id="myNavbar">
     <a href="/">Home</a>
     <a href="/about">About</a>
-    <a href="/insta">Instagram</a>
     <a href="/contact">Contact</a>
     <a class="icon closed" onclick="toggleNavbar()"></a>
   </div>
