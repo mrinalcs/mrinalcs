@@ -314,7 +314,7 @@ case "/photos":
       function createPhotoGallery() {
         var galleryHTML = imageList
           .map(function(image) {
-            return "<div><img src='loading.gif' data-src='" + image.source + "' alt='" + image.alt + "' loading='lazy'></div>";
+            return "<div><img src='https://mrinal.pages.dev/loading.gif' data-src='" + image.source + "' alt='" + image.alt + "' class='lazy'></div>";
           })
           .join("");
 
@@ -325,15 +325,20 @@ case "/photos":
       document.title = "Photos - Mrinal"; // Update the document title
 
       // Lazy load images when they come into the viewport
-      var lazyImages = contentDiv.querySelectorAll("img[data-src]");
+      var lazyImages = contentDiv.querySelectorAll(".lazy");
+      var lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            var lazyImage = entry.target;
+            lazyImage.src = lazyImage.getAttribute("data-src");
+            lazyImage.classList.remove("lazy");
+            lazyImageObserver.unobserve(lazyImage);
+          }
+        });
+      });
+
       lazyImages.forEach(function(lazyImage) {
-        lazyImage.addEventListener("load", function() {
-          lazyImage.removeAttribute("data-src");
-        });
-        lazyImage.addEventListener("error", function() {
-          lazyImage.setAttribute("src", "/path/to/error.jpg");
-        });
-        lazyImage.setAttribute("src", lazyImage.getAttribute("data-src"));
+        lazyImageObserver.observe(lazyImage);
       });
     })
     .catch(function(error) {
@@ -341,6 +346,7 @@ case "/photos":
       document.title = "Error";
     });
   break;
+
 
 
 
