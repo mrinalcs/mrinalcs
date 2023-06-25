@@ -1,4 +1,4 @@
 {
-  "content": "<div class=\"centered\">\n  <a href=\"mailto:mrinalvbu@gmail.com\">mrinalvbu@gmail.com</a>\n</div>\n",
-  "css": ".centered {\n  position: fixed;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\ntext-decoration: none;\n}\n"
+  "content": "<div class=\"centered\">\n  <a href=\"mailto:mrinalvbu@gmail.com\">Write me : mrinalvbu@gmail.com</a>\n</div>\n",
+  "css": ".centered {\n  position: fixed;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\ntext-decoration: none;\n}\n a {\n    text-decoration: none;\n}"
 }
