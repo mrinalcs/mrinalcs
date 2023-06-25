@@ -292,6 +292,8 @@
 
 
 
+
+
 case "/photos":
   fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/images")
     .then(function(response) {
@@ -304,28 +306,45 @@ case "/photos":
       var imageList = data.map(function(image) {
         return {
           title: image.name,
-          source: image.download_url
+          source: image.download_url,
+          alt: image.name
         };
       });
 
       function createPhotoGallery() {
         var galleryHTML = imageList
           .map(function(image) {
-            return "<div><img src='" + image.source + "' alt='" + image.title + "'></div>";
+            return "<div><img src='loading.gif' data-src='" + image.source + "' alt='" + image.alt + "' loading='lazy'></div>";
           })
           .join("");
 
-        return "<div  class='grid-container'>" + galleryHTML + "</div>";
+        return "<div class='grid-container'>" + galleryHTML + "</div>";
       }
 
       contentDiv.innerHTML = createPhotoGallery();
       document.title = "Photos - Mrinal"; // Update the document title
+
+      // Lazy load images when they come into the viewport
+      var lazyImages = contentDiv.querySelectorAll("img[data-src]");
+      lazyImages.forEach(function(lazyImage) {
+        lazyImage.addEventListener("load", function() {
+          lazyImage.removeAttribute("data-src");
+        });
+        lazyImage.addEventListener("error", function() {
+          lazyImage.setAttribute("src", "/path/to/error.jpg");
+        });
+        lazyImage.setAttribute("src", lazyImage.getAttribute("data-src"));
+      });
     })
     .catch(function(error) {
       contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
       document.title = "Error";
     });
   break;
+
+
+
+          
 
 
 
