@@ -1,24 +1,24 @@
 {
   "snippets": [
     {
-      "title": "Snippet 1",
-      "code": "Your code snippet 1"
+      "title": "Git",
+      "code": "git pull\ngit clone\ncode .\ngit add --all\ngit commit -m “int”\ngit push\ngit push origin main:new"
     },
     {
-      "title": "Snippet 2",
-      "code": "Your code snippet 2"
+      "title": "Jupyter",
+      "code": "jupyter-lab\njupyter notebook\n"
     },
     {
-      "title": "Snippet 2",
-      "code": "Your code snippet 2"
+      "title": "PiP",
+      "code": "pip install numpy\npip install pandas\npip install matplotlib\npip install seaborn\npip install scipy\npip install statsmodels\npip install scikit-learn"
     },
     {
-      "title": "Snippet 2",
-      "code": "Your code snippet 2"
+      "title": "Jekyll",
+      "code": "bundle lock --add-platform x86_64-linux\nbundle\nbundle exec jekyll serve"
     },
     {
-      "title": "Snippet 2",
-      "code": "Your code snippet 2"
+      "title": "R",
+      "code": "install.packages(\"forecast\")\ninstall.packages(\"tseries\")\ninstall.packages(\"zoo\")\nlibrary(forecast)\nlibrary(tseries)\nlibrary(zoo)"
     }
    
    
