@@ -444,6 +444,75 @@ case "/photos":
 
 
 
+case "/snippet":
+  fetch("snippet.json") // Replace with the path to your snippet.json file
+    .then(function(response) {
+      if (!response.ok) {
+        throw new Error("Failed to load the content.");
+      }
+      return response.json();
+    })
+    .then(function(data) {
+      var snippetList = data.snippets;
+
+      function createSnippetGallery() {
+        var galleryHTML = snippetList
+          .map(function(snippet) {
+            return "<div class='snippet'><div class='snippet-title'>" + snippet.title + "</div><pre><code class='language-javascript'>" + snippet.code + "</code></pre><button class='copy-button'>Copy</button></div>";
+          })
+          .join("");
+
+        return "<div class='snippet-container'>" + galleryHTML + "</div>";
+      }
+
+      contentDiv.innerHTML = createSnippetGallery();
+      document.title = "Snippets - Mrinal"; // Update the document title
+
+      // Copy button click event listener
+      var copyButtons = contentDiv.querySelectorAll(".copy-button");
+      copyButtons.forEach(function(button) {
+        button.addEventListener("click", function(event) {
+          var codeBlock = event.target.previousElementSibling;
+          copyCodeToClipboard(codeBlock);
+        });
+      });
+
+      // Function to copy code to clipboard
+      function copyCodeToClipboard(element) {
+        var range = document.createRange();
+        range.selectNodeContents(element);
+        var selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand("copy");
+        selection.removeAllRanges();
+
+        // Change the button text briefly to indicate success
+        var originalButtonText = element.nextElementSibling.textContent;
+        element.nextElementSibling.textContent = "Copied!";
+        setTimeout(function() {
+          element.nextElementSibling.textContent = originalButtonText;
+        }, 1500);
+      }
+    })
+    .catch(function(error) {
+      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+      document.title = "Error";
+    });
+  break;
+
+
+
+
+
+
+
+
+
+
+
+          
+
 
           
           
