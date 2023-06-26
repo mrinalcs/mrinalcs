@@ -1,0 +1,13 @@
+{
+  "snippets": [
+    {
+      "title": "Snippet 1",
+      "code": "Your code snippet 1"
+    },
+    {
+      "title": "Snippet 2",
+      "code": "Your code snippet 2"
+    },
+    ...
+  ]
+}
