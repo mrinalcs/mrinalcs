@@ -510,7 +510,13 @@ case "/snippet":
       function createSnippetGallery() {
         var galleryHTML = snippetList
           .map(function(snippet) {
-            return "<div class='snippet'><div class='snippet-title'>" + snippet.title + "</div><pre><code class='language-javascript'>" + snippet.code + "</code></pre><button class='copy-button'>Copy</button></div>";
+            return `
+              <div class='snippet'>
+                <div class='snippet-title'>${snippet.title}</div>
+                <pre><code class='language-javascript'>${snippet.code}</code></pre>
+                <button class='copy-button'>Copy</button>
+                <div class='snippet-html'>${snippet.html}</div>
+              </div>`;
           })
           .join("");
 
@@ -552,6 +558,7 @@ case "/snippet":
       document.title = "Error";
     });
   break;
+
 
 
 
