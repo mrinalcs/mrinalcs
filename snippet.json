@@ -19,7 +19,27 @@
     {
       "title": "R",
       "code": "install.packages(\"forecast\")\ninstall.packages(\"tseries\")\ninstall.packages(\"zoo\")\nlibrary(forecast)\nlibrary(tseries)\nlibrary(zoo)"
+    },
+    {
+      "title": "Viewport",
+      "code": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
+    },
+    {
+      "title": "Style",
+      "code": "<style>\n\n</style>"
+    },
+    {
+      "title": "Script",
+      "code": "<script>\n \n</script> "
+    },
+    {
+      "title": "!",
+      "code": "\n\n\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Document</title>\n\n\n    \n\n"
     }
+   
+   
+   
+   
    
    
    
