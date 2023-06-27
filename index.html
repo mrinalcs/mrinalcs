@@ -508,8 +508,8 @@ case "/snippet":
     .then(function(data) {
       var snippetList = data.snippets;
 
-      function createSnippetGallery() {
-        var galleryHTML = snippetList
+      function createSnippetGallery(snippets) {
+        var galleryHTML = snippets
           .map(function(snippet) {
             return `<div class="snippet">
                       <div class="snippet-title">${snippet.title}</div>
@@ -522,7 +522,18 @@ case "/snippet":
         return `<div class="snippet-container">${galleryHTML}</div>`;
       }
 
-      contentDiv.innerHTML = createSnippetGallery();
+      function searchSnippets(searchTerm) {
+        var filteredSnippets = snippetList.filter(function(snippet) {
+          return (
+            snippet.title.toLowerCase().includes(searchTerm) ||
+            snippet.code.toLowerCase().includes(searchTerm)
+          );
+        });
+
+        contentDiv.innerHTML = createSnippetGallery(filteredSnippets);
+      }
+
+      contentDiv.innerHTML = createSnippetGallery(snippetList);
       document.title = "Snippets - Mrinal"; // Update the document title
 
       // Copy button click event listener
@@ -565,6 +576,19 @@ case "/snippet":
           return escapeMap[char];
         });
       }
+
+      // Search input event listener
+      var searchInput = document.createElement("input");
+      searchInput.type = "text";
+      searchInput.placeholder = "Search snippets...";
+      searchInput.addEventListener("input", function(event) {
+        var searchTerm = event.target.value.toLowerCase();
+        searchSnippets(searchTerm);
+      });
+
+      var searchContainer = document.createElement("div");
+      searchContainer.appendChild(searchInput);
+      contentDiv.insertBefore(searchContainer, contentDiv.firstChild);
     })
     .catch(function(error) {
       contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
