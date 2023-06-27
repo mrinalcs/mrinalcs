@@ -496,6 +496,7 @@ case "/photos":
 
 
 
+
 case "/snippet":
   fetch("snippet.json") // Replace with the path to your snippet.json file
     .then(function(response) {
@@ -510,17 +511,15 @@ case "/snippet":
       function createSnippetGallery() {
         var galleryHTML = snippetList
           .map(function(snippet) {
-            return `
-              <div class='snippet'>
-                <div class='snippet-title'>${snippet.title}</div>
-                <pre><code class='language-javascript'>${snippet.code}</code></pre>
-                <button class='copy-button'>Copy</button>
-                <div class='snippet-html'>${snippet.html}</div>
-              </div>`;
+            return `<div class="snippet">
+                      <div class="snippet-title">${snippet.title}</div>
+                      <pre><code class="language-html">${escapeHTML(snippet.code)}</code></pre>
+                      <button class="copy-button">Copy</button>
+                    </div>`;
           })
           .join("");
 
-        return "<div class='snippet-container'>" + galleryHTML + "</div>";
+        return `<div class="snippet-container">${galleryHTML}</div>`;
       }
 
       contentDiv.innerHTML = createSnippetGallery();
@@ -552,13 +551,26 @@ case "/snippet":
           element.nextElementSibling.textContent = originalButtonText;
         }, 1500);
       }
+
+      // Function to escape HTML characters
+      function escapeHTML(html) {
+        var escapeMap = {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#039;"
+        };
+        return html.replace(/[&<>"']/g, function(char) {
+          return escapeMap[char];
+        });
+      }
     })
     .catch(function(error) {
       contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
       document.title = "Error";
     });
   break;
-
 
 
 
