@@ -286,15 +286,8 @@
 
 
 
-
-
-
-
-
-
-
 case "/tic-tac-toe":
-  fetch("tic-tac-toe.json") // Replace with the path to your tic-tac-toe.json file
+  fetch("tic-tac-toe.json")
     .then(function(response) {
       if (!response.ok) {
         throw new Error("Failed to load the content.");
@@ -306,11 +299,11 @@ case "/tic-tac-toe":
 
       function createGameBoard(board) {
         var boardHTML = board
-          .map(function(row) {
+          .map(function(row, rowIndex) {
             return `<div class="board-row">
                       ${row
-                        .map(function(cell) {
-                          return `<div class="board-cell">${cell}</div>`;
+                        .map(function(cell, cellIndex) {
+                          return `<div class="board-cell" data-row="${rowIndex}" data-cell="${cellIndex}">${cell}</div>`;
                         })
                         .join("")}
                     </div>`;
@@ -320,69 +313,69 @@ case "/tic-tac-toe":
         return `<div class="board-container">${boardHTML}</div>`;
       }
 
-      contentDiv.innerHTML = createGameBoard(gameData.board);
-      document.title = "Tic-Tac-Toe - Mrinal"; // Update the document title
-
-      // Function to handle cell click event
       function handleCellClick(event) {
         var cell = event.target;
-        var rowIndex = parseInt(cell.parentElement.getAttribute("data-row-index"));
-        var cellIndex = parseInt(cell.getAttribute("data-cell-index"));
+        var rowIndex = parseInt(cell.getAttribute("data-row"));
+        var cellIndex = parseInt(cell.getAttribute("data-cell"));
         var symbol = gameData.players[gameData.currentPlayerIndex].symbol;
 
-        // Update the game board with the player's symbol
-        gameData.board[rowIndex][cellIndex] = symbol;
-        cell.textContent = symbol;
+        if (gameData.board[rowIndex][cellIndex] === "") {
+          gameData.board[rowIndex][cellIndex] = symbol;
+          cell.textContent = symbol;
 
-        // Check for a winning condition
-        if (checkWinCondition()) {
-          var winner = gameData.players[gameData.currentPlayerIndex].name;
-          contentDiv.innerHTML += `<div class="winner-message">Player ${winner} wins!</div>`;
-          disableClickHandlers();
-        } else {
-          // Switch to the next player
-          gameData.currentPlayerIndex = (gameData.currentPlayerIndex + 1) % gameData.players.length;
+          if (checkWinCondition(symbol)) {
+            var winner = gameData.players[gameData.currentPlayerIndex].name;
+            contentDiv.innerHTML += `<div class="winner-message">Player ${winner} wins!</div>`;
+            disableClickHandlers();
+          } else if (checkDrawCondition()) {
+            contentDiv.innerHTML += `<div class="draw-message">It's a draw!</div>`;
+            disableClickHandlers();
+          } else {
+            gameData.currentPlayerIndex = (gameData.currentPlayerIndex + 1) % gameData.players.length;
+          }
         }
       }
 
-      // Function to check for a winning condition
-      function checkWinCondition() {
+      function checkWinCondition(symbol) {
         var board = gameData.board;
 
         // Check rows
         for (var row = 0; row < board.length; row++) {
-          if (board[row][0] && board[row][0] === board[row][1] && board[row][0] === board[row][2]) {
+          if (board[row][0] === symbol && board[row][1] === symbol && board[row][2] === symbol) {
             return true;
           }
         }
 
         // Check columns
         for (var col = 0; col < board[0].length; col++) {
-          if (board[0][col] && board[0][col] === board[1][col] && board[0][col] === board[2][col]) {
+          if (board[0][col] === symbol && board[1][col] === symbol && board[2][col] === symbol) {
             return true;
           }
         }
 
         // Check diagonals
-        if (
-          board[0][0] &&
-          board[0][0] === board[1][1] &&
-          board[0][0] === board[2][2]
-        ) {
+        if (board[0][0] === symbol && board[1][1] === symbol && board[2][2] === symbol) {
           return true;
         }
-        if (
-          board[0][2] &&
-          board[0][2] === board[1][1] &&
-          board[0][2] === board[2][0]
-        ) {
+        if (board[0][2] === symbol && board[1][1] === symbol && board[2][0] === symbol) {
           return true;
         }
 
         return false;
       }
 
-      // Function to disable click handlers on cells
+      function checkDrawCondition() {
+        var board = gameData.board;
+        for (var row = 0; row < board.length; row++) {
+          for (var col = 0; col < board[row].length; col++) {
+            if (board[row][col] === "") {
+              return false;
+            }
+          }
+        }
+        return true;
+      }
+
       function disableClickHandlers() {
         var cells = contentDiv.querySelectorAll(".board-cell");
         cells.forEach(function(cell) {
@@ -390,7 +383,9 @@ case "/tic-tac-toe":
         });
       }
 
-      // Add click event listeners to cells
+      contentDiv.innerHTML = createGameBoard(gameData.board);
+      document.title = "Tic-Tac-Toe";
+
       var cells = contentDiv.querySelectorAll(".board-cell");
       cells.forEach(function(cell) {
         cell.addEventListener("click", handleCellClick);
@@ -401,6 +396,12 @@ case "/tic-tac-toe":
       document.title = "Error";
     });
   break;
+
+
+
+
+
+
 
 
 
