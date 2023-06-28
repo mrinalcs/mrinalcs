@@ -263,7 +263,166 @@
           jsonFile = "about.json";
           pageTitle = "About";
           break;
-       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+case "/tic-tac-toe":
+  fetch("tic-tac-toe.json") // Replace with the path to your tic-tac-toe.json file
+    .then(function(response) {
+      if (!response.ok) {
+        throw new Error("Failed to load the content.");
+      }
+      return response.json();
+    })
+    .then(function(data) {
+      var gameData = data.game;
+
+      function createGameBoard(board) {
+        var boardHTML = board
+          .map(function(row) {
+            return `<div class="board-row">
+                      ${row
+                        .map(function(cell) {
+                          return `<div class="board-cell">${cell}</div>`;
+                        })
+                        .join("")}
+                    </div>`;
+          })
+          .join("");
+
+        return `<div class="board-container">${boardHTML}</div>`;
+      }
+
+      contentDiv.innerHTML = createGameBoard(gameData.board);
+      document.title = "Tic-Tac-Toe - Mrinal"; // Update the document title
+
+      // Function to handle cell click event
+      function handleCellClick(event) {
+        var cell = event.target;
+        var rowIndex = parseInt(cell.parentElement.getAttribute("data-row-index"));
+        var cellIndex = parseInt(cell.getAttribute("data-cell-index"));
+        var symbol = gameData.players[gameData.currentPlayerIndex].symbol;
+
+        // Update the game board with the player's symbol
+        gameData.board[rowIndex][cellIndex] = symbol;
+        cell.textContent = symbol;
+
+        // Check for a winning condition
+        if (checkWinCondition()) {
+          var winner = gameData.players[gameData.currentPlayerIndex].name;
+          contentDiv.innerHTML += `<div class="winner-message">Player ${winner} wins!</div>`;
+          disableClickHandlers();
+        } else {
+          // Switch to the next player
+          gameData.currentPlayerIndex = (gameData.currentPlayerIndex + 1) % gameData.players.length;
+        }
+      }
+
+      // Function to check for a winning condition
+      function checkWinCondition() {
+        var board = gameData.board;
+
+        // Check rows
+        for (var row = 0; row < board.length; row++) {
+          if (board[row][0] && board[row][0] === board[row][1] && board[row][0] === board[row][2]) {
+            return true;
+          }
+        }
+
+        // Check columns
+        for (var col = 0; col < board[0].length; col++) {
+          if (board[0][col] && board[0][col] === board[1][col] && board[0][col] === board[2][col]) {
+            return true;
+          }
+        }
+
+        // Check diagonals
+        if (
+          board[0][0] &&
+          board[0][0] === board[1][1] &&
+          board[0][0] === board[2][2]
+        ) {
+          return true;
+        }
+        if (
+          board[0][2] &&
+          board[0][2] === board[1][1] &&
+          board[0][2] === board[2][0]
+        ) {
+          return true;
+        }
+
+        return false;
+      }
+
+      // Function to disable click handlers on cells
+      function disableClickHandlers() {
+        var cells = contentDiv.querySelectorAll(".board-cell");
+        cells.forEach(function(cell) {
+          cell.removeEventListener("click", handleCellClick);
+        });
+      }
+
+      // Add click event listeners to cells
+      var cells = contentDiv.querySelectorAll(".board-cell");
+      cells.forEach(function(cell) {
+        cell.addEventListener("click", handleCellClick);
+      });
+    })
+    .catch(function(error) {
+      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+      document.title = "Error";
+    });
+  break;
+
+
+
+
+
+
+
+
+
+          
+
+
+
+
+
+
+
+
+
+
+
+          
         case "/instagram":
                     pageTitle = "Instagram";
 
