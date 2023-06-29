@@ -278,6 +278,50 @@
 
 
 
+case "/try-html":
+  fetch("try-html.json")
+    .then(function(response) {
+      if (!response.ok) {
+        throw new Error("Failed to load the content.");
+      }
+      return response.json();
+    })
+    .then(function(data) {
+      var htmlCode = data.html;
+
+      function updateOutput() {
+        var code = htmlCodeTextarea.value;
+        outputDiv.innerHTML = code;
+      }
+
+      function handleCodeChange() {
+        clearTimeout(timeout);
+        timeout = setTimeout(updateOutput, 300);
+      }
+
+      var htmlCodeTextarea = document.createElement("textarea");
+      htmlCodeTextarea.className = "code-input";
+      htmlCodeTextarea.value = htmlCode;
+      htmlCodeTextarea.addEventListener("input", handleCodeChange);
+
+      var outputDiv = document.createElement("div");
+      outputDiv.className = "output";
+
+      var containerDiv = document.createElement("div");
+      containerDiv.appendChild(htmlCodeTextarea);
+      containerDiv.appendChild(outputDiv);
+
+      contentDiv.appendChild(containerDiv);
+      document.title = "Try HTML";
+
+      // Initialize the output
+      updateOutput();
+    })
+    .catch(function(error) {
+      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+      document.title = "Error";
+    });
+  break;
 
 
 
