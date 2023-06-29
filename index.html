@@ -277,7 +277,6 @@
 
 
 
-
 case "/try-html":
   fetch("try-html.json")
     .then(function(response) {
@@ -288,43 +287,30 @@ case "/try-html":
     })
     .then(function(data) {
       var htmlCode = data.html;
+      var outputContainer = document.createElement("div");
+      var codeEditor = document.createElement("textarea");
+      var runButton = document.createElement("button");
 
-      function updateOutput() {
-        var code = htmlCodeTextarea.value;
-        outputDiv.innerHTML = code;
+      codeEditor.value = htmlCode;
+      runButton.textContent = "Run";
+      runButton.addEventListener("click", executeCode);
+
+      contentDiv.appendChild(codeEditor);
+      contentDiv.appendChild(runButton);
+      contentDiv.appendChild(outputContainer);
+
+      function executeCode() {
+        var code = codeEditor.value;
+        outputContainer.innerHTML = code;
       }
 
-      function handleCodeChange() {
-        clearTimeout(timeout);
-        timeout = setTimeout(updateOutput, 300);
-      }
-
-      var htmlCodeTextarea = document.createElement("textarea");
-      htmlCodeTextarea.className = "code-input";
-      htmlCodeTextarea.value = htmlCode;
-      htmlCodeTextarea.addEventListener("input", handleCodeChange);
-
-      var outputDiv = document.createElement("div");
-      outputDiv.className = "output";
-
-      var containerDiv = document.createElement("div");
-      containerDiv.appendChild(htmlCodeTextarea);
-      containerDiv.appendChild(outputDiv);
-
-      contentDiv.appendChild(containerDiv);
       document.title = "Try HTML";
-
-      // Initialize the output
-      updateOutput();
     })
     .catch(function(error) {
       contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
       document.title = "Error";
     });
   break;
-
-
-
 
 
 
