@@ -1,0 +1,4 @@
+{
+    "calculateMeanVariance": "(function (values) {\n  var sum = values.reduce(function (acc, val) {\n    return acc + val;\n  }, 0);\n  var mean = sum / values.length;\n  var squaredDiffSum = values.reduce(function (acc, val) {\n    var diff = val - mean;\n    return acc + diff * diff;\n  }, 0);\n  var variance = squaredDiffSum / values.length;\n  return { mean: mean, variance: variance };\n})"
+  }
+  

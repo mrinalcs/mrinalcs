@@ -273,6 +273,50 @@
 
 
 
+          case "/mean-var-calc":
+  fetch("mean-var-calc.json")
+    .then(function(response) {
+      if (!response.ok) {
+        throw new Error("Failed to load the content.");
+      }
+      return response.json();
+    })
+    .then(function(data) {
+      var calculateMeanVariance = data.calculateMeanVariance;
+      var inputContainer = document.createElement("div");
+      var inputLabel = document.createElement("label");
+      var inputField = document.createElement("input");
+      var resultContainer = document.createElement("div");
+      var calculateButton = document.createElement("button");
+
+      inputLabel.textContent = "Enter values (comma-separated):";
+      calculateButton.textContent = "Calculate";
+      calculateButton.addEventListener("click", calculate);
+
+      inputContainer.appendChild(inputLabel);
+      inputContainer.appendChild(inputField);
+      inputContainer.appendChild(calculateButton);
+      contentDiv.appendChild(inputContainer);
+      contentDiv.appendChild(resultContainer);
+
+      function calculate() {
+        var values = inputField.value.split(",").map(function(value) {
+          return parseFloat(value.trim());
+        });
+
+        var mean = calculateMeanVariance(values).mean;
+        var variance = calculateMeanVariance(values).variance;
+
+        resultContainer.innerHTML = "<p>Mean: " + mean + "</p><p>Variance: " + variance + "</p>";
+      }
+
+      document.title = "Mean Variance Calculator";
+    })
+    .catch(function(error) {
+      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+      document.title = "Error";
+    });
+  break;
 
 
 
