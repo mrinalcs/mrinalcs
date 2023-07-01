@@ -359,7 +359,7 @@ case "/try-html":
       });
 
       var imageHTML = data.map(function(image) {
-        return "<div><img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==' data-src='" + image.download_url + "' class='photo' loading='lazy'></div>";
+        return "<div><img src='loading.gif' style='max-width:30px;' data-src='" + image.download_url + "' class='photo' loading='lazy'></div>";
       });
 
       contentDiv.innerHTML = "<div  class='grid-container'>" + imageHTML.join("") + "</div>";
