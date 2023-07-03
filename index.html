@@ -273,6 +273,97 @@
 
 
 
+
+
+
+
+case "/text-converter":
+  fetch("text.json") // Replace with the path to your text.json file
+    .then(function(response) {
+      if (!response.ok) {
+        throw new Error("Failed to load the content.");
+      }
+      return response.json();
+    })
+    .then(function(data) {
+      var textValue = data.text;
+
+      function createTextConverter(text) {
+        return `<div>
+                  <textarea class="text-input">${text}</textarea>
+                  <div class="conversion-buttons">
+                    <button class="convert-single-button">Convert ' to "</button>
+                    <button class="convert-double-button">Convert " to '</button>
+                    <button class="copy-button">Copy</button>
+                  </div>
+                  <textarea class="output-text" readonly></textarea>
+                </div>`;
+      }
+
+      contentDiv.innerHTML = createTextConverter(textValue);
+      document.title = "Text Converter - Mrinal"; // Update the document title
+
+      // Convert single button event listener
+      var convertSingleButton = contentDiv.querySelector(".convert-single-button");
+      var textInput = contentDiv.querySelector(".text-input");
+      var outputText = contentDiv.querySelector(".output-text");
+      convertSingleButton.addEventListener("click", function() {
+        var inputValue = textInput.value;
+        var convertedValue = convertSingleQuotes(inputValue);
+        outputText.value = convertedValue;
+      });
+
+      // Convert double button event listener
+      var convertDoubleButton = contentDiv.querySelector(".convert-double-button");
+      convertDoubleButton.addEventListener("click", function() {
+        var inputValue = textInput.value;
+        var convertedValue = convertDoubleQuotes(inputValue);
+        outputText.value = convertedValue;
+      });
+
+      // Copy button event listener
+      var copyButton = contentDiv.querySelector(".copy-button");
+      copyButton.addEventListener("click", function() {
+        outputText.select();
+        document.execCommand("copy");
+        copyButton.textContent = "Copied!";
+        setTimeout(function() {
+          copyButton.textContent = "Copy Output";
+        }, 1000);
+      });
+
+      // Function to convert single quotes to double quotes
+      function convertSingleQuotes(text) {
+        return text.replace(/'/g, "\"");
+      }
+
+      // Function to convert double quotes to single quotes
+      function convertDoubleQuotes(text) {
+        return text.replace(/"/g, "'");
+      }
+    })
+    .catch(function(error) {
+      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+      document.title = "Error";
+    });
+  break;
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+
+
           case "/mean-var-calc":
   fetch("mean-var-calc.json")
     .then(function(response) {
