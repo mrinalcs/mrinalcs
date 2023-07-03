@@ -1,0 +1,4 @@
+{
+  "content": "<header><h1>Welcome to the UI Design Course</h1></header><section><h2>About the Course</h2><p>...</p></section><section><h2>Course Outline</h2><ul><li>Module 1: Introduction to UI Design</li><li>Module 2: User Research</li><li>Module 3: Wireframing and Prototyping</li><li>Module 4: Visual Design Principles</li></ul></section><section><h2>Join Now</h2><p>...</p><a href='#'>Enroll Now</a></section>",
+  "css": "header { background-color: #f2f2f2; padding: 20px; } h1 { color: #333; } section { padding: 40px; } h2 { color: #555; } ul { list-style: disc; } a { display: inline-block; background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none; } a:hover { background-color: #0056b3; }"
+}
