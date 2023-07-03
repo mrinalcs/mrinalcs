@@ -270,6 +270,63 @@
 
 
 
+
+
+
+
+
+case "/ui-design-course-landing-page":
+  var jsonFile = "ui-design-course-landing-page.json";
+  var pageTitle = "UI Design Course Landing Page";
+
+  contentDiv.innerHTML = "<div class='loading'>Loading...</div>"; // Display the loading state
+
+  if (jsonFile) {
+    fetch(jsonFile)
+      .then(function(response) {
+        if (!response.ok) {
+          throw new Error("Failed to load the content.");
+        }
+        return response.json();
+      })
+      .then(function(data) {
+        contentDiv.innerHTML = data.content;
+        document.title = pageTitle; // Update the document title
+
+        if (data.css) {
+          var styleElement = document.createElement("style");
+          styleElement.textContent = data.css; // Apply CSS code
+          document.head.appendChild(styleElement);
+        }
+
+        // Add event listeners to links in the loaded content
+        var links = contentDiv.querySelectorAll("a");
+        links.forEach(function(link) {
+          link.addEventListener("click", handleLinkClick);
+        });
+      })
+      .catch(function(error) {
+        contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+        document.title = "Error";
+      });
+  }
+
+  break;
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
 case "/html-json-converter":
            pageTitle = "HTML to JSON";
   fetch("text.json") // Replace with the path to your data.json file
