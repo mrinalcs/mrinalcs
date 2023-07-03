@@ -271,6 +271,7 @@
 
 
 case "/html-json-converter":
+           pageTitle = "HTML to JSON";
   fetch("text.json") // Replace with the path to your data.json file
     .then(function(response) {
       if (!response.ok) {
@@ -292,7 +293,7 @@ case "/html-json-converter":
       }
 
       contentDiv.innerHTML = createHtmlJsonConverter(htmlValue);
-      document.title = "HTML to JSON Converter - Mrinal"; // Update the document title
+      
 
       var convertToJsonButton = contentDiv.querySelector(".convert-to-json-button");
       var htmlInput = contentDiv.querySelector(".html-input");
@@ -324,6 +325,7 @@ case "/html-json-converter":
 
 
 case "/text-converter":
+           pageTitle = "Text Convert";
   fetch("text.json") // Replace with the path to your text.json file
     .then(function(response) {
       if (!response.ok) {
@@ -347,7 +349,7 @@ case "/text-converter":
       }
 
       contentDiv.innerHTML = createTextConverter(textValue);
-      document.title = "Text Converter - Mrinal"; // Update the document title
+       
 
       // Convert single button event listener
       var convertSingleButton = contentDiv.querySelector(".convert-single-button");
@@ -411,6 +413,7 @@ case "/text-converter":
 
 
           case "/mean-var-calc":
+           pageTitle = "Calculate Mean Var";
   fetch("mean-var-calc.json")
     .then(function(response) {
       if (!response.ok) {
@@ -447,7 +450,7 @@ case "/text-converter":
         resultContainer.innerHTML = "<p>Mean: " + mean + "</p><p>Variance: " + variance + "</p>";
       }
 
-      document.title = "Mean Variance Calculator";
+      
     })
     .catch(function(error) {
       contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
@@ -459,6 +462,7 @@ case "/text-converter":
 
 
 case "/try-html":
+           pageTitle = "Try html";
   fetch("try-html.json")
     .then(function(response) {
       if (!response.ok) {
@@ -485,7 +489,7 @@ case "/try-html":
         outputContainer.innerHTML = code;
       }
 
-      document.title = "Try HTML";
+      
     })
     .catch(function(error) {
       contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
