@@ -270,6 +270,52 @@
 
 
 
+case "/html-json-converter":
+  fetch("text.json") // Replace with the path to your data.json file
+    .then(function(response) {
+      if (!response.ok) {
+        throw new Error("Failed to load the content.");
+      }
+      return response.json();
+    })
+    .then(function(data) {
+      var htmlValue = data.html;
+
+      function createHtmlJsonConverter(html) {
+        return `<div>
+                  <textarea class="html-input">${html}</textarea>
+                  <div class="conversion-buttons">
+                    <button class="convert-to-json-button">Convert to JSON</button>
+                  </div>
+                  <textarea class="json-output" readonly></textarea>
+                </div>`;
+      }
+
+      contentDiv.innerHTML = createHtmlJsonConverter(htmlValue);
+      document.title = "HTML to JSON Converter - Mrinal"; // Update the document title
+
+      var convertToJsonButton = contentDiv.querySelector(".convert-to-json-button");
+      var htmlInput = contentDiv.querySelector(".html-input");
+      var jsonOutput = contentDiv.querySelector(".json-output");
+
+      convertToJsonButton.addEventListener("click", function() {
+        var inputValue = htmlInput.value;
+        var convertedValue = convertToJSON(inputValue);
+        jsonOutput.value = convertedValue;
+      });
+
+      function convertToJSON(html) {
+        // Convert HTML to JSON logic goes here
+        // Replace this placeholder logic with your actual implementation
+        var jsonData = JSON.stringify({ text: html }, null, 2);
+        return jsonData;
+      }
+    })
+    .catch(function(error) {
+      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+      document.title = "Error";
+    });
+  break;
 
 
 
