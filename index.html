@@ -50,7 +50,7 @@
         display: none;
       }
 
-      .navbar a.icon {
+      .navbar  .icon {
         float: right;
         display: block;
       }
@@ -73,6 +73,25 @@
         text-align: left;
       }
     }
+
+
+    /* modification for a to b*/
+    .navbar .icon {
+  display: inline-block;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: white;
+          float: left;
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 20px;
+      text-decoration: none;
+}
+
 
 
   /* CSS for the insta */
@@ -1141,9 +1160,7 @@ case "/snippet":
         link.addEventListener("click", handleLinkClick);
       });
 
-      var menuIcon = document.querySelector(".navbar .icon");
-      menuIcon.addEventListener("click", toggleNavbar);
-
+      
       var initialPage = location.pathname;
       loadContent(initialPage);
     });
@@ -1154,7 +1171,7 @@ case "/snippet":
     <a href="/">Home</a>
     <a href="/about">About</a>
     <a href="/contact">Contact</a>
-    <a class="icon closed" onclick="toggleNavbar()"></a>
+    <button class="icon closed" onclick="toggleNavbar()"></button>
   </div>
   
   <div id="content">
