@@ -278,7 +278,6 @@
 
 
 
-
           case "/lyrics":
   fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/lyrics")
     .then(function(response) {
@@ -291,28 +290,41 @@
       var lyricsContainer = document.createElement("div");
       lyricsContainer.className = "lyrics-container";
 
+      var songList = document.createElement("ul");
+      songList.className = "song-list";
+
       data.forEach(function(item) {
         if (item.type === "file" && item.name.endsWith(".txt")) {
-          fetch(item.download_url)
-            .then(function(response) {
-              if (!response.ok) {
-                throw new Error("Failed to load the lyrics.");
-              }
-              return response.text();
-            })
-            .then(function(lyrics) {
-              var lyricsElement = document.createElement("pre");
-              lyricsElement.className = "lyrics";
-              lyricsElement.textContent = lyrics;
-              lyricsContainer.appendChild(lyricsElement);
-            })
-            .catch(function(error) {
-              console.error(error);
-            });
+          var songName = item.name.replace(".txt", "");
+
+          var songItem = document.createElement("li");
+          songItem.textContent = songName;
+          songItem.addEventListener("click", function() {
+            fetch(item.download_url)
+              .then(function(response) {
+                if (!response.ok) {
+                  throw new Error("Failed to load the lyrics.");
+                }
+                return response.text();
+              })
+              .then(function(lyrics) {
+                var lyricsElement = document.createElement("pre");
+                lyricsElement.className = "lyrics";
+                lyricsElement.textContent = lyrics;
+                lyricsContainer.innerHTML = "";
+                lyricsContainer.appendChild(lyricsElement);
+              })
+              .catch(function(error) {
+                console.error(error);
+              });
+          });
+
+          songList.appendChild(songItem);
         }
       });
 
       contentDiv.innerHTML = "";
+      contentDiv.appendChild(songList);
       contentDiv.appendChild(lyricsContainer);
       document.title = "Lyrics - Mrinal"; // Update the document title
     })
@@ -321,6 +333,7 @@
       document.title = "Error";
     });
   break;
+
 
 
 
