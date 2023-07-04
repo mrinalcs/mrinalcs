@@ -278,6 +278,65 @@
     font-family: monospace;
   }
 
+
+
+    /* file manager */
+      .file-manager {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 5px;
+  }
+
+  .folder-view,
+  .file-view {
+    flex: 1;
+  }
+
+  .folder-list,
+  .file-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .folder {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #d3d3d3;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  .folder:hover {
+    background-color: #b0b0b0;
+  }
+
+  .folder-name {
+    font-weight: bold;
+    color: #333;
+  }
+
+  .file {
+    margin-bottom: 5px;
+  }
+
+  .file a {
+    text-decoration: none;
+    color: #555;
+    transition: color 0.3s ease;
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #e8e8e8;
+    border-radius: 3px;
+  }
+
+  .file a:hover {
+    color: #777;
+    background-color: #dcdcdc;
+  }
   </style>
 
   <script>
@@ -323,6 +382,89 @@
 
 
 
+
+          case "/notes":
+  pageTitle = "Notes";
+
+  fetch("https://api.github.com/repos/mrinalcs/vbstat/contents/note")
+    .then(function(response) {
+      if (!response.ok) {
+        throw new Error("Failed to load the content.");
+      }
+      return response.json();
+    })
+    .then(function(data) {
+      var folders = data.filter(function(item) {
+        return item.type === "dir";
+      });
+
+      function createFolderList() {
+        var listHTML = folders
+          .map(function(folder) {
+            return "<li class='folder' data-path='" + folder.path + "'><span class='folder-name'>" + folder.name + "</span></li>";
+          })
+          .join("");
+
+        return "<ul class='folder-list'>" + listHTML + "</ul>";
+      }
+
+      function loadFilesForFolder(folderPath, folderItem) {
+        fetch("https://api.github.com/repos/mrinalcs/vbstat/contents/" + folderPath)
+          .then(function(response) {
+            if (!response.ok) {
+              throw new Error("Failed to load the content.");
+            }
+            return response.json();
+          })
+          .then(function(filesData) {
+            var files = filesData.filter(function(item) {
+              return item.type === "file";
+            });
+
+            var fileListHTML = files
+              .map(function(file) {
+                return "<li class='file'><a href='" + file.download_url + "' target='_blank'>" + file.name + "</a></li>";
+              })
+              .join("");
+
+            var fileList = document.createElement("ul");
+            fileList.classList.add("file-list");
+            fileList.innerHTML = fileListHTML;
+
+            folderItem.appendChild(fileList);
+          })
+          .catch(function(error) {
+            console.log("Failed to load folder content:", error);
+          });
+      }
+
+      contentDiv.innerHTML = "<div class='file-manager'>" +
+        " " +
+        "<div class='folder-view'>" +
+        "<h2>Notes</h2>" +
+        createFolderList() +
+        "</div>" +
+        "</div>";
+
+      // Handle folder click to expand and view files inside
+      var folderList = contentDiv.querySelector(".folder-list");
+      folderList.addEventListener("click", function(event) {
+        var folderItem = event.target.closest(".folder");
+        if (folderItem) {
+          var folderPath = folderItem.getAttribute("data-path");
+          if (folderItem.querySelector(".file-list")) {
+            folderItem.querySelector(".file-list").remove();
+          } else {
+            loadFilesForFolder(folderPath, folderItem);
+          }
+        }
+      });
+    })
+    .catch(function(error) {
+      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+      document.title = "Error";
+    });
+  break;
 
 
 
@@ -1177,6 +1319,8 @@ case "/snippet":
 <body>
   <div class="navbar" id="myNavbar">
     <a href="/">Home</a>
+        <a href="/notes">Notes</a>
+
     <a href="/about">About</a>
     <a href="/contact">Contact</a>
     <button class="icon closed" onclick="toggleNavbar()"></button>
