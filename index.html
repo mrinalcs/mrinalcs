@@ -1137,17 +1137,23 @@ case "/snippet":
     }
 
     function handleLinkClick(event) {
-      event.preventDefault();
-      var page = event.target.getAttribute("href");
+  event.preventDefault();
+  var page = event.target.getAttribute("href");
 
-      var navbar = document.getElementById("myNavbar");
-      if (navbar.classList.contains("responsive")) {
-        toggleNavbar(); // Close the navigation menu if it's responsive
-      }
+  var navbar = document.getElementById("myNavbar");
+  if (navbar.classList.contains("responsive")) {
+    toggleNavbar(); // Close the navigation menu if it's responsive
+  }
 
-      loadContent(page);
-      history.pushState(null, null, page); // Update the browser URL
-    }
+  // Check if the link is an external link
+  if (event.target.hasAttribute("target") && event.target.getAttribute("target") === "_blank") {
+    window.open(page, "_blank"); // Open the link in a new tab or window
+  } else {
+    loadContent(page);
+    history.pushState(null, null, page); // Update the browser URL
+  }
+}
+
 
     window.addEventListener("popstate", function(event) {
       var page = location.pathname;
