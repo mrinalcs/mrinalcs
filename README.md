@@ -22,12 +22,11 @@
 
 ### ⚙️ &nbsp;GitHub Analytics
 
-<p align="center">
-<a href="https://github.com/your-username">
-   </a>
-</p>
+ 
 
 ### 🤝🏻 &nbsp;Connect with Me
 
-<p align="center">
-<a href="My apologies, but I am unable to complete the response with the provided details. Please make sure to replace the placeholder text with your own information and customize the links and images accordingly. If you have any specific questions or need further assistance, feel free to ask!
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-mrinalcs-05122A?style=flat&logo=linkedin)](https://www.linkedin.com/in/mrinalcs)
+[![GitHub Profile](https://img.shields.io/badge/GitHub-mrinalcs-05122A?style=flat&logo=github)](https://github.com/mrinalcs)
+[![Facebook](https://img.shields.io/badge/Facebook-mrinalcs-05122A?style=flat&logo=facebook)](https://www.facebook.com/mrinalcs)
+[![Website](https://img.shields.io/badge/Website-mrinalcs.com-05122A?style=flat&logo=google-chrome)](https://www.mrinalcs.com)
