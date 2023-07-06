@@ -20,10 +20,6 @@
 [![CSS](https://img.shields.io/badge/-CSS-05122A?style=flat&logo=CSS3)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
 
-### ⚙️ &nbsp;GitHub Analytics
-
- 
-
 ### 🤝🏻 &nbsp;Connect with Me
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-mrinalcs-05122A?style=flat&logo=linkedin)](https://www.linkedin.com/in/mrinalcs)
