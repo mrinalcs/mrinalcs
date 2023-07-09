@@ -409,11 +409,7 @@
 
 
 
-
-
-
-
-          case "/repositories":
+ case "/repositories":
   pageTitle = "Repositories";
 
   fetch("https://api.github.com/users/mrinalcs/repos")
@@ -427,9 +423,10 @@
       var repositories = data;
 
       function createRepositoryCard(repository) {
-        var cardHTML = "<div style=' background: #a39f9f2e; padding: 5px; padding-left: 15px; padding-right: 15px;margin-bottom: 10px;'>" +
+        var cardHTML = "<div class='repository-card'>" +
           "<h3 class='repository-name'>" + repository.name + "</h3>" +
           "<p class='repository-description'>" + (repository.description || "") + "</p>" +
+          "<p class='repository-language'>Language: " + (repository.language || "Not specified") + "</p>" +
           "<p class='repository-url'><a href='" + repository.html_url + "' target='_blank'>View Repository</a></p>" +
           "</div>";
 
@@ -443,7 +440,6 @@
         .join("");
 
       contentDiv.innerHTML = "<h1>My Repositories</h1><div class='grid-container'>" +
-        " " +
         repositoriesHTML +
         "</div>";
     })
@@ -452,8 +448,6 @@
       document.title = "Error";
     });
   break;
-
-
 
 
 
