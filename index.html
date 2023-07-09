@@ -427,7 +427,7 @@
       var repositories = data;
 
       function createRepositoryCard(repository) {
-        var cardHTML = "<div>" +
+        var cardHTML = "<div style=' background: #a39f9f2e; padding: 5px; padding-left: 15px; padding-right: 15px;'>" +
           "<h3 class='repository-name'>" + repository.name + "</h3>" +
           "<p class='repository-description'>" + (repository.description || "") + "</p>" +
           "<p class='repository-url'><a href='" + repository.html_url + "' target='_blank'>View Repository</a></p>" +
