@@ -427,7 +427,7 @@
       var repositories = data;
 
       function createRepositoryCard(repository) {
-        var cardHTML = "<div class='repository-card'>" +
+        var cardHTML = "<div>" +
           "<h3 class='repository-name'>" + repository.name + "</h3>" +
           "<p class='repository-description'>" + (repository.description || "") + "</p>" +
           "<p class='repository-url'><a href='" + repository.html_url + "' target='_blank'>View Repository</a></p>" +
@@ -442,7 +442,7 @@
         })
         .join("");
 
-      contentDiv.innerHTML = "<div class='repositories'>" +
+      contentDiv.innerHTML = "<div class='grid-container'>" +
         "<h1>My Repositories</h1>" +
         repositoriesHTML +
         "</div>";
