@@ -405,10 +405,7 @@
 
 
 
-
-
-
-case "/repositories":
+ case "/repositories":
   pageTitle = "Repositories";
 
   fetch("https://api.github.com/users/mrinalcs/repos")
@@ -423,12 +420,14 @@ case "/repositories":
 
       function createRepositoryCard(repository) {
         var language = repository.language || "Not specified";
-        var cardHTML = "<div class='repository-card'>" +
-          "<h3 class='repository-name'>" + repository.name + "</h3>" +
-          "<p class='repository-description'>" + (repository.description || "") + "</p>" +
-          "<p class='repository-language'>Language: " + language + "</p>" +
-          "<p class='repository-url'><a href='" + repository.html_url + "' target='_blank'>View Repository</a></p>" +
-          "</div>";
+        var cardHTML = `
+          <div class='repository-card'>
+            <h3 class='repository-name'>${repository.name}</h3>
+            <p class='repository-description'>${repository.description || ""}</p>
+            <p class='repository-language'>Language: ${language}</p>
+            <p class='repository-url'><a href='${repository.html_url}' target='_blank'>View Repository</a></p>
+          </div>
+        `;
 
         return cardHTML;
       }
@@ -439,15 +438,19 @@ case "/repositories":
         })
         .join("");
 
-      contentDiv.innerHTML = "<h1>My Repositories</h1><div class='grid-container'>" +
-        repositoriesHTML +
-        "</div>";
+      contentDiv.innerHTML = `
+        <h1>My Repositories</h1>
+        <div class='grid-container'>
+          ${repositoriesHTML}
+        </div>
+      `;
     })
     .catch(function(error) {
       contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
       document.title = "Error";
     });
   break;
+
 
 
 
