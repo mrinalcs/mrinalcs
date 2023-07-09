@@ -401,6 +401,81 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+          case "/repositories":
+  pageTitle = "Repositories";
+
+  fetch("https://api.github.com/users/mrinalcs/repos")
+    .then(function(response) {
+      if (!response.ok) {
+        throw new Error("Failed to load the content.");
+      }
+      return response.json();
+    })
+    .then(function(data) {
+      var repositories = data;
+
+      function createRepositoryCard(repository) {
+        var cardHTML = "<div class='repository-card'>" +
+          "<h3 class='repository-name'>" + repository.name + "</h3>" +
+          "<p class='repository-description'>" + (repository.description || "") + "</p>" +
+          "<p class='repository-url'><a href='" + repository.html_url + "' target='_blank'>View Repository</a></p>" +
+          "</div>";
+
+        return cardHTML;
+      }
+
+      var repositoriesHTML = repositories
+        .map(function(repository) {
+          return createRepositoryCard(repository);
+        })
+        .join("");
+
+      contentDiv.innerHTML = "<div class='repositories'>" +
+        "<h1>My Repositories</h1>" +
+        repositoriesHTML +
+        "</div>";
+    })
+    .catch(function(error) {
+      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+      document.title = "Error";
+    });
+  break;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+
           case "/notes":
   pageTitle = "Notes";
 
