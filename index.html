@@ -477,7 +477,10 @@ p {
 
 
 
-case "/i":
+
+
+
+case "/iam":
   pageTitle = "Instagram";
 
   var currentPage = 1;
@@ -535,24 +538,25 @@ case "/i":
     var prevButton = contentDiv.querySelector(".prev-button");
     var nextButton = contentDiv.querySelector(".next-button");
 
-    prevButton.addEventListener("click", function() {
-      if (currentPage > 1) {
-        currentPage--;
-        showPage(currentPage);
-      }
-    });
+    if (prevButton) {
+      prevButton.addEventListener("click", function() {
+        if (currentPage > 1) {
+          currentPage--;
+          showPage(currentPage);
+        }
+      });
+    }
 
-    nextButton.addEventListener("click", function() {
-      if (endIndex < imageData.length) {
-        currentPage++;
-        showPage(currentPage);
-      }
-    });
+    if (nextButton) {
+      nextButton.addEventListener("click", function() {
+        if (endIndex < imageData.length) {
+          currentPage++;
+          showPage(currentPage);
+        }
+      });
+    }
   }
   break;
-
-
-
 
 
 
