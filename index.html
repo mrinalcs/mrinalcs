@@ -477,12 +477,12 @@ p {
 
 
 
-
-
-
-
 case "/i":
   pageTitle = "Instagram";
+
+  var currentPage = 1;
+  var imagesPerPage = 50;
+  var imageData; // To store the image data from the API
 
   fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/instagram")
     .then(function(response) {
@@ -492,34 +492,66 @@ case "/i":
       return response.json();
     })
     .then(function(data) {
-      var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            var image = entry.target;
-            image.src = image.dataset.src;
-            observer.unobserve(image);
-          }
-        });
-      });
-
-      var imageHTML = data.map(function(image) {
-        // Use relative path instead of download_url
-        var imagePath = "public/instagram/" + image.name;
-        return "<div class='gallery-item'><img src='loading-p.svg' data-src='" + imagePath + "' class='gallery-image' loading='lazy'></div>";
-      });
-
-      contentDiv.innerHTML = "<div class='gallery-container'>" + imageHTML.join("") + "</div>";
-
-      var images = contentDiv.querySelectorAll(".gallery-image");
-      images.forEach(function(image) {
-        observer.observe(image);
-      });
+      imageData = data;
+      showPage(currentPage);
     })
     .catch(function(error) {
       contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
       document.title = "Error";
     });
+
+  function showPage(page) {
+    var startIndex = (page - 1) * imagesPerPage;
+    var endIndex = Math.min(startIndex + imagesPerPage, imageData.length);
+
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var image = entry.target;
+          image.src = image.dataset.src;
+          observer.unobserve(image);
+        }
+      });
+    });
+
+    var imageHTML = imageData.slice(startIndex, endIndex).map(function(image) {
+      // Use relative path instead of download_url
+      var imagePath = "public/instagram/" + image.name;
+      return "<div><img src='loading-p.svg' data-src='" + imagePath + "' class='photo' loading='lazy'></div>";
+    });
+
+    contentDiv.innerHTML = "<h1>Instagram - Page " + page + "</h1>" +
+      "<div class='grid-container'>" + imageHTML.join("") + "</div>" +
+      "<div class='pagination'>" +
+      (currentPage > 1 ? "<button class='prev-button'>Previous</button>" : "") +
+      (endIndex < imageData.length ? "<button class='next-button'>Next</button>" : "") +
+      "</div>";
+
+    var images = contentDiv.querySelectorAll(".photo");
+    images.forEach(function(image) {
+      observer.observe(image);
+    });
+
+    var prevButton = contentDiv.querySelector(".prev-button");
+    var nextButton = contentDiv.querySelector(".next-button");
+
+    prevButton.addEventListener("click", function() {
+      if (currentPage > 1) {
+        currentPage--;
+        showPage(currentPage);
+      }
+    });
+
+    nextButton.addEventListener("click", function() {
+      if (endIndex < imageData.length) {
+        currentPage++;
+        showPage(currentPage);
+      }
+    });
+  }
   break;
+
+
 
 
 
