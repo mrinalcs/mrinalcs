@@ -480,6 +480,86 @@ p {
 
 
 
+
+case "/igm":
+  pageTitle = "Instagram";
+
+  var imagesPerPage = 50;
+  var imageData; // To store the image data from the API
+
+  function updateURL(page) {
+    var newURL = window.location.origin + window.location.pathname + "#" + page;
+    window.history.replaceState(null, null, newURL);
+  }
+
+  function getCurrentPageFromURL() {
+    var page = parseInt(window.location.hash.substr(1));
+    return isNaN(page) || page < 1 ? 1 : page;
+  }
+
+  fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/instagram")
+    .then(function(response) {
+      if (!response.ok) {
+        throw new Error("Failed to load the content.");
+      }
+      return response.json();
+    })
+    .then(function(data) {
+      imageData = data;
+      var currentPage = getCurrentPageFromURL();
+      showPage(currentPage);
+    })
+    .catch(function(error) {
+      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+      document.title = "Error";
+    });
+
+  function showPage(page) {
+    var startIndex = (page - 1) * imagesPerPage;
+    var endIndex = Math.min(startIndex + imagesPerPage, imageData.length);
+
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var image = entry.target;
+          image.src = image.dataset.src;
+          observer.unobserve(image);
+        }
+      });
+    });
+
+    var imageHTML = imageData.slice(startIndex, endIndex).map(function(image) {
+      // Use relative path instead of download_url
+      var imagePath = "public/instagram/" + image.name;
+      return "<div><img src='loading-p.svg' data-src='" + imagePath + "' class='photo' loading='lazy'></div>";
+    });
+
+    contentDiv.innerHTML = "<h1>Instagram - Page " + page + "</h1>" +
+      "<div class='grid-container'>" + imageHTML.join("") + "</div>" +
+      "<div class='pagination'>" +
+      (page > 1 ? "<a href='#" + (page - 1) + "' class='prev-button'>Previous</a>" : "") +
+      (endIndex < imageData.length ? "<a href='#" + (page + 1) + "' class='next-button'>Next</a>" : "") +
+      "</div>";
+
+    var images = contentDiv.querySelectorAll(".photo");
+    images.forEach(function(image) {
+      observer.observe(image);
+    });
+
+    updateURL(page);
+  }
+  break;
+
+
+
+
+
+
+
+          
+
+
+
 case "/iam":
   pageTitle = "Instagram";
 
