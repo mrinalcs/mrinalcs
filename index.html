@@ -346,7 +346,69 @@
     background: #a5a5a52e;
     padding-top: 5px;
 }
-    
+
+
+
+
+    /*additional for i*/
+    /* Custom CSS styles for the Instagram gallery page */
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 10px;
+  margin-top: 20px;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.gallery-item::before {
+  content: "";
+  display: block;
+  padding-top: 100%; /* To maintain aspect ratio for square thumbnails */
+}
+
+.gallery-item img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Optional: Add some styling for better visual representation */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 20px;
+}
+
+p {
+  text-align: center;
+}
+
+.grid-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
   </style>
 
 
@@ -414,6 +476,57 @@
 
 
 
+
+
+
+
+
+case "/i":
+  pageTitle = "Instagram";
+
+  fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/instagram")
+    .then(function(response) {
+      if (!response.ok) {
+        throw new Error("Failed to load the content.");
+      }
+      return response.json();
+    })
+    .then(function(data) {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            var image = entry.target;
+            image.src = image.dataset.src;
+            observer.unobserve(image);
+          }
+        });
+      });
+
+      var imageHTML = data.map(function(image) {
+        // Use relative path instead of download_url
+        var imagePath = "public/instagram/" + image.name;
+        return "<div class='gallery-item'><img src='loading-p.svg' data-src='" + imagePath + "' class='gallery-image' loading='lazy'></div>";
+      });
+
+      contentDiv.innerHTML = "<div class='gallery-container'>" + imageHTML.join("") + "</div>";
+
+      var images = contentDiv.querySelectorAll(".gallery-image");
+      images.forEach(function(image) {
+        observer.observe(image);
+      });
+    })
+    .catch(function(error) {
+      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+      document.title = "Error";
+    });
+  break;
+
+
+
+
+
+
+          
 
 
 
