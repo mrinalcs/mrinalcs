@@ -2,10 +2,13 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preload" href="/public/hero-bg-1.jpg" as="image">
-    <link rel="preload" href="loading.gif" as="image">
+  <!-- preload assets -->
+  <link rel="preload" href="/static/img/bg/hero.jpg" as="image">
+  <link rel="preload" href="/static/img/bg/ringtone.jpg" as="image">
+  <link rel="preload" href="public/fonts/BorunaDemoVersionRegular-vmDA7.otf" as="image">
+  <link rel="preload" href="/static/img/bg/notes.jpg" as="image">
 
-  <link rel="icon" type="image/x-icon" href="/public/favicon.ico"> 
+  <link rel="icon" type="image/x-icon" href="/favicon.ico"> 
   <title>Mrinal</title>
   <style>
     @font-face {
@@ -358,7 +361,7 @@
 
 
 <style>
-  /* For Dark theme Only */
+  /* For Dark theme */
   @media (prefers-color-scheme: dark) {
 
     body {
@@ -379,6 +382,8 @@
 
   
   <script>
+    const staticFolder = "static";
+
     function toggleNavbar() {
       var navbar = document.getElementById("myNavbar");
       var icon = navbar.getElementsByClassName("icon")[0];
@@ -407,261 +412,17 @@
       switch (page) {
         case "":
         case "/":
-          jsonFile = "home.json";
+          jsonFile = staticFolder + "/home.json";
           pageTitle = "Mrinal";
           break;
         case "/about":
-          jsonFile = "about.json";
+          jsonFile = staticFolder + "/about.json";
           pageTitle = "About";
           break;
 
 
 
 
-case "/igq":
-  pageTitle = "Instagram";
-
-  var imagesPerPage = 50;
-  var imageData; // To store the image data from the API
-
-  function updateURL(page) {
-    var newURL = window.location.origin + window.location.pathname + "?page=" + page;
-    window.history.replaceState(null, null, newURL);
-  }
-
-  function getCurrentPageFromURL() {
-    var urlParams = new URLSearchParams(window.location.search);
-    var page = parseInt(urlParams.get("page"));
-    return isNaN(page) || page < 1 ? 1 : page;
-  }
-
-  fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/instagram")
-    .then(function(response) {
-      if (!response.ok) {
-        throw new Error("Failed to load the content.");
-      }
-      return response.json();
-    })
-    .then(function(data) {
-      imageData = data;
-      var currentPage = getCurrentPageFromURL();
-      showPage(currentPage);
-    })
-    .catch(function(error) {
-      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
-      document.title = "Error";
-    });
-
-  function showPage(page) {
-    var startIndex = (page - 1) * imagesPerPage;
-    var endIndex = Math.min(startIndex + imagesPerPage, imageData.length);
-
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          var image = entry.target;
-          image.src = image.dataset.src;
-          observer.unobserve(image);
-        }
-      });
-    });
-
-    var imageHTML = imageData.slice(startIndex, endIndex).map(function(image) {
-      // Use relative path instead of download_url
-      var imagePath = "public/instagram/" + image.name;
-      return "<div><img src='loading-p.svg' data-src='" + imagePath + "' class='photo' loading='lazy'></div>";
-    });
-
-    contentDiv.innerHTML = "<h1>Instagram - Page " + page + "</h1>" +
-      "<div class='grid-container'>" + imageHTML.join("") + "</div>" +
-      "<div class='pagination'>" +
-      generatePaginationLinks(page) +
-      "</div>";
-
-    var images = contentDiv.querySelectorAll(".photo");
-    images.forEach(function(image) {
-      observer.observe(image);
-    });
-
-    updateURL(page);
-  }
-
-  function generatePaginationLinks(currentPage) {
-    var totalPages = Math.ceil(imageData.length / imagesPerPage);
-    var linksHTML = "";
-
-    for (var i = 1; i <= totalPages; i++) {
-      if (i === currentPage) {
-        linksHTML += "<span class='current-page'>" + i + "</span>";
-      } else {
-        linksHTML += "<a href='?page=" + i + "'>" + i + "</a>";
-      }
-    }
-
-    return linksHTML;
-  }
-  break;
-
-
-
-          
-
-case "/m":
-  pageTitle = "Instagram";
-
-  var imagesPerPage = 50;
-  var imageData; // To store the image data from the API
-
-  function updateURL(page) {
-    var newURL = window.location.origin + window.location.pathname + "#" + page;
-    window.history.replaceState(null, null, newURL);
-  }
-
-  function getCurrentPageFromURL() {
-    var page = parseInt(window.location.hash.substr(1));
-    return isNaN(page) || page < 1 ? 1 : page;
-  }
-
-  fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/instagram")
-    .then(function(response) {
-      if (!response.ok) {
-        throw new Error("Failed to load the content.");
-      }
-      return response.json();
-    })
-    .then(function(data) {
-      imageData = data;
-      var currentPage = getCurrentPageFromURL();
-      showPage(currentPage);
-    })
-    .catch(function(error) {
-      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
-      document.title = "Error";
-    });
-
-  function showPage(page) {
-    var startIndex = (page - 1) * imagesPerPage;
-    var endIndex = Math.min(startIndex + imagesPerPage, imageData.length);
-
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          var image = entry.target;
-          image.src = image.dataset.src;
-          observer.unobserve(image);
-        }
-      });
-    });
-
-    var imageHTML = imageData.slice(startIndex, endIndex).map(function(image) {
-      // Use relative path instead of download_url
-      var imagePath = "public/instagram/" + image.name;
-      return "<div><img src='loading-p.svg' data-src='" + imagePath + "' class='photo' loading='lazy'></div>";
-    });
-
-    contentDiv.innerHTML = "<h1>Instagram - Page " + page + "</h1>" +
-      "<div class='grid-container'>" + imageHTML.join("") + "</div>" +
-      "<div class='pagination'>" +
-      generatePaginationLinks(page) +
-      "</div>";
-
-    var images = contentDiv.querySelectorAll(".photo");
-    images.forEach(function(image) {
-      observer.observe(image);
-    });
-
-    updateURL(page);
-  }
-
-  function generatePaginationLinks(currentPage) {
-    var totalPages = Math.ceil(imageData.length / imagesPerPage);
-    var linksHTML = "";
-
-    for (var i = 1; i <= totalPages; i++) {
-      if (i === currentPage) {
-        linksHTML += "<span class='current-page'>" + i + "</span>";
-      } else {
-        linksHTML += "<a href='#" + i + "'>" + i + "</a>";
-      }
-    }
-
-    return linksHTML;
-  }
-  break;
-
-
-
-
-
-
-case "/igm":
-  pageTitle = "Instagram";
-
-  var imagesPerPage = 50;
-  var imageData; // To store the image data from the API
-
-  function updateURL(page) {
-    var newURL = window.location.origin + window.location.pathname + "#" + page;
-    window.history.replaceState(null, null, newURL);
-  }
-
-  function getCurrentPageFromURL() {
-    var page = parseInt(window.location.hash.substr(1));
-    return isNaN(page) || page < 1 ? 1 : page;
-  }
-
-  fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/instagram")
-    .then(function(response) {
-      if (!response.ok) {
-        throw new Error("Failed to load the content.");
-      }
-      return response.json();
-    })
-    .then(function(data) {
-      imageData = data;
-      var currentPage = getCurrentPageFromURL();
-      showPage(currentPage);
-    })
-    .catch(function(error) {
-      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
-      document.title = "Error";
-    });
-
-  function showPage(page) {
-    var startIndex = (page - 1) * imagesPerPage;
-    var endIndex = Math.min(startIndex + imagesPerPage, imageData.length);
-
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          var image = entry.target;
-          image.src = image.dataset.src;
-          observer.unobserve(image);
-        }
-      });
-    });
-
-    var imageHTML = imageData.slice(startIndex, endIndex).map(function(image) {
-      // Use relative path instead of download_url
-      var imagePath = "public/instagram/" + image.name;
-      return "<div><img src='loading-p.svg' data-src='" + imagePath + "' class='photo' loading='lazy'></div>";
-    });
-
-    contentDiv.innerHTML = "<h1>Instagram - Page " + page + "</h1>" +
-      "<div class='grid-container'>" + imageHTML.join("") + "</div>" +
-      "<div class='pagination'>" +
-      (page > 1 ? "<a href='#" + (page - 1) + "' class='prev-button'>Previous</a>" : "") +
-      (endIndex < imageData.length ? "<a href='#" + (page + 1) + "' class='next-button'>Next</a>" : "") +
-      "</div>";
-
-    var images = contentDiv.querySelectorAll(".photo");
-    images.forEach(function(image) {
-      observer.observe(image);
-    });
-
-    updateURL(page);
-  }
-  break;
 
 
 
@@ -673,25 +434,27 @@ case "/igm":
 
 
 
-case "/iam":
-  pageTitle = "Instagram";
+          case "/iam":
+  var params = new URLSearchParams(window.location.search);
+  var currentPage = parseInt(params.get("page")) || 1; // Get the page number from the URL, default to 1 if not provided
 
-  var currentPage = 1;
+  var pageTitle = "Instagram - Page " + currentPage; // Update page title with the current page number
+
   var imagesPerPage = 50;
   var imageData; // To store the image data from the API
 
   fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/instagram")
-    .then(function(response) {
+    .then(function (response) {
       if (!response.ok) {
         throw new Error("Failed to load the content.");
       }
       return response.json();
     })
-    .then(function(data) {
+    .then(function (data) {
       imageData = data;
       showPage(currentPage);
     })
-    .catch(function(error) {
+    .catch(function (error) {
       contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
       document.title = "Error";
     });
@@ -700,8 +463,8 @@ case "/iam":
     var startIndex = (page - 1) * imagesPerPage;
     var endIndex = Math.min(startIndex + imagesPerPage, imageData.length);
 
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
         if (entry.isIntersecting) {
           var image = entry.target;
           image.src = image.dataset.src;
@@ -710,94 +473,27 @@ case "/iam":
       });
     });
 
-    var imageHTML = imageData.slice(startIndex, endIndex).map(function(image) {
+    var imageHTML = imageData.slice(startIndex, endIndex).map(function (image) {
       // Use relative path instead of download_url
       var imagePath = "public/instagram/" + image.name;
       return "<div><img src='loading-p.svg' data-src='" + imagePath + "' class='photo' loading='lazy'></div>";
     });
 
-    contentDiv.innerHTML = "<h1>Instagram - Page " + page + "</h1>" +
+    contentDiv.innerHTML = "<h1>" + pageTitle + "</h1>" + // Update page title to display current page number
       "<div class='grid-container'>" + imageHTML.join("") + "</div>" +
       "<div class='pagination'>" +
-      (currentPage > 1 ? "<button class='prev-button'>Previous</button>" : "") +
-      (endIndex < imageData.length ? "<button class='next-button'>Next</button>" : "") +
+      (currentPage > 1 ? "<a href='?page=" + (currentPage - 1) + "' class='prev-button'>Previous</a>" : "") + // Update previous button link
+      (endIndex < imageData.length ? "<a href='?page=" + (currentPage + 1) + "' class='next-button'>Next</a>" : "") + // Update next button link
       "</div>";
 
     var images = contentDiv.querySelectorAll(".photo");
-    images.forEach(function(image) {
+    images.forEach(function (image) {
       observer.observe(image);
     });
-
-    var prevButton = contentDiv.querySelector(".prev-button");
-    var nextButton = contentDiv.querySelector(".next-button");
-
-    if (prevButton) {
-      prevButton.addEventListener("click", function() {
-        if (currentPage > 1) {
-          currentPage--;
-          showPage(currentPage);
-        }
-      });
-    }
-
-    if (nextButton) {
-      nextButton.addEventListener("click", function() {
-        if (endIndex < imageData.length) {
-          currentPage++;
-          showPage(currentPage);
-        }
-      });
-    }
   }
   break;
 
 
-
-
-
-          
-
-
-
-case "/in":
-  pageTitle = "Instagram";
-
-  fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/instagram")
-    .then(function(response) {
-      if (!response.ok) {
-        throw new Error("Failed to load the content.");
-      }
-      return response.json();
-    })
-    .then(function(data) {
-      var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            var image = entry.target;
-            image.src = image.dataset.src;
-            observer.unobserve(image);
-          }
-        });
-      });
-
-      var imageHTML = data.map(function(image) {
-        // Use relative path instead of download_url
-        var imagePath = "public/instagram/" + image.name;
-        return "<div><img src='loading-p.svg' data-src='" + imagePath + "' class='photo' loading='lazy'></div>";
-      });
-
-      contentDiv.innerHTML = "<div class='grid-container'>" + imageHTML.join("") + "</div>";
-
-      var images = contentDiv.querySelectorAll(".photo");
-      images.forEach(function(image) {
-        observer.observe(image);
-      });
-    })
-    .catch(function(error) {
-      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
-      document.title = "Error";
-    });
-  break;
 
 
 
@@ -1811,11 +1507,11 @@ case "/snippet":
 <body>
   <div class="navbar" id="myNavbar">
     <a href="/">Home</a>
-        <a href="/notes">Notes</a>
-        <a href="/repositories">Repos</a>
-
+    <a href="/notes">Notes</a>
+    <a href="/repositories">Repos</a>
     <a href="/about">About</a>
     <a href="/contact">Contact</a>
+    <a href="/iam">New</a> 
     <button class="icon closed" onclick="toggleNavbar()"></button>
   </div>
   
@@ -1823,8 +1519,8 @@ case "/snippet":
     <!-- Content will be loaded dynamically -->
   </div>
   <footer  style="padding-top:20px">
-<hr>
-  <p>&copy; 2023 Mrinal. All rights reserved.</p>
+    <hr>
+    <p>&copy; 2023 Mrinal. All rights reserved.</p>
 </footer>
 </body>
 </html>
