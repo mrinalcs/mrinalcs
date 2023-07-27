@@ -353,8 +353,28 @@
 
 
 
-    /*additional for i*/
+    /*additional for page initiation*/
     
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 8px 12px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin: 0 5px;
+  border-radius: 4px;
+}
+
+.pagination button:hover {
+  background-color: #2980b9;
+}
+
 
   </style>
 
@@ -430,10 +450,6 @@
 
 
 
-          
-
-
-
           case "/iam":
   var params = new URLSearchParams(window.location.search);
   var currentPage = parseInt(params.get("page")) || 1; // Get the page number from the URL, default to 1 if not provided
@@ -479,20 +495,44 @@
       return "<div><img src='loading-p.svg' data-src='" + imagePath + "' class='photo' loading='lazy'></div>";
     });
 
-    contentDiv.innerHTML = "<h1>" + pageTitle + "</h1>" + // Update page title to display current page number
+    var prevButtonHTML = currentPage > 1 ? "<button class='prev-button'>Previous</button>" : "";
+    var nextButtonHTML = endIndex < imageData.length ? "<button class='next-button'>Next</button>" : "";
+
+    contentDiv.innerHTML = "<h1>" + pageTitle + "</h1>" +
       "<div class='grid-container'>" + imageHTML.join("") + "</div>" +
       "<div class='pagination'>" +
-      (currentPage > 1 ? "<a href='?page=" + (currentPage - 1) + "' class='prev-button'>Previous</a>" : "") + // Update previous button link
-      (endIndex < imageData.length ? "<a href='?page=" + (currentPage + 1) + "' class='next-button'>Next</a>" : "") + // Update next button link
+      prevButtonHTML + nextButtonHTML +
       "</div>";
 
     var images = contentDiv.querySelectorAll(".photo");
     images.forEach(function (image) {
       observer.observe(image);
     });
+
+    var prevButton = contentDiv.querySelector(".prev-button");
+    var nextButton = contentDiv.querySelector(".next-button");
+
+    if (prevButton) {
+      prevButton.addEventListener("click", function () {
+        if (currentPage > 1) {
+          currentPage--;
+          showPage(currentPage);
+          history.pushState(null, null, "?page=" + currentPage); // Update the browser URL
+        }
+      });
+    }
+
+    if (nextButton) {
+      nextButton.addEventListener("click", function () {
+        if (endIndex < imageData.length) {
+          currentPage++;
+          showPage(currentPage);
+          history.pushState(null, null, "?page=" + currentPage); // Update the browser URL
+        }
+      });
+    }
   }
   break;
-
 
 
 
