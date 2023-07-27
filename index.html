@@ -524,6 +524,7 @@
           currentPage--;
           showPage(currentPage);
           history.pushState(null, null, "?page=" + currentPage); // Update the browser URL
+          updatePageTitle(); // Update the page title after changing the page
         }
       });
     }
@@ -534,10 +535,17 @@
           currentPage++;
           showPage(currentPage);
           history.pushState(null, null, "?page=" + currentPage); // Update the browser URL
+          updatePageTitle(); // Update the page title after changing the page
         }
       });
     }
   }
+
+  function updatePageTitle() {
+    pageTitle = "Instagram - Page " + currentPage;
+    document.title = pageTitle;
+  }
+
   break;
 
 
