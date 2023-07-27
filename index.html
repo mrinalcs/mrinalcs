@@ -182,19 +182,26 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-     border: solid red 1px;
+     
   }
 
   .column {
     flex: 1 1 30%;
-    padding: 10px;
+    
     box-sizing: border-box;
      
+  }
+  .m-column{
+    margin: 0 10px 0 10px;
   }
 
   @media screen and (max-width: 600px) {
     .column {
       flex-basis: 100%;
+    }
+    .m-column {
+      margin: 0px!important;
+      padding: 10px 0 10px 0;
     }
   }
 
