@@ -8,6 +8,7 @@
   <link rel="preload" href="https://raw.githubusercontent.com/mrinalcs/mrinalcs/main/static/img/bg/notes.jpg" as="image">
   <link rel="preload" href="https://raw.githubusercontent.com/mrinalcs/mrinalcs/main/public/images/1.jpg" as="image">
 
+  
   <link rel="preload" href="public/fonts/Boruna.otf">
   
   <link rel="icon" type="image/x-icon" href="/favicon.ico"> 
@@ -400,6 +401,41 @@
     backdrop-filter: blur(5px);
     background-color: #c8898947;
   }
+
+
+  /* col about */
+  /* CSS Code */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.column {
+  width: 50%;
+  box-sizing: border-box;
+}
+
+.column img {
+  width: 60%;
+  float: right;
+  height: auto;
+}
+
+/* Media query for small screens */
+@media (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+
+  .column:first-child {
+    order: 2;
+  }
+
+  .column:last-child {
+    order: 1;
+  }
+}
+
   </style>
 
 
