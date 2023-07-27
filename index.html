@@ -5,19 +5,20 @@
   <!-- preload assets -->
   <link rel="preload" href="/static/img/bg/hero.jpg" as="image">
   <link rel="preload" href="/static/img/bg/ringtone.jpg" as="image">
-  <link rel="preload" href="public/fonts/BorunaDemoVersionRegular-vmDA7.otf" as="image">
+  <link rel="preload" href="/static/img/bg/photos.jpg" as="image">
   <link rel="preload" href="/static/img/bg/notes.jpg" as="image">
-
+  <link rel="preload" href="public/fonts/BorunaDemoVersionRegular-vmDA7.otf">
+  
   <link rel="icon" type="image/x-icon" href="/favicon.ico"> 
   <title>Mrinal</title>
   <style>
     @font-face {
-      font-family: 'CustomFont';
-      src: url('public/fonts/BorunaDemoVersionRegular-vmDA7.otf') format('opentype');
+      font-family: 'Boruna';
+      src: url('public/fonts/Boruna.otf') format('opentype');
     }
 
     body {
-      font-family: 'CustomFont', sans-serif;
+      font-family: 'Boruna', sans-serif;
     }
 
     /* CSS for the navigation bar */
@@ -1008,90 +1009,8 @@ case "/text-converter":
 
 
 
-          case "/mean-var-calc":
-           pageTitle = "Calculate Mean Var";
-  fetch("mean-var-calc.json")
-    .then(function(response) {
-      if (!response.ok) {
-        throw new Error("Failed to load the content.");
-      }
-      return response.json();
-    })
-    .then(function(data) {
-      var calculateMeanVariance = data.calculateMeanVariance;
-      var inputContainer = document.createElement("div");
-      var inputLabel = document.createElement("label");
-      var inputField = document.createElement("input");
-      var resultContainer = document.createElement("div");
-      var calculateButton = document.createElement("button");
-
-      inputLabel.textContent = "Enter values (comma-separated):";
-      calculateButton.textContent = "Calculate";
-      calculateButton.addEventListener("click", calculate);
-
-      inputContainer.appendChild(inputLabel);
-      inputContainer.appendChild(inputField);
-      inputContainer.appendChild(calculateButton);
-      contentDiv.appendChild(inputContainer);
-      contentDiv.appendChild(resultContainer);
-
-      function calculate() {
-        var values = inputField.value.split(",").map(function(value) {
-          return parseFloat(value.trim());
-        });
-
-        var mean = calculateMeanVariance(values).mean;
-        var variance = calculateMeanVariance(values).variance;
-
-        resultContainer.innerHTML = "<p>Mean: " + mean + "</p><p>Variance: " + variance + "</p>";
-      }
-
-      
-    })
-    .catch(function(error) {
-      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
-      document.title = "Error";
-    });
-  break;
 
 
-
-
-case "/try-html":
-           pageTitle = "Try html";
-  fetch("try-html.json")
-    .then(function(response) {
-      if (!response.ok) {
-        throw new Error("Failed to load the content.");
-      }
-      return response.json();
-    })
-    .then(function(data) {
-      var htmlCode = data.html;
-      var outputContainer = document.createElement("div");
-      var codeEditor = document.createElement("textarea");
-      var runButton = document.createElement("button");
-
-      codeEditor.value = htmlCode;
-      runButton.textContent = "Run";
-      runButton.addEventListener("click", executeCode);
-
-      contentDiv.appendChild(codeEditor);
-      contentDiv.appendChild(runButton);
-      contentDiv.appendChild(outputContainer);
-
-      function executeCode() {
-        var code = codeEditor.value;
-        outputContainer.innerHTML = code;
-      }
-
-      
-    })
-    .catch(function(error) {
-      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
-      document.title = "Error";
-    });
-  break;
 
 
 
@@ -1464,7 +1383,7 @@ case "/snippet":
           
           
         case "/contact":
-          jsonFile = "contact.json";
+          jsonFile = staticFolder +"contact.json";
           pageTitle = "Contact";
           break;
         default:
