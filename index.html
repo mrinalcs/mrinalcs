@@ -1299,7 +1299,7 @@ case "/photos":
       function createPhotoGallery() {
         var galleryHTML = imageList
           .map(function(image) {
-            return "<div><img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==' data-src='" + image.source + "' alt='" + image.alt + "' class='lazy'></div>";
+            return "<div><img src='rolling.svg' data-src='" + image.source + "' alt='" + image.alt + "' class='lazy'></div>";
           })
           .join("");
 
