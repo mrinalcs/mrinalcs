@@ -13,6 +13,87 @@
   
   <link rel="icon" type="image/x-icon" href="/favicon.ico"> 
   <title>Mrinal</title>
+
+  <style>
+    /* ======================================
+Responsive Image gallery Style rules
+======================================*/
+* {
+   
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ 
+
+ 
+
+.heading-text {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.heading-text span {
+  font-weight: 100;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Responsive image gallery rules begin*/
+
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.image-gallery > li {
+  flex: 1 1 auto; /* or flex: auto; */
+  height: 300px;
+  cursor: pointer;
+  position: relative;
+}
+
+.image-gallery::after {
+  content: "";
+  flex-grow: 999;
+}
+
+.image-gallery li img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+  border-radius: 5px;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(57, 57, 57, 0.502);
+  top: 0;
+  left: 0;
+  transform: scale(0);
+  transition: all 0.2s 0.1s ease-in-out;
+  color: #fff;
+  border-radius: 5px;
+  /* center overlay content */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* hover */
+.image-gallery li:hover .overlay {
+  transform: scale(1);
+}
+
+    
+    </style>
+
   <style>
     @font-face {
       font-family: 'Boruna';
@@ -1299,11 +1380,11 @@ case "/photos":
       function createPhotoGallery() {
         var galleryHTML = imageList
           .map(function(image) {
-            return "<div><img src='rolling.svg' data-src='" + image.source + "' alt='" + image.alt + "' class='lazy'></div>";
+            return "<li><img src='rolling.svg' data-src='" + image.source + "' alt='" + image.alt + "' class='lazy'></li>";
           })
           .join("");
 
-        return "<div class='grid-container'>" + galleryHTML + "</div>";
+        return "<div class='container'><ul class='image-gallery'>" + galleryHTML + "</ul></div>";
       }
 
       contentDiv.innerHTML = createPhotoGallery();
