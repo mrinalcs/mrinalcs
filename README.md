@@ -22,9 +22,7 @@
 
 ### 🤝🏻 &nbsp;Connect with Me
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-mrinalcs-05122A?style=flat&logo=linkedin)](https://www.linkedin.com/in/mrinalcs)
-[![GitHub Profile](https://img.shields.io/badge/GitHub-mrinalcs-05122A?style=flat&logo=github)](https://github.com/mrinalcs)
-[![Facebook](https://img.shields.io/badge/Facebook-mrinalcs-05122A?style=flat&logo=facebook)](https://www.facebook.com/mrinalcs)\
-[![Website](https://img.shields.io/badge/Website-mrinal.pages.dev-05122A?style=flat&logo=google-chrome)](https://mrinal.pages.dev)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-mrinalcs-05122A?style=flat&logo=linkedin)](https://www.linkedin.com/in/mrinalcs) 
+[![Facebook](https://img.shields.io/badge/Facebook-mrinalcs-05122A?style=flat&logo=facebook)](https://www.facebook.com/mrinalcs)
 
 
