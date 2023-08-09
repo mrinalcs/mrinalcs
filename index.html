@@ -588,155 +588,43 @@ ul {
 
 
 
+ 
+
+
 
 
 
 
 
           case "/insta":
-  var queryParams = new URLSearchParams(window.location.search);
-  var currentPage = parseInt(queryParams.get("page")) || 1;
+  var params = new URLSearchParams(window.location.search);
+  var currentPage = parseInt(params.get("page")) || 1;
 
-  var pageHeading = "Instagram - Page " + currentPage;
-
+  var pageTitle = "Instagram - Page " + currentPage;
   var imagesPerPage = 50;
   var imageData;
+  var currentImageSet = 1; // Keep track of the current image set
 
-  fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/instagram")
-    .then(function (response) {
-      if (!response.ok) {
-        throw new Error("Failed to load the content.");
-      }
-      return response.json();
-    })
-    .then(function (data) {
-      imageData = data;
-      showPage(currentPage);
-    })
-    .catch(function (error) {
-      contentContainer.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
-      document.title = "Error";
-    });
-
-  function showPage(page) {
-    var startIndex = (page - 1) * imagesPerPage;
-    var endIndex = Math.min(startIndex + imagesPerPage, imageData.length);
-
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          var imageElement = entry.target;
-          imageElement.src = imageElement.dataset.src;
-          observer.unobserve(imageElement);
+  function fetchImageData(imageSet) {
+    var imageSetPath = "public/instagram" + imageSet;
+    fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/" + imageSetPath)
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error("Failed to load the content.");
         }
+        return response.json();
+      })
+      .then(function (data) {
+        imageData = data;
+        showPage(currentPage);
+      })
+      .catch(function (error) {
+        contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+        document.title = "Error";
       });
-    });
-
-    var imageHTML = imageData.slice(startIndex, endIndex).map(function (image) {
-      var imagePath = "public/instagram/" + image.name;
-      return "<div><img src='loading-p.svg' data-src='" + imagePath + "' class='photo' loading='lazy'></div>";
-    });
-
-    var prevButtonHTML = currentPage > 1 ? "<button class='prev-button'>Previous</button>" : "";
-    var nextButtonHTML = endIndex < imageData.length ? "<button class='next-button'>Next</button>" : "";
-
-    contentContainer.innerHTML = "<h1>" + pageHeading + "</h1>" +
-      "<div class='grid-container'>" + imageHTML.join("") + "</div>" +
-      "<div class='pagination'>" +
-      prevButtonHTML + nextButtonHTML +
-      "</div>";
-
-    var images = contentContainer.querySelectorAll(".photo");
-    images.forEach(function (image) {
-      observer.observe(image);
-    });
-
-    var prevButton = contentContainer.querySelector(".prev-button");
-    var nextButton = contentContainer.querySelector(".next-button");
-
-    if (prevButton) {
-      prevButton.addEventListener("click", function () {
-        if (currentPage > 1) {
-          currentPage--;
-          showPage(currentPage);
-          queryParams.set("page", currentPage);
-          history.pushState(null, null, "?" + queryParams.toString());
-          updatePageHeading();
-          scrollToTop();
-        }
-      });
-    }
-
-    if (nextButton) {
-      nextButton.addEventListener("click", function () {
-        if (endIndex < imageData.length) {
-          currentPage++;
-          showPage(currentPage);
-          queryParams.set("page", currentPage);
-          history.pushState(null, null, "?" + queryParams.toString());
-          updatePageHeading();
-          scrollToTop();
-        }
-      });
-    }
   }
 
-  function updatePageHeading() {
-    pageHeading = "Instagram - Page " + currentPage;
-    document.title = pageHeading;
-  }
-
-  function scrollToTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  }
-
-  break;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  case "/insta2":
-  var params = new URLSearchParams(window.location.search);
-  var currentPage = parseInt(params.get("page")) || 1; // Get the page number from the URL, default to 1 if not provided
-
-  var pageTitle = "Instagram - Page " + currentPage; // Update page title with the current page number
-
-  var imagesPerPage = 50;
-  var imageData; // To store the image data from the API
-
-  fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/instagram2")
-    .then(function (response) {
-      if (!response.ok) {
-        throw new Error("Failed to load the content.");
-      }
-      return response.json();
-    })
-    .then(function (data) {
-      imageData = data;
-      showPage(currentPage);
-    })
-    .catch(function (error) {
-      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
-      document.title = "Error";
-    });
+  fetchImageData(currentImageSet); // Fetch initial image data
 
   function showPage(page) {
     var startIndex = (page - 1) * imagesPerPage;
@@ -753,8 +641,7 @@ ul {
     });
 
     var imageHTML = imageData.slice(startIndex, endIndex).map(function (image) {
-      // Use relative path instead of download_url
-      var imagePath = "public/instagram2/" + image.name;
+      var imagePath = image.path.replace("public/instagram", ""); // Use relative path
       return "<div><img src='loading-p.svg' data-src='" + imagePath + "' class='photo' loading='lazy'></div>";
     });
 
@@ -780,8 +667,8 @@ ul {
         if (currentPage > 1) {
           currentPage--;
           showPage(currentPage);
-          history.pushState(null, null, "?page=" + currentPage); // Update the browser URL
-          updatePageTitle(); // Update the page title after changing the page
+          history.pushState(null, null, "?page=" + currentPage);
+          updatePageTitle();
         }
       });
     }
@@ -791,8 +678,12 @@ ul {
         if (endIndex < imageData.length) {
           currentPage++;
           showPage(currentPage);
-          history.pushState(null, null, "?page=" + currentPage); // Update the browser URL
-          updatePageTitle(); // Update the page title after changing the page
+          history.pushState(null, null, "?page=" + currentPage);
+          updatePageTitle();
+        } else {
+          // Switch to the next image set when all images are shown
+          currentImageSet++;
+          fetchImageData(currentImageSet);
         }
       });
     }
@@ -804,23 +695,6 @@ ul {
   }
 
   break;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
