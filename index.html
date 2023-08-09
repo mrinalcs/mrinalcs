@@ -593,16 +593,14 @@ ul {
 
 
 
-
-
           case "/insta":
-  var params = new URLSearchParams(window.location.search);
-  var currentPage = parseInt(params.get("page")) || 1; // Get the page number from the URL, default to 1 if not provided
+  var queryParams = new URLSearchParams(window.location.search);
+  var currentPage = parseInt(queryParams.get("page")) || 1;
 
-  var pageTitle = "Instagram - Page " + currentPage; // Update page title with the current page number
+  var pageHeading = "Instagram - Page " + currentPage;
 
   var imagesPerPage = 50;
-  var imageData; // To store the image data from the API
+  var imageData;
 
   fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/instagram")
     .then(function (response) {
@@ -616,7 +614,7 @@ ul {
       showPage(currentPage);
     })
     .catch(function (error) {
-      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+      contentContainer.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
       document.title = "Error";
     });
 
@@ -627,15 +625,14 @@ ul {
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          var image = entry.target;
-          image.src = image.dataset.src;
-          observer.unobserve(image);
+          var imageElement = entry.target;
+          imageElement.src = imageElement.dataset.src;
+          observer.unobserve(imageElement);
         }
       });
     });
 
     var imageHTML = imageData.slice(startIndex, endIndex).map(function (image) {
-      // Use relative path instead of download_url
       var imagePath = "public/instagram/" + image.name;
       return "<div><img src='loading-p.svg' data-src='" + imagePath + "' class='photo' loading='lazy'></div>";
     });
@@ -643,27 +640,29 @@ ul {
     var prevButtonHTML = currentPage > 1 ? "<button class='prev-button'>Previous</button>" : "";
     var nextButtonHTML = endIndex < imageData.length ? "<button class='next-button'>Next</button>" : "";
 
-    contentDiv.innerHTML = "<h1>" + pageTitle + "</h1>" +
+    contentContainer.innerHTML = "<h1>" + pageHeading + "</h1>" +
       "<div class='grid-container'>" + imageHTML.join("") + "</div>" +
       "<div class='pagination'>" +
       prevButtonHTML + nextButtonHTML +
       "</div>";
 
-    var images = contentDiv.querySelectorAll(".photo");
+    var images = contentContainer.querySelectorAll(".photo");
     images.forEach(function (image) {
       observer.observe(image);
     });
 
-    var prevButton = contentDiv.querySelector(".prev-button");
-    var nextButton = contentDiv.querySelector(".next-button");
+    var prevButton = contentContainer.querySelector(".prev-button");
+    var nextButton = contentContainer.querySelector(".next-button");
 
     if (prevButton) {
       prevButton.addEventListener("click", function () {
         if (currentPage > 1) {
           currentPage--;
           showPage(currentPage);
-          history.pushState(null, null, "?page=" + currentPage); // Update the browser URL
-          updatePageTitle(); // Update the page title after changing the page
+          queryParams.set("page", currentPage);
+          history.pushState(null, null, "?" + queryParams.toString());
+          updatePageHeading();
+          scrollToTop();
         }
       });
     }
@@ -673,20 +672,28 @@ ul {
         if (endIndex < imageData.length) {
           currentPage++;
           showPage(currentPage);
-          history.pushState(null, null, "?page=" + currentPage); // Update the browser URL
-          updatePageTitle(); // Update the page title after changing the page
+          queryParams.set("page", currentPage);
+          history.pushState(null, null, "?" + queryParams.toString());
+          updatePageHeading();
+          scrollToTop();
         }
       });
     }
   }
 
-  function updatePageTitle() {
-    pageTitle = "Instagram - Page " + currentPage;
-    document.title = pageTitle;
+  function updatePageHeading() {
+    pageHeading = "Instagram - Page " + currentPage;
+    document.title = pageHeading;
+  }
+
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   }
 
   break;
-
 
 
 
@@ -747,8 +754,8 @@ ul {
 
     var imageHTML = imageData.slice(startIndex, endIndex).map(function (image) {
       // Use relative path instead of download_url
-      var imagePathE = "public/instagram2/" + image.name;
-      return "<div><img src='loading-p.svg' data-src='" + imagePathE + "' class='photo' loading='lazy'></div>";
+      var imagePath = "public/instagram2/" + image.name;
+      return "<div><img src='loading-p.svg' data-src='" + imagePath + "' class='photo' loading='lazy'></div>";
     });
 
     var prevButtonHTML = currentPage > 1 ? "<button class='prev-button'>Previous</button>" : "";
