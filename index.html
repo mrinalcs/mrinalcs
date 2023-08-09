@@ -747,8 +747,8 @@ ul {
 
     var imageHTML = imageData.slice(startIndex, endIndex).map(function (image) {
       // Use relative path instead of download_url
-      var imagePath = "public/instagram2/" + image.name;
-      return "<div><img src='loading-p.svg' data-src='" + imagePath + "' class='photo' loading='lazy'></div>";
+      var imagePath2 = "public/instagram2/" + image.name;
+      return "<div><img src='loading-p.svg' data-src='" + imagePath2 + "' class='photo' loading='lazy'></div>";
     });
 
     var prevButtonHTML = currentPage > 1 ? "<button class='prev-button'>Previous</button>" : "";
