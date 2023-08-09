@@ -592,118 +592,7 @@ ul {
 
 
 
-
-
-
-
-          case "/insta":
-  var params = new URLSearchParams(window.location.search);
-  var currentPage = parseInt(params.get("page")) || 1;
-
-  var pageTitle = "Instagram - Page " + currentPage;
-  var imagesPerPage = 50;
-  var imageData;
-  var currentImageSet = 1; // Keep track of the current image set
-
-  function fetchImageData(imageSet) {
-    var imageSetPath = "public/instagram" + imageSet;
-    fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/" + imageSetPath)
-      .then(function (response) {
-        if (!response.ok) {
-          throw new Error("Failed to load the content.");
-        }
-        return response.json();
-      })
-      .then(function (data) {
-        imageData = data;
-        showPage(currentPage);
-      })
-      .catch(function (error) {
-        contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
-        document.title = "Error";
-      });
-  }
-
-  fetchImageData(currentImageSet); // Fetch initial image data
-
-  function showPage(page) {
-    var startIndex = (page - 1) * imagesPerPage;
-    var endIndex = Math.min(startIndex + imagesPerPage, imageData.length);
-
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          var image = entry.target;
-          image.src = image.dataset.src;
-          observer.unobserve(image);
-        }
-      });
-    });
-
-    var imageHTML = imageData.slice(startIndex, endIndex).map(function (image) {
-      var imagePath = image.path.replace("public/instagram", ""); // Use relative path
-      return "<div><img src='loading-p.svg' data-src='" + imagePath + "' class='photo' loading='lazy'></div>";
-    });
-
-    var prevButtonHTML = currentPage > 1 ? "<button class='prev-button'>Previous</button>" : "";
-    var nextButtonHTML = endIndex < imageData.length ? "<button class='next-button'>Next</button>" : "";
-
-    contentDiv.innerHTML = "<h1>" + pageTitle + "</h1>" +
-      "<div class='grid-container'>" + imageHTML.join("") + "</div>" +
-      "<div class='pagination'>" +
-      prevButtonHTML + nextButtonHTML +
-      "</div>";
-
-    var images = contentDiv.querySelectorAll(".photo");
-    images.forEach(function (image) {
-      observer.observe(image);
-    });
-
-    var prevButton = contentDiv.querySelector(".prev-button");
-    var nextButton = contentDiv.querySelector(".next-button");
-
-    if (prevButton) {
-      prevButton.addEventListener("click", function () {
-        if (currentPage > 1) {
-          currentPage--;
-          showPage(currentPage);
-          history.pushState(null, null, "?page=" + currentPage);
-          updatePageTitle();
-        }
-      });
-    }
-
-    if (nextButton) {
-      nextButton.addEventListener("click", function () {
-        if (endIndex < imageData.length) {
-          currentPage++;
-          showPage(currentPage);
-          history.pushState(null, null, "?page=" + currentPage);
-          updatePageTitle();
-        } else {
-          // Switch to the next image set when all images are shown
-          currentImageSet++;
-          fetchImageData(currentImageSet);
-        }
-      });
-    }
-  }
-
-  function updatePageTitle() {
-    pageTitle = "Instagram - Page " + currentPage;
-    document.title = pageTitle;
-  }
-
-  break;
-
-
-
-
-
-
-
-
-
+ 
 
 
           
@@ -1200,45 +1089,101 @@ case "/text-converter":
 
 
 
+  case "/instagram":
+  var params = new URLSearchParams(window.location.search);
+  var currentPage = parseInt(params.get("page")) || 1;
 
-          
-        case "/instagram":
-                    pageTitle = "Instagram";
+  var imagesPerPage = 50;
+  var totalImages = 1000;
+  var totalFolders = Math.ceil(totalImages / (imagesPerPage * 20));
 
-  fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/instagram")
-    .then(function(response) {
+  var currentFolder = Math.ceil(currentPage / 20); // Calculate the current folder based on the page number
+  var currentFolderPage = currentPage % 20 || 20; // Calculate the page number within the current folder
+
+  var pageTitle = "Instagram - Folder " + currentFolder + " - Page " + currentFolderPage;
+
+  var imageData;
+
+  fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/instagram" + currentFolder)
+    .then(function (response) {
       if (!response.ok) {
         throw new Error("Failed to load the content.");
       }
       return response.json();
     })
-    .then(function(data) {
-      var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            var image = entry.target;
-            image.src = image.dataset.src;
-            observer.unobserve(image);
-          }
-        });
-      });
-
-      var imageHTML = data.map(function(image) {
-        return "<div><img src='loading-p.svg' data-src='" + image.download_url + "' class='photo' loading='lazy'></div>";
-      });
-
-      contentDiv.innerHTML = "<div  class='grid-container'>" + imageHTML.join("") + "</div>";
-     
-
-      var images = contentDiv.querySelectorAll(".photo");
-      images.forEach(function(image) {
-        observer.observe(image);
-      });
+    .then(function (data) {
+      imageData = data;
+      showPage(currentFolderPage);
     })
-    .catch(function(error) {
+    .catch(function (error) {
       contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
       document.title = "Error";
     });
+
+  function showPage(page) {
+    var startIndex = (page - 1) * imagesPerPage;
+    var endIndex = Math.min(startIndex + imagesPerPage, imageData.length);
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var image = entry.target;
+          image.src = image.dataset.src;
+          observer.unobserve(image);
+        }
+      });
+    });
+
+    var imageHTML = imageData.slice(startIndex, endIndex).map(function (image) {
+      var imagePath = "public/instagram" + currentFolder + "/" + image.name;
+      return "<div><img src='loading-p.svg' data-src='" + imagePath + "' class='photo' loading='lazy'></div>";
+    });
+
+    var prevButtonHTML = currentFolderPage > 1 ? "<button class='prev-button'>Previous</button>" : "";
+    var nextButtonHTML = endIndex < imageData.length ? "<button class='next-button'>Next</button>" : "";
+
+    contentDiv.innerHTML = "<h1>" + pageTitle + "</h1>" +
+      "<div class='grid-container'>" + imageHTML.join("") + "</div>" +
+      "<div class='pagination'>" +
+      prevButtonHTML + nextButtonHTML +
+      "</div>";
+
+    var images = contentDiv.querySelectorAll(".photo");
+    images.forEach(function (image) {
+      observer.observe(image);
+    });
+
+    var prevButton = contentDiv.querySelector(".prev-button");
+    var nextButton = contentDiv.querySelector(".next-button");
+
+    if (prevButton) {
+      prevButton.addEventListener("click", function () {
+        if (currentFolderPage > 1) {
+          currentFolderPage--;
+          showPage(currentFolderPage);
+          history.pushState(null, null, "?page=" + ((currentFolder - 1) * 20 + currentFolderPage)); // Update the browser URL
+          updatePageTitle(); // Update the page title after changing the page
+        }
+      });
+    }
+
+    if (nextButton) {
+      nextButton.addEventListener("click", function () {
+        if (endIndex < imageData.length) {
+          currentFolderPage++;
+          showPage(currentFolderPage);
+          history.pushState(null, null, "?page=" + ((currentFolder - 1) * 20 + currentFolderPage)); // Update the browser URL
+          updatePageTitle(); // Update the page title after changing the page
+        }
+      });
+    }
+  }
+
+  function updatePageTitle() {
+    pageTitle = "Instagram - Folder " + currentFolder + " - Page " + currentFolderPage;
+    document.title = pageTitle;
+  }
+
   break;
 
 
