@@ -1539,7 +1539,14 @@ case "/snippet":
 
     function handleLinkClick(event) {
   event.preventDefault();
-  var page = event.target.getAttribute("href");
+  var target = event.target;
+  
+  // If the clicked element is within a <span>, get the parent <a> element
+  if (target.tagName !== "A") {
+    target = event.target.closest("a");
+  }
+
+  var page = target.getAttribute("href");
 
   var navbar = document.getElementById("myNavbar");
   if (navbar.classList.contains("responsive")) {
@@ -1547,13 +1554,15 @@ case "/snippet":
   }
 
   // Check if the link is an external link
-  if (event.target.hasAttribute("target") && event.target.getAttribute("target") === "_blank") {
+  if (target.hasAttribute("target") && target.getAttribute("target") === "_blank") {
     window.open(page, "_blank"); // Open the link in a new tab or window
   } else {
     loadContent(page);
     history.pushState(null, null, page); // Update the browser URL
   }
 }
+
+
 
 
     window.addEventListener("popstate", function(event) {
@@ -1577,7 +1586,9 @@ case "/snippet":
   <div class="navbar" id="myNavbar">
     <a href="/">Home</a>
     <a href="/notes">Notes</a>
-    <a href="/repositories">Repositories</a>
+    <a href="/photos">Photos</a> 
+
+    <a href="/repositories">Repo<span class="sm">setories</span></a>
     <a href="/about">About</a>
     <a href="/contact">Contact</a> 
     <button class="icon closed" onclick="toggleNavbar()"></button>
