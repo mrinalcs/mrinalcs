@@ -1381,7 +1381,7 @@ case "/photos":
 
 
 case "/snippet":
-  fetch("snippet.json") // Replace with the path to your snippet.json file
+  fetch("static/snippet.json") // Replace with the path to your snippet.json file
     .then(function(response) {
       if (!response.ok) {
         throw new Error("Failed to load the content.");
@@ -1577,12 +1577,9 @@ case "/snippet":
   <div class="navbar" id="myNavbar">
     <a href="/">Home</a>
     <a href="/notes">Notes</a>
-    <a href="/repositories">Repos<span class="sm">itories</span></a>
+    <a href="/repositories">Repositories</a>
     <a href="/about">About</a>
-    <a href="/contact">Contact</a>
-    <a href="/instagram" class="sm">Instagram</a> 
-    <a href="/insta">New</a>
-    <a href="/insta2">New2</a>
+    <a href="/contact">Contact</a> 
     <button class="icon closed" onclick="toggleNavbar()"></button>
   </div>
 
