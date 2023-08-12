@@ -13,8 +13,8 @@
 [![R](https://img.shields.io/badge/-R-05122A?style=flat&logo=R&logoColor=276DC3)](https://www.r-project.org/)&nbsp;
 [![Python](https://img.shields.io/badge/-Python-05122A?style=flat&logo=Python)](https://www.python.org/)&nbsp;
 [![C](https://img.shields.io/badge/-C-05122A?style=flat&logo=C&logoColor=A8B9CC)](https://en.wikipedia.org/wiki/C_(programming_language))&nbsp;\
-[![Microsoft Word](https://img.shields.io/badge/-Word-2B579A?style=flat&logo=Microsoft%20Word)](https://products.office.com/en-us/word)
-[![Microsoft Excel](https://img.shields.io/badge/-Excel-217346?style=flat&logo=Microsoft%20Excel)](https://products.office.com/en-us/excel)
+[![Microsoft Word](https://img.shields.io/badge/-Word-05122A?style=flat&logo=Microsoft%20Word)](https://products.office.com/en-us/word)
+[![Microsoft Excel](https://img.shields.io/badge/-Excel-05122A?style=flat&logo=Microsoft%20Excel)](https://products.office.com/en-us/excel)
 [![LaTeX](https://img.shields.io/badge/-LaTeX-05122A?style=flat&logo=LaTeX)](https://www.latex-project.org/)&nbsp;
 [![Markdown](https://img.shields.io/badge/-Markdown-05122A?style=flat&logo=Markdown)](https://daringfireball.net/projects/markdown/)&nbsp;\
 [![PHP](https://img.shields.io/badge/-PHP-05122A?style=flat&logo=PHP)](https://www.php.net/)&nbsp;
