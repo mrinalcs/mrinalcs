@@ -1,0 +1,21 @@
+{
+  "about": {
+    "name": "Mrinal CS",
+    "role": "Student",
+    "study": "Statistics",
+    "passion": "Data analysis and its applications",
+    "academic_status": "Currently pursuing studies in Statistics",
+    "interests": ["Artificial Intelligence", "Systems Design"],
+    "hobbies": ["Graphic Design", "Writing with LaTeX and Markdown"],
+    "contact": {
+      "email": "mrinalvbu@gmail.com",
+      "linkedin": "Your LinkedIn Profile",
+      "facebook": "Your Facebook Profile"
+    }
+  },
+  "tech_stack": {
+    "programming_languages": ["R", "Python", "C"],
+    "software_tools": ["Microsoft Word", "Microsoft Excel", "LaTeX", "Markdown"],
+    "web_languages": ["PHP", "HTML", "CSS"]
+  }
+}
