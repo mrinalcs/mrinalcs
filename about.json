@@ -1,6 +1,6 @@
 {
   "about": {
-    "name": "Mrinal CS",
+    "name": "Mrinal Chandra Sarkar",
     "role": "Student",
     "study": "Statistics",
     "passion": "Data analysis and its applications",
@@ -9,9 +9,17 @@
     "hobbies": ["Graphic Design", "Writing with LaTeX and Markdown"],
     "contact": {
       "email": "mrinalvbu@gmail.com",
-      "linkedin": "Your LinkedIn Profile",
-      "facebook": "Your Facebook Profile"
+      "linkedin": "https://www.linkedin.com/in/MrinalChandraSarkar",
+      "facebook": "https://www.facebook.com/mrinalcs",
+      "github": "https://github.com/mrinalcs",
+      "gravatar": "https://gravatar.com/mrinalchandrasarkar",
+      "website": "https://mrinal.pages.dev/"
     }
+  },
+  "address": {
+    "street": "HPR",
+    "city": "Buniadpur",
+    "country": "India"
   },
   "tech_stack": {
     "programming_languages": ["R", "Python", "C"],
