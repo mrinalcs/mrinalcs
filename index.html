@@ -540,6 +540,19 @@ ul {
     @media screen and (max-width: 600px) {
     .sm {display:none}
     }
+    .s-input {
+      text-align: center;
+    }
+    /* Center the input element */
+input[type="text"] {
+  width: 80%; /* Adjust width as needed */
+  padding: 8px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  max-width: 400px; box-sizing: border-box;
+  padding-top: 10px;
+}
   </style>
 
 
@@ -1470,6 +1483,7 @@ case "/snippet":
       });
 
       var searchContainer = document.createElement("div");
+      searchContainer.className = "s-input"; 
       searchContainer.appendChild(searchInput);
       contentDiv.insertBefore(searchContainer, contentDiv.firstChild);
     })
@@ -1587,7 +1601,6 @@ case "/snippet":
     <a href="/">Home</a>
     <a href="/notes">Notes</a>
     <a href="/photos">Photos</a> 
-
     <a href="/repositories">Repo<span class="sm">setories</span></a>
     <a href="/about">About</a>
     <a href="/contact">Contact</a> 
