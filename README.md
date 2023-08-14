@@ -32,3 +32,5 @@
 [![Facebook](https://img.shields.io/badge/Facebook-mrinalcs-05122A?style=flat&logo=facebook)](https://www.facebook.com/mrinalcs)
 
 
+[![Cloudflare Pages Deployment](https://img.shields.io/badge/Cloudflare%20Pages-Successful-brightgreen)](https://mrinal.pages.dev/)
+
