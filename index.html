@@ -3,30 +3,25 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- preload assets -->
-  <link rel="preload" href="https://raw.githubusercontent.com/mrinalcs/mrinalcs/main/static/img/bg/hero.jpg" as="image">
-  <link rel="preload" href="https://raw.githubusercontent.com/mrinalcs/mrinalcs/main/static/img/bg/ringtone.jpg" as="image">
-  <link rel="preload" href="https://raw.githubusercontent.com/mrinalcs/mrinalcs/main/static/img/bg/notes.jpg" as="image">
-  <link rel="preload" href="https://raw.githubusercontent.com/mrinalcs/mrinalcs/main/public/images/1.jpg" as="image">
+  <link rel="preload" href="/static/img/bg/hero.jpg" as="image">
+  <link rel="preload" href="/static/img/bg/ringtone.jpg" as="image">
+  <link rel="preload" href="/static/img/bg/notes.jpg" as="image">
+  <link rel="preload" href="/public/images/1.jpg" as="image">
 
   
   <link rel="preload" href="public/fonts/Boruna.otf">
   
   <link rel="icon" type="image/x-icon" href="/favicon.ico"> 
-  <title>Mrinal</title>
+  <title>Mrinal Chandra Sarkar</title>
 
   <style>
-    /* ======================================
-Responsive Image gallery Style rules
-======================================*/
+ /* photo gallery */
 * {
    
   padding: 0;
   box-sizing: border-box;
 }
 
- 
-
- 
 
 .heading-text {
   margin-bottom: 2rem;
@@ -605,12 +600,7 @@ input[type="text"] {
 
 
 
- 
-
-
-          
-
-
+      
 
 
  case "/repositories":
@@ -658,18 +648,6 @@ input[type="text"] {
       document.title = "Error";
     });
   break;
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -833,15 +811,8 @@ input[type="text"] {
 
 
 
-
-
-
-
-
-
-
-case "/fairy-lights-showcase":
-  var jsonFile = "fairy-lights-showcase.json";
+case "/music":
+  var jsonFile = "static/showcase1.json";
   var pageTitle = "Fairy Lights Showcase";
 
   contentDiv.innerHTML = "<div class='loading'>Loading...</div>"; // Display the loading state
@@ -1059,43 +1030,6 @@ case "/text-converter":
       document.title = "Error";
     });
   break;
-
-
-
-
-
-
-
-
-
-
-
-
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          
-
-
-
-
 
 
 
@@ -1601,23 +1535,19 @@ case "/snippet":
     <a href="/">Home</a>
     <a href="/notes">Notes</a>
     <a href="/photos">Photos</a> 
-    <a href="/repositories">Repo<span class="sm">setories</span></a>
+    <a href="/repositories">Repo<span class="sm">setorie</span>s</a>
     <a href="/about">About</a>
     <a href="/contact">Contact</a> 
     <button class="icon closed" onclick="toggleNavbar()"></button>
   </div>
 
-
   <noscript>
     <p>This website requires JavaScript to function properly. Please enable JavaScript in your browser settings.</p>
   </noscript>
   
-  <div id="content">
-    <!-- Content will be loaded dynamically -->
-  </div>
+  <div id="content"></div>
   <footer  style="padding-top:20px">
-    <hr>
-    <p>&copy; 2023 Mrinal. All rights reserved.</p>
-</footer>
+    <hr><p>&copy; 2023 Mrinal. All rights reserved.</p>
+  </footer>
 </body>
 </html>
