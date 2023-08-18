@@ -1,7 +1,7 @@
 const cacheName = 'Mrinal';
 const cacheVersion = `${cacheName}::1.0.0`;
 
-const cachedFiles = ['/', '/static/home.json', '/static/about.json', '/static/snippet.json'];
+const cachedFiles = ['/', '/static/home.json', '/static/about.json', '/static/contact.json', '/static/snippet.json', '/static/img/bg/hero.jpg', '/static/img/bg/ringtone.jpg', '/static/img/bg/notes.jpg', '/public/images/1.jpg', '/public/fonts/Boruna.otf'];
 
 const networkFiles = [];
 
