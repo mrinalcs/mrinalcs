@@ -39,6 +39,10 @@
     {
       "title": "NPM Commands",
       "code": "npm install\nnpm run dev\nnpm install package-name --save\nnpm run build\n"
+    },
+    {
+      "title": "local address",
+      "code": "localhost:3000\n127.0.0.1:4000\n192.168.196.147:8080\n192.168.132.98:8080\n127.0.0.1:5500\n"
     }
    
    
