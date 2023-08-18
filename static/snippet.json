@@ -26,15 +26,19 @@
     },
     {
       "title": "Style",
-      "code": "<style>\n\n</style>"
+      "code": "<link rel=\"stylesheet\" href=\"style.css\">\n<style>\n\n</style>"
     },
     {
       "title": "Script",
-      "code": "<script>\n \n</script> "
+      "code": "<script src=\"/script.js\"></script>\n<script>\n \n</script> "
     },
     {
       "title": "!HTML Boiler",
       "code": "<!DOCTYPE html>\n <html  lang=\"en\"> \n <head> \n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Document</title>\n\n </head>\n <body>    \n </body> \n </html>"
+    },
+    {
+      "title": "NPM Commands",
+      "code": "npm install\nnpm run dev\nnpm install package-name --save\nnpm run build\n"
     }
    
    
