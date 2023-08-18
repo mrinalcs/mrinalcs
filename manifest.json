@@ -1,6 +1,6 @@
 {
-  "short_name": "PWA App",
-  "name": "Progressive Web Application Starter Kit",
+  "short_name": "Mrinal",
+  "name": "Mrinal",
   "icons": [
     {
       "src": "images/icon@2x.png",
@@ -8,7 +8,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "http://localhost:8000/",
+  "start_url": "https://mrinal.pages.dev/",
   "background_color": "#FFFFFF",
   "theme_color": "#3E82F7",
   "display": "minimal-ui"
