@@ -1,7 +1,7 @@
-const cacheName = 'pwa-starter-kit';
+const cacheName = 'Mrinal';
 const cacheVersion = `${cacheName}::1.0.0`;
 
-const cachedFiles = ['/', '/css/styles.css'];
+const cachedFiles = ['/', '/static/home.json', '/static/about.json', '/static/snippet.json'];
 
 const networkFiles = [];
 
