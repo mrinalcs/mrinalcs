@@ -12,6 +12,7 @@
   <link rel="preload" href="public/fonts/Boruna.otf">
   
   <link rel="icon" type="image/x-icon" href="/favicon.ico"> 
+  <link rel="manifest" href="/manifest.json" />
   <title>Mrinal Chandra Sarkar</title>
 
   <style>
@@ -1552,5 +1553,18 @@ case "/snippet":
   <footer  style="padding-top:20px">
     <hr><p>&copy; 2023 Mrinal. All rights reserved.</p>
   </footer>
+  <script>
+            const connectivityStatus = document.querySelector(
+                '.connectivity-status'
+            );
+
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () =>
+                    navigator.serviceWorker.register('serviceWorker.js')
+                );
+            }
+
+         
+        </script>
 </body>
 </html>
