@@ -592,7 +592,7 @@ input[type="text"] {
           break;
         case "/about":
           jsonFile = staticFolder + "/about.json";
-          pageTitle = "About";
+          pageTitle = "About | Mrinal";
           break;
 
 
@@ -606,7 +606,7 @@ input[type="text"] {
 
 
  case "/repositories":
-  pageTitle = "Repositories";
+  pageTitle = "Repositories | Mrinal";
 
   fetch("https://api.github.com/users/mrinalcs/repos")
     .then(function(response) {
@@ -660,7 +660,7 @@ input[type="text"] {
 
 
           case "/notes":
-  pageTitle = "Notes";
+  pageTitle = "Notes | Mrinal";
 
   fetch("https://api.github.com/repos/mrinalcs/vbstat/contents/note")
     .then(function(response) {
@@ -815,7 +815,7 @@ input[type="text"] {
 
 case "/showcase":
   var jsonFile = "static/showcase1.json";
-  var pageTitle = "Fairy Lights Showcase";
+  var pageTitle = "Showcase";
 
   contentDiv.innerHTML = "<div class='loading'>Loading...</div>"; // Display the loading state
 
@@ -1141,7 +1141,7 @@ case "/text-converter":
 
 
           case "/ringtone":
-          pageTitle = "Ringtone";
+          pageTitle = "Ringtone I Loved";
   fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/audio")
     .then(function(response) {
       if (!response.ok) {
@@ -1267,7 +1267,7 @@ case "/text-converter":
 
 
 case "/photos":
-          pageTitle = "Photos";
+          pageTitle = "Photos | Mrinal";
   fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/images")
     .then(function(response) {
       if (!response.ok) {
@@ -1444,7 +1444,7 @@ case "/snippet":
           
         case "/contact":
           jsonFile = staticFolder + "/contact.json";
-          pageTitle = "Contact";
+          pageTitle = "Contact | Mrinal";
           break;
         default:
           contentDiv.innerHTML = "<h1>Page Not Found</h1><p>The requested page was not found.</p>";
