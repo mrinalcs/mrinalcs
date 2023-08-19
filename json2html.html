@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>JSON to HTML Converter</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        #jsonInput, #output {
+            height: 150px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <textarea id="jsonInput" class="form-control" placeholder="Enter JSON here"></textarea>
+                <button class="btn btn-primary mt-2" onclick="convertJSONToHTML()">Convert</button>
+            </div>
+            <div class="col-md-6">
+                <textarea id="output" class="form-control" readonly></textarea>
+                <button class="btn btn-success mt-2" onclick="copyToClipboard()">Copy</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function convertJSONToHTML() {
+            const jsonInput = document.getElementById('jsonInput').value;
+            const convertedHTML = jsonToHTML(jsonInput);
+            document.getElementById('output').value = convertedHTML;
+        }
+
+        function jsonToHTML(jsonInput) {
+            try {
+                const jsonData = JSON.parse(jsonInput);
+                return formatJSONToHTML(jsonData);
+            } catch (error) {
+                return 'Invalid JSON input';
+            }
+        }
+
+        function formatJSONToHTML(data, indentLevel = 0) {
+            let html = '';
+            const indent = '    '.repeat(indentLevel);
+
+            for (const key in data) {
+                if (typeof data[key] === 'object') {
+                    html += `${indent}${key}:\n`;
+                    html += formatJSONToHTML(data[key], indentLevel + 1);
+                } else {
+                    const value = data[key].toString().replace(/\\/g, '').replace(/\n/g, '\n');
+                    html += `${indent}${key}: ${value}\n`;
+                }
+            }
+
+            return html;
+        }
+
+        function copyToClipboard() {
+            const outputTextArea = document.getElementById('output');
+            outputTextArea.select();
+            document.execCommand('copy');
+            alert('HTML copied to clipboard!');
+        }
+    </script>
+</body>
+</html>
