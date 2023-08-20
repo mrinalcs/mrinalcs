@@ -30,7 +30,4 @@
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-MrinalChandraSarkar-05122A?style=flat&logo=linkedin)](https://www.linkedin.com/in/MrinalChandraSarkar) 
 [![Facebook](https://img.shields.io/badge/Facebook-mrinalcs-05122A?style=flat&logo=facebook)](https://www.facebook.com/mrinalcs)
-
-
-[![Cloudflare Pages Deployment](https://img.shields.io/badge/Cloudflare%20Pages-Successful-brightgreen)](https://mrinal.pages.dev/)
-
+ 
