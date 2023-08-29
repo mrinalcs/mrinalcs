@@ -1091,7 +1091,7 @@ case "/text-converter":
     var prevButtonHTML = currentFolderPage > 1 ? "<button class='prev-button'>Previous</button>" : "";
     var nextButtonHTML = endIndex < imageData.length ? "<button class='next-button'>Next</button>" : "";
 
-    contentDiv.innerHTML = "<h1>" + pageTitle + "</h1>" +
+    contentDiv.innerHTML = "<h1 id='top'>" + pageTitle + "</h1>" +
       "<div class='grid-container'>" + imageHTML.join("") + "</div>" +
       "<div class='pagination'>" +
       prevButtonHTML + nextButtonHTML +
