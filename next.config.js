@@ -4,7 +4,7 @@ module.exports = withNextra({
   async rewrites() {
     return [
       {
-        source: '/post/:slug*',
+        source: '/:slug*',
         destination: '/posts/:slug*', // Redirect to the original /posts/:slug* route
       },
     ];
