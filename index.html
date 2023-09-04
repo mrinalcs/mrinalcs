@@ -1655,6 +1655,75 @@ case "/i":
 
 
 
+
+
+
+
+
+
+
+case "/settings":
+  // Check if the user has previously selected a theme and retrieve it from the cookie
+  var selectedTheme = getCookie("theme");
+
+  // HTML content for the settings page
+  var settingsHTML = `
+    <h1>Settings</h1>
+    <label for="theme-select">Select Theme:</label>
+    <select id="theme-select">
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+    </select>
+    <button id="save-theme-button">Save Theme</button>
+  `;
+
+  // Set the content of the page
+  contentDiv.innerHTML = settingsHTML;
+
+  // Set the initially selected theme if available in the cookie
+  if (selectedTheme) {
+    document.getElementById("theme-select").value = selectedTheme;
+  }
+
+  // Add an event listener to the "Save Theme" button
+  document.getElementById("save-theme-button").addEventListener("click", function () {
+    // Get the selected theme from the dropdown
+    var selectedTheme = document.getElementById("theme-select").value;
+
+    // Save the selected theme in a cookie
+    setCookie("theme", selectedTheme, 30); // Expires in 30 days
+  });
+
+  break;
+
+// Function to set a cookie
+function setCookie(name, value, days) {
+  var expires = "";
+  if (days) {
+    var date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    expires = "; expires=" + date.toUTCString();
+  }
+  document.cookie = name + "=" + value + expires + "; path=/";
+}
+
+// Function to get a cookie by name
+function getCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+  }
+  return null;
+}
+
+
+
+
+    
+
           
           
 
