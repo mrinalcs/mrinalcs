@@ -1,12 +1,12 @@
 ### 👨🏻‍💻 &nbsp;About Me
 
-💡 &nbsp;I am a student studying statistics and passionate about data analysis and its applications.\
-🎓 &nbsp;Currently, I'm studying Statistics and pursuing my academic journey.\
-🌱 &nbsp;I'm enthusiastic about learning Artificial Intelligence and Systems Design.\
-✍️ &nbsp;In my free time, I enjoy Graphic Design and writing with LaTeX and Markdown.\
-💬 &nbsp;Feel free to reach out to me for any consulting or volunteering opportunities, or simply for interesting discussions.\
-✉️ &nbsp;You can contact me via email at mrinalvbu@gmail.com. I'll do my best to respond promptly.\
-📄 &nbsp;Please take a look at my [Resume](https://www.linkedin.com/in/mrinalchandrasarkar/) for more details about me. I welcome feedback and suggestions!
+- 💡 &nbsp;I am a student studying statistics and passionate about data analysis and its applications.\
+- 🎓 &nbsp;Currently, I'm studying Statistics and pursuing my academic journey.\
+- 🌱 &nbsp;I'm enthusiastic about learning Artificial Intelligence and Systems Design.\
+- ✍️ &nbsp;In my free time, I enjoy Graphic Design and writing with LaTeX and Markdown.\
+- 💬 &nbsp;Feel free to reach out to me for any consulting or volunteering opportunities, or simply for interesting discussions.\
+- ✉️ &nbsp;You can contact me via email at mrinalvbu@gmail.com. I'll do my best to respond promptly.\
+- 📄 &nbsp;Please take a look at my [Resume](https://www.linkedin.com/in/mrinalchandrasarkar/) for more details about me. I welcome feedback and suggestions!
  
 ### 🛠 &nbsp;Tech Stack
 
