@@ -5,3 +5,47 @@ title: pic
 ---
  
 hello
+
+<div id="output"></div>
+<div id="count"></div>
+
+<script>
+    // Function to read the contents of a text file and display them as a list
+    function readTextFile(file, callback) {
+        var rawFile = new XMLHttpRequest();
+        rawFile.open("GET", file, true);
+        rawFile.onreadystatechange = function() {
+            if (rawFile.readyState === 4 && (rawFile.status === 200 || rawFile.status == 0)) {
+                var fileContents = rawFile.responseText;
+                callback(fileContents);
+            }
+        }
+        rawFile.send(null);
+    }
+
+    // Callback function to process the file contents and create a list
+    function processFileContents(fileContents) {
+        var lines = fileContents.split('\n');
+        var ul = document.createElement('ul');
+
+        for (var i = 0; i < lines.length; i++) {
+            var line = lines[i].trim();
+            if (line !== '') {
+                var li = document.createElement('li');
+                li.textContent = line;
+                ul.appendChild(li);
+            }
+        }
+
+        document.getElementById('output').appendChild(ul);
+
+        // Display the count of file paths
+        document.getElementById('count').textContent = "Count: " + lines.length;
+    }
+
+    // Specify the path to your text file
+    var filePath = 'instagram1.txt';
+
+    // Read the text file and process its contents
+    readTextFile(filePath, processFileContents);
+</script>
