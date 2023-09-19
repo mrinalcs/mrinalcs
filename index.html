@@ -1413,6 +1413,7 @@ case "/snippet":
       var searchInput = document.createElement("input");
       searchInput.type = "text";
       searchInput.placeholder = "Search snippets...";
+      searchInput.id = "searchInput";
       searchInput.addEventListener("input", function(event) {
         var searchTerm = event.target.value.toLowerCase();
         searchSnippets(searchTerm);
