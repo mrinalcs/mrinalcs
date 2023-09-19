@@ -1,0 +1,6 @@
+---
+layout: text
+permalink: /instagram3.txt
+---
+{% for image in site.static_files %}{% if image.path contains '/public/instagram3/' %}{{ image.path }}
+{% endif %}{% endfor %}
