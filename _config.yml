@@ -13,7 +13,7 @@ plugins:
 
 
 
-permalink: pretty
+permalink: /404.html
 
 
 collections:
