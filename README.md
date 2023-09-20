@@ -3,4 +3,4 @@
 🌱 Interested in AI.
 
 📧 Contact: [mrinalvbu@gmail.com](mailto:mrinalvbu@gmail.com)\
-🔗 LinkedIn: [Your LinkedIn Profile](https://www.linkedin.com/in/mrinalchandrasarkar)
+🔗 LinkedIn: [MrinalChandraSarkar](https://www.linkedin.com/in/mrinalchandrasarkar)
