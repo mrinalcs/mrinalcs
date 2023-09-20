@@ -50,11 +50,8 @@
 
 
 
+![Visitor Count](https://profile-counter.glitch.me/{mrinalcs}/count.svg)
 
 
 
-
-
-<div align="center">
-     
-</div>
+[![Visits Badge](https://badges.pufler.dev/visits/mrinalcs/mrinalcs)](https://mrinal.tk)
