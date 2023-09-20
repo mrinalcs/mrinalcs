@@ -21,10 +21,7 @@
 [![HTML](https://img.shields.io/badge/-HTML-05122A?style=flat&logo=HTML5)](https://developer.mozilla.org/en-US/docs/Web/HTML)&nbsp;
 [![CSS](https://img.shields.io/badge/-CSS-05122A?style=flat&logo=CSS3)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
-
-
-
-
+ 
 
 ### 🤝🏻 &nbsp;Connect with Me
 
@@ -57,3 +54,6 @@
     <img src="https://cultofthepartyparrot.com/parrots/hd/hypnoparrotdark.gif" width="25" height="25"/>
     <img src="https://cultofthepartyparrot.com/parrots/hd/mustacheparrot.gif" width="25" height="25"/>
 </div>
+
+
+![Page Views](https://api.mrinal.tk/view_counter.php?file=myreadme)
