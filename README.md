@@ -49,9 +49,10 @@
 
 
 <div align="center">
-<img src="public/gif/1aEY.gif" width="110"/>
- 
-![Visitor Count](https://profile-counter.glitch.me/{mrinalcs}/count.svg)
+<a href="https://mrinal.pages.dev/"><img src="public/gif/1aEY.gif" width="110"/>></a>
+
+[![Visits Badge](https://profile-counter.glitch.me/{mrinalcs}/count.svg)](https://mrinal.tk)
+
 </div>
 
 
