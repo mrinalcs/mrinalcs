@@ -23,5 +23,5 @@ collections:
 
 
 exclude:
-  - index.md
+  - index.html
 
