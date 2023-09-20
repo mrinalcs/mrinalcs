@@ -33,4 +33,12 @@ yarn-error.log*
 # vercel
 .vercel
 
+# Jekyll
+_site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor
+
+
 public/feed.xml
