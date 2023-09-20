@@ -1,8 +1,7 @@
 <div align="right">
-    <img src="public/gif/funny-cat-top-rightgiphy.gif" alt="Alt Text" style="width: 30%;">
+    <img src="public/gif/funny-cat-top-rightgiphy.gif" alt="Alt Text" style="width: 10%;">
 </div>
 
-![cat vive](public/gif/vibe-cat-discord.gif)
 
 ### 👨🏻‍💻 &nbsp;About Me
 
@@ -59,3 +58,4 @@
 
  
 
+![cat vive](public/gif/vibe-cat-discord.gif)
