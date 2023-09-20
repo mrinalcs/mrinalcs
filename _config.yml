@@ -13,7 +13,8 @@ plugins:
 
 
 
-permalink: /
+permalink: /:title
+
 
 collections:
   pages:
@@ -22,5 +23,5 @@ collections:
 
 
 exclude:
-  - index.html
+  - index.md
 
