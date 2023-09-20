@@ -12,7 +12,7 @@ plugins:
   - jekyll-feed
 
 
-permalink: /404.html
+permalink: /index.html
 
 collections:
   pages:
