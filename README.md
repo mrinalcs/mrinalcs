@@ -1,6 +1,9 @@
-<div style="text-align:right;">
-    <img src="public/gif/funny-cat-top-rightgiphy.gif" alt="Alt Text" style="width: 20%;">
+<div align="right">
+    <img src="public/gif/funny-cat-top-rightgiphy.gif" alt="Alt Text" style="width: 30%;">
 </div>
+
+![cat vive](public/gif/vibe-cat-discord.gif)
+
 ### 👨🏻‍💻 &nbsp;About Me
 
 - 🎓 &nbsp;Currently, pursuing my academic journey in Statistics.
@@ -53,10 +56,6 @@
  
 
 
-![Alt Text](public/gif/vibe-cat-discord.gif)
 
-<div style="text-align:center;border-radius:1rem">
-    <img src="public/gif/vibe-cat-discord.gif" alt="Alt Text">
-</div>
-
+ 
 
