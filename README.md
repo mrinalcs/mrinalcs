@@ -20,7 +20,8 @@
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-MrinalChandraSarkar-05122A?style=flat&logo=linkedin)](https://www.linkedin.com/in/MrinalChandraSarkar) 
 [![Facebook](https://img.shields.io/badge/Facebook-mrinalcs-05122A?style=flat&logo=facebook)](https://www.facebook.com/mrinalcs)
- 
+[![Visits Badge](https://badges.pufler.dev/visits/mrinalcs/mrinalcs)](https://mrinal.tk)
+
 <div align="center">
 <a href="https://mrinal.pages.dev/"><img src="https://cultofthepartyparrot.com/parrots/hd/githubparrot.gif" width="25" height="25"/></a>
 <a href="https://mrinal.pages.dev/"><img src="https://cultofthepartyparrot.com/flags/hd/iranparrot.gif" width="25" height="25"/></a>
@@ -47,11 +48,10 @@
 
 
 
-
-
-
+<div align="center">
+<img src="public/gif/1aEY.gif" width="110"/>
+ 
 ![Visitor Count](https://profile-counter.glitch.me/{mrinalcs}/count.svg)
+</div>
 
 
-
-[![Visits Badge](https://badges.pufler.dev/visits/mrinalcs/mrinalcs)](https://mrinal.tk)
