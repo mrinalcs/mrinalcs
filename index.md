@@ -1,6 +1,5 @@
 ---
-layout: 404
-permalink: /404.html
+layout: default
 ---
 
 # Hello this is jekyll home
