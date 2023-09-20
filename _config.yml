@@ -13,8 +13,6 @@ plugins:
 
 
 
-permalink: /404.html
-
 
 collections:
   pages:
