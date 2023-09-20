@@ -56,3 +56,21 @@
 </div>
 
 
+### 📊 &nbsp;Statistics
+
+<img src="https://badges.pufler.dev/visits/mrinalcs/mrinal?style=flat-square&color=black&logo=github&a=0">
+ 
+<img src="https://badges.pufler.dev/years/mrinalcs?style=flat-square&color=black&logo=github&a=0">
+ 
+<img src="https://badges.pufler.dev/repos/mrinalcs?style=flat-square&color=black&logo=github&a=0">
+  
+<img src="https://badges.pufler.dev/gists/mrinalcs?style=flat-square&color=black&logo=github&a=0">
+  
+<img src="https://badges.pufler.dev/commits/monthly/mrinalcs?style=flat-square&color=black&logo=github&a=0">
+
+
+
+
+
+
+ [![Last Stars Display](https://badges.pufler.dev/last-stars/mrinalcs?count=6&padding=15&perRow=3)](https://badges.pufler.dev)
