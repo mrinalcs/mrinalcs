@@ -1,6 +1,5 @@
-👋 Hi, I'm Mrinal\
-📚 Pursuing M.Sc in Statistics.\
-🌱 Interested in WebDesign.
+# snap
 
-📧 Contact: [mrinalvbu@gmail.com](mailto:mrinalvbu@gmail.com)\
-🔗 LinkedIn: [MrinalChandraSarkar](https://www.linkedin.com/in/mrinalchandrasarkar)
+```
+https://github.com/mrinalcs/snape.git
+```
