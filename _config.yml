@@ -1,4 +1,4 @@
-title: Mrinal Chandra Sarkar
+title: Mrinal
 email: mrinalvbu@gmail.com
 description: >-
   Hello world.
@@ -6,6 +6,8 @@ baseurl: ""
 url: ""
 twitter_username: mrinalcs
 github_username:  mrinalcs
+linkedin_username:  mrinalcs
+facebook_username:  mrinalcs
 
 theme: minima
 plugins:
@@ -22,4 +24,14 @@ collections:
 
 exclude:
   - index.html
+  - yarn.lock
+  - theme.config.js
+  - README.md
+  - package.json
+  - package-lock.json
+  - next.config.js
+  - data.json
+  - /pages
+  - /scripts
+  - /styles
 
