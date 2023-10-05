@@ -16,7 +16,7 @@ Here are some ideas to get you started:
 -->
 
 
-👋 Hi, I'm Mrinal\
+👋 Hi, I'm Mrinal Chandra Sarkar\
 📚 Pursuing M.Sc in Statistics.\
 🌱 Interested in WebDesign.
 
