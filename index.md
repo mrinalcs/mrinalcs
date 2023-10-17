@@ -1,5 +1,1382 @@
 ---
 layout: default
 ---
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- preload assets -->
+  <link rel="preload" href="/static/img/bg/hero.jpg" as="image">
+  <link rel="preload" href="/static/img/bg/ringtone.jpg" as="image">
+  <link rel="preload" href="/static/img/bg/notes.jpg" as="image">
+  <link rel="preload" href="/public/images/1.jpg" as="image">
 
-# Hello this is jekyll home
+  
+  <link rel="preload" href="public/fonts/Boruna.otf">
+  
+  <link rel="icon" type="image/x-icon" href="/favicon.ico"> 
+  <link rel="manifest" href="/manifest.json" />
+  <title>Mrinal</title>
+
+  
+
+  
+  <script>
+    const staticFolder = "static";
+
+    function toggleNavbar() {
+      var navbar = document.getElementById("myNavbar");
+      var icon = navbar.getElementsByClassName("icon")[0];
+
+      if (navbar.classList.contains("responsive")) {
+        navbar.classList.remove("responsive");
+        icon.classList.remove("opened");
+        icon.classList.add("closed");
+      } else {
+        navbar.classList.add("responsive");
+        icon.classList.remove("closed");
+        icon.classList.add("opened");
+      }
+
+      // Clear the "Page Not Found" message if it's displayed
+      var contentDiv = document.getElementById("content");
+      if (contentDiv.innerHTML.includes("Page Not Found")) {
+        contentDiv.innerHTML = "";
+      }
+    }
+
+    function loadContent(page) {
+      var contentDiv = document.getElementById("content");
+      var pageTitle = "Mrinal"; // Default page title
+      var jsonFile = "";
+      switch (page) {
+        case "":
+        case "/":
+          jsonFile = staticFolder + "/home.json";
+          pageTitle = "Mrinal";
+          break;
+        case "/about":
+          jsonFile = staticFolder + "/about.json";
+          pageTitle = "About | Mrinal";
+          break;
+
+
+
+
+ 
+
+
+
+      
+
+
+ case "/repositories":
+  pageTitle = "Repositories | Mrinal";
+
+  fetch("https://api.github.com/users/mrinalcs/repos")
+    .then(function(response) {
+      if (!response.ok) {
+        throw new Error("Failed to load the content.");
+      }
+      return response.json();
+    })
+    .then(function(data) {
+      var repositories = data;
+
+      function createRepositoryCard(repository) {
+        var language = repository.language || "Not specified";
+        var cardHTML = `
+          <div class='repository-card'>
+            <h3 class='repository-name'>${repository.name}</h3>
+            <p class='repository-description'>${repository.description || ""}</p>
+            <p class='repository-language'>Language: ${language}</p>
+            <p class='repository-url'><a href='${repository.html_url}' target='_blank'>View Repository</a></p>
+          </div>
+        `;
+
+        return cardHTML;
+      }
+
+      var repositoriesHTML = repositories
+        .map(function(repository) {
+          return createRepositoryCard(repository);
+        })
+        .join("");
+
+      contentDiv.innerHTML = `
+        <h1>My Repositories</h1>
+        <div class='grid-container'>
+          ${repositoriesHTML}
+        </div>
+      `;
+    })
+    .catch(function(error) {
+      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+      document.title = "Error";
+    });
+  break;
+
+
+
+
+
+          
+
+
+
+          case "/notes":
+  pageTitle = "Notes | Mrinal";
+
+  fetch("https://api.github.com/repos/mrinalcs/vbstat/contents/note")
+    .then(function(response) {
+      if (!response.ok) {
+        throw new Error("Failed to load the content.");
+      }
+      return response.json();
+    })
+    .then(function(data) {
+      var folders = data.filter(function(item) {
+        return item.type === "dir";
+      });
+
+      function createFolderList() {
+        var listHTML = folders
+          .map(function(folder) {
+            return "<li class='folder' data-path='" + folder.path + "'><span class='folder-name'>" + folder.name + "</span></li>";
+          })
+          .join("");
+
+        return "<ul class='folder-list'>" + listHTML + "</ul>";
+      }
+
+      function loadFilesForFolder(folderPath, folderItem) {
+        fetch("https://api.github.com/repos/mrinalcs/vbstat/contents/" + folderPath)
+          .then(function(response) {
+            if (!response.ok) {
+              throw new Error("Failed to load the content.");
+            }
+            return response.json();
+          })
+          .then(function(filesData) {
+            var files = filesData.filter(function(item) {
+              return item.type === "file";
+            });
+
+            var fileListHTML = files
+              .map(function(file) {
+                return "<li class='file'><a href='" + file.download_url + "' target='_blank'>" + file.name + "</a></li>";
+              })
+              .join("");
+
+            var fileList = document.createElement("ul");
+            fileList.classList.add("file-list");
+            fileList.innerHTML = fileListHTML;
+
+            folderItem.appendChild(fileList);
+          })
+          .catch(function(error) {
+            console.log("Failed to load folder content:", error);
+          });
+      }
+
+      contentDiv.innerHTML = "<div class='file-manager'>" +
+        " " +
+        "<div class='folder-view'>" +
+        "<h2>Notes</h2>" +
+        createFolderList() +
+        "</div>" +
+        "</div>";
+
+      // Handle folder click to expand and view files inside
+      var folderList = contentDiv.querySelector(".folder-list");
+      folderList.addEventListener("click", function(event) {
+        var folderItem = event.target.closest(".folder");
+        if (folderItem) {
+          var folderPath = folderItem.getAttribute("data-path");
+          if (folderItem.querySelector(".file-list")) {
+            folderItem.querySelector(".file-list").remove();
+          } else {
+            loadFilesForFolder(folderPath, folderItem);
+          }
+        }
+      });
+    })
+    .catch(function(error) {
+      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+      document.title = "Error";
+    });
+  break;
+
+
+
+
+
+
+
+
+          case "/lyrics":
+  fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/lyrics")
+    .then(function(response) {
+      if (!response.ok) {
+        throw new Error("Failed to load the content.");
+      }
+      return response.json();
+    })
+    .then(function(data) {
+      var lyricsContainer = document.createElement("div");
+      lyricsContainer.className = "lyrics-container";
+
+      var songList = document.createElement("ul");
+      songList.className = "song-list";
+
+      data.forEach(function(item) {
+        if (item.type === "file" && item.name.endsWith(".txt")) {
+          var songName = item.name.replace(".txt", "");
+
+          var songItem = document.createElement("li");
+          songItem.textContent = songName;
+          songItem.addEventListener("click", function() {
+            fetch(item.download_url)
+              .then(function(response) {
+                if (!response.ok) {
+                  throw new Error("Failed to load the lyrics.");
+                }
+                return response.text();
+              })
+              .then(function(lyrics) {
+                var lyricsElement = document.createElement("pre");
+                lyricsElement.className = "lyrics";
+                lyricsElement.textContent = lyrics;
+                lyricsContainer.innerHTML = "";
+                lyricsContainer.appendChild(lyricsElement);
+              })
+              .catch(function(error) {
+                console.error(error);
+              });
+          });
+
+          songList.appendChild(songItem);
+        }
+      });
+
+      contentDiv.innerHTML = "";
+      contentDiv.appendChild(songList);
+      contentDiv.appendChild(lyricsContainer);
+      document.title = "Lyrics - Mrinal"; // Update the document title
+    })
+    .catch(function(error) {
+      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+      document.title = "Error";
+    });
+  break;
+
+
+
+
+
+
+
+
+
+
+
+
+case "/picnic":
+  var jsonFile = "static/picnic.json";
+  var pageTitle = "Picnic";
+
+  contentDiv.innerHTML = "<div class='loading'>Loading...</div>"; // Display the loading state
+
+  if (jsonFile) {
+    fetch(jsonFile)
+      .then(function(response) {
+        if (!response.ok) {
+          throw new Error("Failed to load the content.");
+        }
+        return response.json();
+      })
+      .then(function(data) {
+        contentDiv.innerHTML = data.content;
+        document.title = pageTitle; // Update the document title
+
+        if (data.css) {
+          var styleElement = document.createElement("style");
+          styleElement.textContent = data.css; // Apply CSS code
+          document.head.appendChild(styleElement);
+        }
+
+        // Add event listeners to links in the loaded content
+        var links = contentDiv.querySelectorAll("a");
+        links.forEach(function(link) {
+          link.addEventListener("click", handleLinkClick);
+        });
+      })
+      .catch(function(error) {
+        contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+        document.title = "Error";
+      });
+  }
+
+  break;
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+
+
+case "/showcase":
+  var jsonFile = "static/showcase1.json";
+  var pageTitle = "Showcase";
+
+  contentDiv.innerHTML = "<div class='loading'>Loading...</div>"; // Display the loading state
+
+  if (jsonFile) {
+    fetch(jsonFile)
+      .then(function(response) {
+        if (!response.ok) {
+          throw new Error("Failed to load the content.");
+        }
+        return response.json();
+      })
+      .then(function(data) {
+        contentDiv.innerHTML = data.content;
+        document.title = pageTitle; // Update the document title
+
+        if (data.css) {
+          var styleElement = document.createElement("style");
+          styleElement.textContent = data.css; // Apply CSS code
+          document.head.appendChild(styleElement);
+        }
+
+        // Add event listeners to links in the loaded content
+        var links = contentDiv.querySelectorAll("a");
+        links.forEach(function(link) {
+          link.addEventListener("click", handleLinkClick);
+        });
+      })
+      .catch(function(error) {
+        contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+        document.title = "Error";
+      });
+  }
+
+  break;
+
+
+
+
+
+case "/ui-design-course-landing-page":
+  var jsonFile = "ui-design-course-landing-page.json";
+  var pageTitle = "UI Design Course Landing Page";
+
+  contentDiv.innerHTML = "<div class='loading'>Loading...</div>"; // Display the loading state
+
+  if (jsonFile) {
+    fetch(jsonFile)
+      .then(function(response) {
+        if (!response.ok) {
+          throw new Error("Failed to load the content.");
+        }
+        return response.json();
+      })
+      .then(function(data) {
+        contentDiv.innerHTML = data.content;
+        document.title = pageTitle; // Update the document title
+
+        if (data.css) {
+          var styleElement = document.createElement("style");
+          styleElement.textContent = data.css; // Apply CSS code
+          document.head.appendChild(styleElement);
+        }
+
+        // Add event listeners to links in the loaded content
+        var links = contentDiv.querySelectorAll("a");
+        links.forEach(function(link) {
+          link.addEventListener("click", handleLinkClick);
+        });
+      })
+      .catch(function(error) {
+        contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+        document.title = "Error";
+      });
+  }
+
+  break;
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+case "/html-json-converter":
+           pageTitle = "HTML to JSON";
+  fetch("text.json") // Replace with the path to your data.json file
+    .then(function(response) {
+      if (!response.ok) {
+        throw new Error("Failed to load the content.");
+      }
+      return response.json();
+    })
+    .then(function(data) {
+      var htmlValue = data.html;
+
+      function createHtmlJsonConverter(html) {
+        return `<div>
+                  <textarea class="html-input">${html}</textarea>
+                  <div class="conversion-buttons">
+                    <button class="convert-to-json-button">Convert to JSON</button>
+                  </div>
+                  <textarea class="json-output" readonly></textarea>
+                </div>`;
+      }
+
+      contentDiv.innerHTML = createHtmlJsonConverter(htmlValue);
+      
+
+      var convertToJsonButton = contentDiv.querySelector(".convert-to-json-button");
+      var htmlInput = contentDiv.querySelector(".html-input");
+      var jsonOutput = contentDiv.querySelector(".json-output");
+
+      convertToJsonButton.addEventListener("click", function() {
+        var inputValue = htmlInput.value;
+        var convertedValue = convertToJSON(inputValue);
+        jsonOutput.value = convertedValue;
+      });
+
+      function convertToJSON(html) {
+        // Convert HTML to JSON logic goes here
+        // Replace this placeholder logic with your actual implementation
+        var jsonData = JSON.stringify({ text: html }, null, 2);
+        return jsonData;
+      }
+    })
+    .catch(function(error) {
+      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+      document.title = "Error";
+    });
+  break;
+
+
+
+
+
+
+
+case "/text-converter":
+           pageTitle = "Text Convert";
+  fetch("text.json") // Replace with the path to your text.json file
+    .then(function(response) {
+      if (!response.ok) {
+        throw new Error("Failed to load the content.");
+      }
+      return response.json();
+    })
+    .then(function(data) {
+      var textValue = data.text;
+
+      function createTextConverter(text) {
+        return `<div>
+                  <textarea class="text-input">${text}</textarea>
+                  <div class="conversion-buttons">
+                    <button class="convert-single-button">Convert ' to "</button>
+                    <button class="convert-double-button">Convert " to '</button>
+                    <button class="copy-button">Copy</button>
+                  </div>
+                  <textarea class="output-text" readonly></textarea>
+                </div>`;
+      }
+
+      contentDiv.innerHTML = createTextConverter(textValue);
+       
+
+      // Convert single button event listener
+      var convertSingleButton = contentDiv.querySelector(".convert-single-button");
+      var textInput = contentDiv.querySelector(".text-input");
+      var outputText = contentDiv.querySelector(".output-text");
+      convertSingleButton.addEventListener("click", function() {
+        var inputValue = textInput.value;
+        var convertedValue = convertSingleQuotes(inputValue);
+        outputText.value = convertedValue;
+      });
+
+      // Convert double button event listener
+      var convertDoubleButton = contentDiv.querySelector(".convert-double-button");
+      convertDoubleButton.addEventListener("click", function() {
+        var inputValue = textInput.value;
+        var convertedValue = convertDoubleQuotes(inputValue);
+        outputText.value = convertedValue;
+      });
+
+      // Copy button event listener
+      var copyButton = contentDiv.querySelector(".copy-button");
+      copyButton.addEventListener("click", function() {
+        outputText.select();
+        document.execCommand("copy");
+        copyButton.textContent = "Copied!";
+        setTimeout(function() {
+          copyButton.textContent = "Copy Output";
+        }, 1000);
+      });
+
+      // Function to convert single quotes to double quotes
+      function convertSingleQuotes(text) {
+        return text.replace(/'/g, "\"");
+      }
+
+      // Function to convert double quotes to single quotes
+      function convertDoubleQuotes(text) {
+        return text.replace(/"/g, "'");
+      }
+    })
+    .catch(function(error) {
+      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+      document.title = "Error";
+    });
+  break;
+
+
+
+
+
+
+  case "/instagram":
+  var params = new URLSearchParams(window.location.search);
+  var currentPage = parseInt(params.get("page")) || 1;
+
+  var imagesPerPage = 50;
+  var totalImages = 1000;
+  var totalFolders = Math.ceil(totalImages / (imagesPerPage * 20));
+
+  var currentFolder = Math.ceil(currentPage / 20); // Calculate the current folder based on the page number
+  var currentFolderPage = currentPage % 20 || 20; // Calculate the page number within the current folder
+
+  var pageTitle = "Instagram - Folder " + currentFolder + " - Page " + currentFolderPage;
+
+  var imageData;
+
+  fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/instagram" + currentFolder)
+    .then(function (response) {
+      if (!response.ok) {
+        throw new Error("Failed to load the content.");
+      }
+      return response.json();
+    })
+    .then(function (data) {
+      imageData = data;
+      showPage(currentFolderPage);
+    })
+    .catch(function (error) {
+      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+      document.title = "Error";
+    });
+
+  function showPage(page) {
+    var startIndex = (page - 1) * imagesPerPage;
+    var endIndex = Math.min(startIndex + imagesPerPage, imageData.length);
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var image = entry.target;
+          image.src = image.dataset.src;
+          observer.unobserve(image);
+        }
+      });
+    });
+
+    var imageHTML = imageData.slice(startIndex, endIndex).map(function (image) {
+      var imagePath = "public/instagram" + currentFolder + "/" + image.name;
+      return "<div><img src='loading-p.svg' data-src='" + imagePath + "' class='photo' loading='lazy'></div>";
+    });
+
+    var prevButtonHTML = currentFolderPage > 1 ? "<button class='prev-button'>Previous</button>" : "";
+    var nextButtonHTML = endIndex < imageData.length ? "<button class='next-button'>Next</button>" : "";
+
+    contentDiv.innerHTML = "<h1 id='top'>" + pageTitle + "</h1>" +
+      "<div class='grid-container'>" + imageHTML.join("") + "</div>" +
+      "<div class='pagination'>" +
+      prevButtonHTML + nextButtonHTML +
+      "</div>";
+
+    var images = contentDiv.querySelectorAll(".photo");
+    images.forEach(function (image) {
+      observer.observe(image);
+    });
+
+    var prevButton = contentDiv.querySelector(".prev-button");
+    var nextButton = contentDiv.querySelector(".next-button");
+
+    if (prevButton) {
+      prevButton.addEventListener("click", function () {
+        if (currentFolderPage > 1) {
+          currentFolderPage--;
+          showPage(currentFolderPage);
+          history.pushState(null, null, "?page=" + ((currentFolder - 1) * 20 + currentFolderPage)); // Update the browser URL
+          updatePageTitle(); // Update the page title after changing the page
+        }
+      });
+    }
+
+    if (nextButton) {
+      nextButton.addEventListener("click", function () {
+        if (endIndex < imageData.length) {
+          currentFolderPage++;
+          showPage(currentFolderPage);
+          history.pushState(null, null, "?page=" + ((currentFolder - 1) * 20 + currentFolderPage) + "#top"); // Update the browser URL
+          updatePageTitle(); // Update the page title after changing the page
+        }
+      });
+    }
+  }
+
+  function updatePageTitle() {
+    pageTitle = "Instagram - Folder " + currentFolder + " - Page " + currentFolderPage;
+    document.title = pageTitle;
+  }
+
+  break;
+
+
+
+
+
+
+          case "/ringtone":
+          pageTitle = "Ringtone I Loved";
+  fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/audio")
+    .then(function(response) {
+      if (!response.ok) {
+        throw new Error("Failed to load the content.");
+      }
+      return response.json();
+    })
+    .then(function(data) {
+      var audioList = data.map(function(audio, index) {
+        return {
+          title: audio.name,
+          source: audio.download_url,
+          index: index
+        };
+      });
+
+      var currentSongIndex = 0;
+      var audioElement = new Audio(audioList[currentSongIndex].source);
+      var isPlaying = false;
+
+      function playSong(index) {
+        audioElement.pause();
+        audioElement.src = audioList[index].source;
+        audioElement.load();
+        audioElement.play();
+        currentSongIndex = index;
+        highlightCurrentSong();
+        isPlaying = true;
+        playButton.textContent = "Pause";
+      }
+
+      function pauseSong() {
+        audioElement.pause();
+        isPlaying = false;
+        playButton.textContent = "Play";
+      }
+
+      function togglePlayPause() {
+        if (isPlaying) {
+          pauseSong();
+        } else {
+          playSong(currentSongIndex);
+        }
+      }
+
+      function playNextSong() {
+        var nextSongIndex = (currentSongIndex + 1) % audioList.length;
+        playSong(nextSongIndex);
+      }
+
+      function playPreviousSong() {
+        var previousSongIndex = (currentSongIndex - 1 + audioList.length) % audioList.length;
+        playSong(previousSongIndex);
+      }
+
+      function createMusicList() {
+        var listHTML = audioList
+          .map(function(audio, index) {
+            return "<li data-index='" + index + "'>" + audio.title + "</li>";
+          })
+          .join("");
+
+        return "<ul class='music-list'>" + listHTML + "</ul>";
+      }
+
+      function highlightCurrentSong() {
+        var musicListItems = player.querySelectorAll(".music-list li");
+        musicListItems.forEach(function(item) {
+          item.classList.remove("current-song");
+        });
+        musicListItems[currentSongIndex].classList.add("current-song");
+      }
+
+      contentDiv.innerHTML = "<br><div class='music-player'>" +
+        "<h1>Ringtone Player</h1>" +
+        "<div class='controls'>" +
+        "<button class='previous-btn'>Previous</button>" +
+        "<button class='play-pause-btn'>Play</button>" +
+        "<button class='next-btn'>Next</button>" +
+        "</div>" +
+        createMusicList() +
+        "</div>";
+     
+
+      var player = contentDiv.querySelector(".music-player");
+      var playButton = player.querySelector(".play-pause-btn");
+      var previousButton = player.querySelector(".previous-btn");
+      var nextButton = player.querySelector(".next-btn");
+      var musicListItems = player.querySelectorAll(".music-list li");
+
+      playButton.addEventListener("click", function() {
+        togglePlayPause();
+      });
+
+      previousButton.addEventListener("click", function() {
+        playPreviousSong();
+      });
+
+      nextButton.addEventListener("click", function() {
+        playNextSong();
+      });
+
+      musicListItems.forEach(function(item) {
+        item.addEventListener("click", function() {
+          var index = parseInt(item.getAttribute("data-index"));
+          playSong(index);
+        });
+      });
+
+      audioElement.addEventListener("ended", playNextSong);
+
+      highlightCurrentSong();
+    })
+    .catch(function(error) {
+      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+      document.title = "Error";
+    });
+  break;
+
+
+
+
+
+
+case "/photos":
+          pageTitle = "Photos | Mrinal";
+  fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/images")
+    .then(function(response) {
+      if (!response.ok) {
+        throw new Error("Failed to load the content.");
+      }
+      return response.json();
+    })
+    .then(function(data) {
+      var imageList = data.map(function(image) {
+        return {
+          title: image.name,
+          source: image.download_url,
+          alt: image.name
+        };
+      });
+
+      function createPhotoGallery() {
+        var galleryHTML = imageList
+          .map(function(image) {
+            return "<li><img src='rolling.svg' data-src='" + image.source + "' alt='" + image.alt + "' class='lazy'></li>";
+          })
+          .join("");
+
+        return "<div class='container'><ul class='image-gallery'>" + galleryHTML + "</ul></div>";
+      }
+
+      contentDiv.innerHTML = createPhotoGallery();
+    
+
+      // Lazy load images when they come into the viewport
+      var lazyImages = contentDiv.querySelectorAll(".lazy");
+      var lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            var lazyImage = entry.target;
+            lazyImage.src = lazyImage.getAttribute("data-src");
+            lazyImage.classList.remove("lazy");
+            lazyImageObserver.unobserve(lazyImage);
+          }
+        });
+      });
+
+      lazyImages.forEach(function(lazyImage) {
+        lazyImageObserver.observe(lazyImage);
+      });
+    })
+    .catch(function(error) {
+      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+      document.title = "Error";
+    });
+  break;
+
+
+
+
+          
+
+
+
+
+
+case "/snippet":
+  fetch("static/snippet.json") // Replace with the path to your snippet.json file
+    .then(function(response) {
+      if (!response.ok) {
+        throw new Error("Failed to load the content.");
+      }
+      return response.json();
+    })
+    .then(function(data) {
+      var snippetList = data.snippets;
+
+      function createSnippetGallery(snippets) {
+        var galleryHTML = snippets
+          .map(function(snippet) {
+            return `<div class="snippet">
+                      <div class="snippet-title">${snippet.title}</div>
+                      <pre><code class="language-html">${escapeHTML(snippet.code)}</code></pre>
+                      <button class="copy-button">Copy</button>
+                    </div>`;
+          })
+          .join("");
+
+        return `<div class="snippet-container">${galleryHTML}</div>`;
+      }
+
+      function searchSnippets(searchTerm) {
+        var filteredSnippets = snippetList.filter(function(snippet) {
+          return (
+            snippet.title.toLowerCase().includes(searchTerm) ||
+            snippet.code.toLowerCase().includes(searchTerm)
+          );
+        });
+
+        contentDiv.innerHTML = createSnippetGallery(filteredSnippets);
+      }
+
+      contentDiv.innerHTML = createSnippetGallery(snippetList);
+      document.title = "Snippets - Mrinal"; // Update the document title
+
+      // Copy button click event listener
+      var copyButtons = contentDiv.querySelectorAll(".copy-button");
+      copyButtons.forEach(function(button) {
+        button.addEventListener("click", function(event) {
+          var codeBlock = event.target.previousElementSibling;
+          copyCodeToClipboard(codeBlock);
+        });
+      });
+
+      // Function to copy code to clipboard
+      function copyCodeToClipboard(element) {
+        var range = document.createRange();
+        range.selectNodeContents(element);
+        var selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand("copy");
+        selection.removeAllRanges();
+
+        // Change the button text briefly to indicate success
+        var originalButtonText = element.nextElementSibling.textContent;
+        element.nextElementSibling.textContent = "Copied!";
+        setTimeout(function() {
+          element.nextElementSibling.textContent = originalButtonText;
+        }, 1500);
+      }
+
+      // Function to escape HTML characters
+      function escapeHTML(html) {
+        var escapeMap = {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#039;"
+        };
+        return html.replace(/[&<>"']/g, function(char) {
+          return escapeMap[char];
+        });
+      }
+
+      // Search input event listener
+      var searchInput = document.createElement("input");
+      searchInput.type = "text";
+      searchInput.placeholder = "Search snippets...";
+      searchInput.id = "searchInput";
+      searchInput.addEventListener("input", function(event) {
+        var searchTerm = event.target.value.toLowerCase();
+        searchSnippets(searchTerm);
+      });
+
+      var searchContainer = document.createElement("div");
+      searchContainer.className = "s-input"; 
+      searchContainer.appendChild(searchInput);
+      contentDiv.insertBefore(searchContainer, contentDiv.firstChild);
+    })
+    .catch(function(error) {
+      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+      document.title = "Error";
+    });
+  break;
+
+
+
+
+
+
+
+
+
+case "/ig":
+  var params = new URLSearchParams(window.location.search);
+  var currentPage = parseInt(params.get("page")) || 1;
+
+  var imagesPerPage = 50;
+  var totalImages = 1000;
+  var totalFolders = Math.ceil(totalImages / (imagesPerPage * 20));
+
+  var currentFolder = Math.ceil(currentPage / 20); // Calculate the current folder based on the page number
+  var currentFolderPage = currentPage % 20 || 20; // Calculate the page number within the current folder
+
+  var pageTitle = "Instagram - Folder " + currentFolder + " - Page " + currentFolderPage;
+
+  var imageData;
+
+  fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/instagram" + currentFolder)
+    .then(function (response) {
+      if (!response.ok) {
+        throw new Error("Failed to load the content.");
+      }
+      return response.json();
+    })
+    .then(function (data) {
+      imageData = data;
+      showPage(currentFolderPage);
+    })
+    .catch(function (error) {
+      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+      document.title = "Error";
+    });
+
+  function showPage(page) {
+    var startIndex = (page - 1) * imagesPerPage;
+    var endIndex = Math.min(startIndex + imagesPerPage, imageData.length);
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var image = entry.target;
+          image.src = image.dataset.src;
+          observer.unobserve(image);
+        }
+      });
+    });
+
+    var imageHTML = imageData.slice(startIndex, endIndex).map(function (image) {
+      var imagePath = "public/instagram" + currentFolder + "/" + image.name;
+      return "<div><img src='loading-p.svg' data-src='" + imagePath + "' class='photo' loading='lazy'></div>";
+    });
+
+    var prevButtonHTML = currentFolderPage > 1 ? "<button class='prev-button'>Previous</button>" : "";
+    var nextButtonHTML = endIndex < imageData.length ? "<button class='next-button'>Next</button>" : "";
+
+    contentDiv.innerHTML = "<h1>" + pageTitle + "</h1>" +
+      "<div class='grid-container'>" + imageHTML.join("") + "</div>" +
+      "<div class='pagination'>" +
+      prevButtonHTML + nextButtonHTML +
+      "</div>";
+
+    var images = contentDiv.querySelectorAll(".photo");
+    images.forEach(function (image) {
+      observer.observe(image);
+    });
+
+    var prevButton = contentDiv.querySelector(".prev-button");
+    var nextButton = contentDiv.querySelector(".next-button");
+
+    if (prevButton) {
+      prevButton.addEventListener("click", function () {
+        if (currentFolderPage > 1) {
+          currentFolderPage--;
+          showPage(currentFolderPage);
+          history.pushState(null, null, "?page=" + ((currentFolder - 1) * 20 + currentFolderPage)); // Update the browser URL
+          updatePageTitle(); // Update the page title after changing the page
+          window.scrollTo(0, 0); // Scroll to the top of the page
+        }
+      });
+    }
+
+    if (nextButton) {
+      nextButton.addEventListener("click", function () {
+        if (endIndex < imageData.length) {
+          currentFolderPage++;
+          showPage(currentFolderPage);
+          history.pushState(null, null, "?page=" + ((currentFolder - 1) * 20 + currentFolderPage)); // Update the browser URL
+          updatePageTitle(); // Update the page title after changing the page
+          window.scrollTo(0, 0); // Scroll to the top of the page
+        }
+      });
+    }
+  }
+
+  function updatePageTitle() {
+    pageTitle = "Instagram - Folder " + currentFolder + " - Page " + currentFolderPage;
+    document.title = pageTitle;
+  }
+  break;
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+case "/i":
+  var params = new URLSearchParams(window.location.search);
+  var currentPage = parseInt(params.get("page")) || 1;
+
+  var imagesPerPage = 50;
+  var totalImages = 1000;
+  var totalFolders = Math.ceil(totalImages / (imagesPerPage * 20));
+
+  var currentFolder = Math.ceil(currentPage / 20); // Calculate the current folder based on the page number
+  var currentFolderPage = currentPage % 20 || 20; // Calculate the page number within the current folder
+
+  var pageTitle = "Instagram - Folder " + currentFolder + " - Page " + currentFolderPage;
+
+  var imageData;
+
+  fetch("https://api.github.com/repos/mrinalcs/mrinalcs/contents/public/instagram" + currentFolder)
+    .then(function (response) {
+      if (!response.ok) {
+        throw new Error("Failed to load the content.");
+      }
+      return response.json();
+    })
+    .then(function (data) {
+      imageData = data;
+      showPage(currentFolderPage);
+    })
+    .catch(function (error) {
+      contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+      document.title = "Error";
+    });
+
+  function showPage(page) {
+    var startIndex = (page - 1) * imagesPerPage;
+    var endIndex = Math.min(startIndex + imagesPerPage, imageData.length);
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var image = entry.target;
+          image.src = image.dataset.src;
+          observer.unobserve(image);
+        }
+      });
+    });
+
+    var imageHTML = imageData.slice(startIndex, endIndex).map(function (image) {
+      var imagePath = "public/instagram" + currentFolder + "/" + image.name;
+      return "<div><img src='loading-p.svg' data-src='" + imagePath + "' class='photo' loading='lazy'></div>";
+    });
+
+    var prevButtonHTML = currentFolderPage > 1 ? "<button class='prev-button'>Previous</button>" : "";
+    var nextButtonHTML = endIndex < imageData.length ? "<button class='next-button'>Next</button>" : "";
+
+    contentDiv.innerHTML = "<h1>" + pageTitle + "</h1>" +
+      "<div class='grid-container'>" + imageHTML.join("") + "</div>" +
+      "<div class='pagination'>" +
+      prevButtonHTML + nextButtonHTML +
+      "</div>";
+
+    var images = contentDiv.querySelectorAll(".photo");
+    images.forEach(function (image) {
+      observer.observe(image);
+    });
+
+    var prevButton = contentDiv.querySelector(".prev-button");
+    var nextButton = contentDiv.querySelector(".next-button");
+
+    if (prevButton) {
+      prevButton.addEventListener("click", function () {
+        if (currentFolderPage > 1) {
+          currentFolderPage--;
+          showPage(currentFolderPage);
+          history.pushState(null, null, "?page=" + ((currentFolder - 1) * 20 + currentFolderPage)); // Update the browser URL
+          updatePageTitle(); // Update the page title after changing the page
+        }
+      });
+    }
+
+    if (nextButton) {
+      nextButton.addEventListener("click", function () {
+        if (endIndex < imageData.length) {
+          currentFolderPage++;
+          showPage(currentFolderPage);
+          history.pushState(null, null, "?page=" + ((currentFolder - 1) * 20 + currentFolderPage)); // Update the browser URL
+          updatePageTitle(); // Update the page title after changing the page
+          window.scrollTo({ top: 0, behavior: 'smooth' }); // Smoothly scroll to the top of the page
+        }
+      });
+    }
+  }
+
+  function updatePageTitle() {
+    pageTitle = "Instagram - Folder " + currentFolder + " - Page " + currentFolderPage;
+    document.title = pageTitle;
+  }
+  break;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+case "/settings":
+  // Check if the user has previously selected a theme and retrieve it from the cookie
+  var selectedTheme = getCookie("theme");
+
+  // HTML content for the settings page
+  var settingsHTML = `
+    <h1>Settings</h1>
+    <label for="theme-select">Select Theme:</label>
+    <select id="theme-select">
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+    </select>
+    <button id="save-theme-button">Save Theme</button>
+  `;
+
+  // Set the content of the page
+  contentDiv.innerHTML = settingsHTML;
+
+  // Set the initially selected theme if available in the cookie
+  if (selectedTheme) {
+    document.getElementById("theme-select").value = selectedTheme;
+  }
+
+  // Add an event listener to the "Save Theme" button
+  document.getElementById("save-theme-button").addEventListener("click", function () {
+    // Get the selected theme from the dropdown
+    var selectedTheme = document.getElementById("theme-select").value;
+
+    // Save the selected theme in a cookie
+    setCookie("theme", selectedTheme, 30); // Expires in 30 days
+  });
+
+  break;
+
+// Function to set a cookie
+function setCookie(name, value, days) {
+  var expires = "";
+  if (days) {
+    var date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    expires = "; expires=" + date.toUTCString();
+  }
+  document.cookie = name + "=" + value + expires + "; path=/";
+}
+
+// Function to get a cookie by name
+function getCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+  }
+  return null;
+}
+
+
+
+
+    
+
+          
+          
+
+
+          
+          
+        case "/contact":
+          jsonFile = staticFolder + "/contact.json";
+          pageTitle = "Contact | Mrinal";
+          break;
+        default:
+          contentDiv.innerHTML = "<h1>Page Not Found</h1><p>The requested page was not found.</p>";
+          document.title = "Page Not Found";
+          return; // Exit the function
+      }
+
+      document.title = pageTitle; // Set the page title
+
+      contentDiv.innerHTML = "<div class='loading'>Loading...</div>"; // Display the loading state
+
+      if (jsonFile) {
+        fetch(jsonFile)
+          .then(function(response) {
+            if (!response.ok) {
+              throw new Error("Failed to load the content.");
+            }
+            return response.json();
+          })
+          .then(function(data) {
+            contentDiv.innerHTML = data.content;
+            document.title = pageTitle; // Update the document title
+
+            if (data.css) {
+              var styleElement = document.createElement("style");
+              styleElement.textContent = data.css; // Apply CSS code
+              document.head.appendChild(styleElement);
+            }
+
+            // Add event listeners to links in the loaded content
+            var links = contentDiv.querySelectorAll("a");
+            links.forEach(function(link) {
+              link.addEventListener("click", handleLinkClick);
+            });
+          })
+          .catch(function(error) {
+            contentDiv.innerHTML = "<h1>Error</h1><p>" + error.message + "</p>";
+            document.title = "Error";
+          });
+      }
+    }
+
+    function handleLinkClick(event) {
+  event.preventDefault();
+  var target = event.target;
+  
+  // If the clicked element is within a <span>, get the parent <a> element
+  if (target.tagName !== "A") {
+    target = event.target.closest("a");
+  }
+
+  var page = target.getAttribute("href");
+
+  var navbar = document.getElementById("myNavbar");
+  if (navbar.classList.contains("responsive")) {
+    toggleNavbar(); // Close the navigation menu if it's responsive
+  }
+
+  // Check if the link is an external link
+  if (target.hasAttribute("target") && target.getAttribute("target") === "_blank") {
+    window.open(page, "_blank"); // Open the link in a new tab or window
+  } else {
+    loadContent(page);
+    history.pushState(null, null, page); // Update the browser URL
+  }
+}
+
+
+
+
+    window.addEventListener("popstate", function(event) {
+      var page = location.pathname;
+      loadContent(page);
+    });
+
+    window.addEventListener("DOMContentLoaded", function(event) {
+      var links = document.querySelectorAll(".navbar a");
+      links.forEach(function(link) {
+        link.addEventListener("click", handleLinkClick);
+      });
+
+      
+      var initialPage = location.pathname;
+      loadContent(initialPage);
+    });
+  </script>
+</head>
+<body>
+  <div class="navbar" id="myNavbar">
+    <a href="/">Home</a>
+    <a href="/notes">Notes</a>
+    <a href="/photos">Photos</a> 
+    <a href="/repositories">Repo<span class="sm">setorie</span>s</a>
+    <a href="/snippet">Snippet</a>
+    <a href="/showcase">Showcase</a>
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a> 
+    <button class="icon closed" onclick="toggleNavbar()"></button>
+  </div>
+
+  <noscript>
+    <p>This website requires JavaScript to function properly. Please enable JavaScript in your browser settings.</p>
+  </noscript>
+  
+  <div id="content"></div>
+  <footer  style="padding-top:20px">
+    <hr><p>&copy; 2023 Mrinal. All rights reserved.</p>
+  </footer>
+  <script>
+            const connectivityStatus = document.querySelector(
+                '.connectivity-status'
+            );
+
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () =>
+                    navigator.serviceWorker.register('serviceWorker.js')
+                );
+            }
+
+         
+        </script>
+</body>
+</html>
