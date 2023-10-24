@@ -21,4 +21,4 @@ Here are some ideas to get you started:
 🌱 Interested in WebDesign.
 
 📧 Contact: [mrinalvbu@gmail.com](mailto:mrinalvbu@gmail.com)\
-🔗 LinkedIn: [MrinalChandraSarkar](https://www.linkedin.com/in/mrinalchandrasarkar)
+🔗 LinkedIn: [MrinalChandraSarkar](https://www.linkedin.com/in/mrinalcs)
