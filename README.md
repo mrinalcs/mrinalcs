@@ -18,7 +18,3 @@ Here are some ideas to get you started:
 
 👋 Hi, I'm Mrinal Chandra Sarkar\
 📚 Pursuing M.Sc in Statistics.\
-🌱 Interested in WebDesign.
-
-📧 Contact: [mrinalvbu@gmail.com](mailto:mrinalvbu@gmail.com)\
-🔗 LinkedIn: [MrinalChandraSarkar](https://www.linkedin.com/in/mrinalcs)
