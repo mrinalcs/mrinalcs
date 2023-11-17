@@ -1176,12 +1176,12 @@ case "/text-converter":
 
     if (nextButton) {
       nextButton.addEventListener("click", function () {
-        if (endIndex < imageData.length) {
+        // if (endIndex < imageData.length) {
           currentFolderPage++;
           showPage(currentFolderPage);
           history.pushState(null, null, "?page=" + ((currentFolder - 1) * 20 + currentFolderPage) + "#top"); // Update the browser URL
           updatePageTitle(); // Update the page title after changing the page
-        }
+        // }
       });
     }
   }
