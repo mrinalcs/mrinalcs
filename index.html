@@ -1178,10 +1178,11 @@ if (nextButton) {
   nextButton.addEventListener("click", function () {
     currentFolderPage++;
     showPage(currentFolderPage);
-    history.pushState(null, null, "?page=" + ((currentFolder - 1) * 20 + currentFolderPage) + "#top");
-    updatePageTitle();
+    history.pushState(null, null, "?page=" + ((currentFolder - 1) * 20 + currentFolderPage) + "#top"); // Update the browser URL
+    updatePageTitle(); // Update the page title after changing the page
   });
 }
+
   }
 
   function updatePageTitle() {
