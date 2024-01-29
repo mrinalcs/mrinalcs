@@ -16,6 +16,6 @@ Here are some ideas to get you started:
 -->
 
 
-👋 Hi, I'm [Mrinal Chandra Sarkar](https://mrinalcs.github.io)\
+👋 Hi, I'm Mrinal Chandra Sarkar\
 📚 Pursuing M.Sc in Statistics.\
 📫 Reach me mrinalcs@yahoo.com
