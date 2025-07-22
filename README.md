@@ -40,18 +40,7 @@ Here are some ideas to get you started:
 
 ---
 
-## 🌱 I’m Currently Exploring...
  
-- 📊 Kaggle datasets for regression and feature selection  
-- 🧠 AI’s evolving role in data-driven careers  
-- 🧮 Career pathways in data science, analytics, and research
-
----
-
-## 📬 Get in Touch
-
-Feel free to connect via [GitHub](https://github.com/mrinalcs), contribute to shared ideas, or explore statistical projects together!
-
 <p align="center">
   <a href="https://mrinalcs.github.io/" target="_blank">
     <img src="https://img.shields.io/badge/ Visit My Website-0078D4?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Visit My Website"/>
