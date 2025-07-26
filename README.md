@@ -33,12 +33,13 @@ Here are some ideas to get you started:
 
 | 📁 Repo & Report | 🔍 Description | 🛠️ Technologies |
 |--------------|----------------|-----------------|
+| [`House-Price-Prediction`](https://github.com/mrinalcs/House-Price-Prediction) | Predicting house prices using regression models (Linear, Ridge, Lasso) with model evaluation (RMSE ≈ 0.011, R² ≈ 0.928) | Python, Scikit-learn, Streamlit |
 | [`Diabetes-Prediction-Project`](https://github.com/mrinalcs/Diabetes-Prediction-Project) | ML-based model for diabetes risk detection | Python, Pandas, Scikit-learn |
 | [`durga-idol-analysis`](https://drive.google.com/drive/folders/1G5ZwnlKDldaYz72w1I-w6WUivTTFm7vy?usp=sharing?ref=mrinalcs.github.io) | Exploring Similarity Between Durga Idols and Idol Artists Over the Years | Python, OpenCV, scikit-image,NumPy, Pillow |
 | [`india-literacy`](https://drive.google.com/drive/folders/1DgPTm5jvRlimD80-HjIT6CK9elssA9zO) | Literacy insights from India's Census 2011 | R, ggplot2 |
 | [`mrinalcs.github.io`](https://github.com/mrinalcs/mrinalcs.github.io) | Personal GitHub page with organized learning resources | Jekyll, HTML |
 
----
+ 
 
  
 <p align="center">
