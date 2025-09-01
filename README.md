@@ -38,6 +38,7 @@ Here are some ideas to get you started:
 | [`durga-idol-analysis`](https://drive.google.com/drive/folders/1G5ZwnlKDldaYz72w1I-w6WUivTTFm7vy?usp=sharing?ref=mrinalcs.github.io) | Exploring Similarity Between Durga Idols and Idol Artists Over the Years | Python, OpenCV, scikit-image,NumPy, Pillow |
 | [`india-literacy`](https://drive.google.com/drive/folders/1DgPTm5jvRlimD80-HjIT6CK9elssA9zO) | Literacy insights from India's Census 2011 | R, ggplot2 |
 | [`mrinalcs.github.io`](https://github.com/mrinalcs/mrinalcs.github.io) | Personal GitHub page with organized learning resources | Jekyll, HTML |
+| [`SQL-Retail-Data-Analysis`](https://github.com/mrinalcs/sql-retail-data-analysis) | SQL-based retail data analysis project focusing on customer behavior, product performance, sales trends, and revenue insights using real-world transactional datasets. | SQL |
 
  
 
